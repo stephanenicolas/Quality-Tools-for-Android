@@ -2,11 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.octo.android</groupId>
-	<artifactId>sonar-android-sample</artifactId>
+	<artifactId>sonar-android-sample-test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>apk</packaging>
-	<name>sonar-android-sample</name>
+	<name>sonar-android-sample-tests</name>
 
 	<properties>
 		<platform.version>4.1.1.4</platform.version>
@@ -18,6 +19,24 @@
 			<artifactId>android</artifactId>
 			<version>${platform.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android-test</artifactId>
+			<version>${platform.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.octo.android</groupId>
+			<artifactId>sonar-android-sample</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>emma</groupId>
+			<artifactId>emma</artifactId>
+			<version>2.0.5312</version>
 		</dependency>
 	</dependencies>
 
@@ -36,6 +55,20 @@
 						<platform>7</platform>
 					</sdk>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
+					<emma>
+						<enable>true</enable>
+					</emma>
+					<dex>
+						<noLocals>true</noLocals>
+					</dex>
+					<test>
+						<coverage>true</coverage>
+						<createReport>true</createReport>
+					</test>
+					<pull>
+						<source>/data/data/com.octo.android.sonar.android.sample/files/coverage.ec</source>
+						<destination>${project.build.directory}/emma/coverage.ec</destination>
+					</pull>
 				</configuration>
 				<extensions>true</extensions>
 			</plugin>

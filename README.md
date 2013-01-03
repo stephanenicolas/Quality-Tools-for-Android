@@ -9,3 +9,22 @@ The Android community needs more robustness in Android apps and it looks like a 
 
 Thanks to [Sonar Source](http://www.sonarsource.org/) for supporting this effort.
 Thanks to [OCTO Technology](http://www.octo.com/en) to provide us with free time to work on that project.
+
+Usage
+=====
+
+To build the sample project and run the sample app on a plugged device / running emulator : 
+
+```bash
+cd sonar-android-sample
+mvn clean install android:deploy android:run
+```
+
+To run the tests and get code coverage and tests results on a plugged rooted device / running emulator : 
+
+```bash
+ mvn clean install android:pull
+```
+
+you will get tests results in : target/surefire-reports/.
+you will get tests coverage in : target/emma/.

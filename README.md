@@ -24,7 +24,7 @@ To run the tests and get code coverage and tests results on a plugged rooted dev
 
 ```bash
 cd sonar-android-sample-test
- mvn clean install android:pull
+mvn clean install android:pull
 ```
 
 you will get tests results in : target/surefire-reports/.

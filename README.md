@@ -23,6 +23,7 @@ mvn clean install android:deploy android:run
 To run the tests and get code coverage and tests results on a plugged rooted device / running emulator : 
 
 ```bash
+cd sonar-android-sample-test
  mvn clean install android:pull
 ```
 

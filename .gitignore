@@ -7,14 +7,32 @@
 
 # Java class files
 *.class
+jarlist.cache
 
 # generated files
-bin/
-gen/
+*/bin/
+*/gen/
+*/out/
 
 # Local configuration file (sdk path, etc)
 local.properties
+release.properties
 
 # Eclipse project files
 .classpath
 .project
+.settings
+.settings/
+.DS_Store
+
+#Intelli J project files
+.idea/
+.iml
+
+#Maven project files
+target/
+
+#Maven release files
+*.releaseBackup
+*.versionsBackup
+

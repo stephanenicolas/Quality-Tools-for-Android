@@ -3,34 +3,37 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.octo.android</groupId>
-	<artifactId>sonar-android-sample-test</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>apk</packaging>
-	<name>sonar-android-sample-tests</name>
+	<parent>
+		<groupId>com.octo.android</groupId>
+		<artifactId>android-sample-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 
-	<properties>
-		<platform.version>4.1.1.4</platform.version>
-	</properties>
+	<artifactId>android-sample-test</artifactId>
+	<packaging>apk</packaging>
+	<name>android-sample-tests</name>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>${platform.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android-test</artifactId>
-			<version>${platform.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.octo.android</groupId>
+			<artifactId>android-sample</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.octo.android</groupId>
-			<artifactId>sonar-android-sample</artifactId>
+			<artifactId>android-sample</artifactId>
 			<version>${project.version}</version>
-			<type>jar</type>
+			<type>apk</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -45,14 +48,9 @@
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>
-				<version>3.5.0</version>
 				<configuration>
-					<androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
-					<assetsDirectory>${project.basedir}/assets</assetsDirectory>
-					<resourceDirectory>${project.basedir}/res</resourceDirectory>
-					<nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
 					<sdk>
-						<platform>7</platform>
+						<platform>${android.version}</platform>
 					</sdk>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
 					<emma>
@@ -75,11 +73,6 @@
 
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

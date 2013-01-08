@@ -1,0 +1,1 @@
+vogar --verbose --classpath android-sample/target/android-sample-0.0.1-SNAPSHOT.jar --java-home /Library/Java/Home --mode activity android-sample-test/src/main/java/com/octo/android/sample/test/HelloAndroidActivityTest.java 

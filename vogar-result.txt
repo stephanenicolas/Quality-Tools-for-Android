@@ -1,0 +1,39 @@
+The command : 
+~/temp/vogar-read-only/bin/vogar  --clean --verbose --java-home /Library/Java/Home --classpath android-sample/target/android-sample-0.0.1-SNAPSHOT.jar --classpath android-sample-test/target/android-sample-test-0.0.1-SNAPSHOT.jar --mode activity com.octo.android.sample.test.HelloAndroidActivityTest
+
+Gives the following error in console :
+
+ java.lang.IllegalArgumentException: No classes in package: com.octo.android.sample.test.HelloAndroidActivityTest; classpath is [.]
+    	at vogar.target.ClassFinder.find(ClassFinder.java:43)
+    	at vogar.target.TestRunner.run(TestRunner.java:197)
+    	at vogar.target.TestRunner.run(TestRunner.java:170)
+    	at vogar.target.TestActivity$1.run(TestActivity.java:53)
+    	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1076)
+    	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:569)
+    	at java.lang.Thread.run(Thread.java:856)
+    Action com.octo.android.sample.test.HelloAndroidActivityTest did not complete normally.
+    timedOut=false
+    lastStartedOutcome=null
+    lastFinishedOutcome=null
+    command=adb shell am start -W -a android.intent.action.MAIN -n vogar.test.com.octo.android.sample.test.HelloAndroidActivityTest/vogar.target.TestActivity
+  com.octo.android.sample.test.HelloAndroidActivityTest FAIL (ERROR)
+
+Gives the following error in adb logcat : 
+
+W/dalvikvm( 2993): Unable to resolve superclass of Lcom/octo/android/sample/test/HelloAndroidActivityTest; (9)
+W/dalvikvm( 2993): Link of class 'Lcom/octo/android/sample/test/HelloAndroidActivityTest;' failed
+W/NetworkManagementSocketTagger(   77): setKernelCountSet(10021, 0) failed with errno -2
+D/AndroidRuntime( 3017): 
+D/AndroidRuntime( 3017): >>>>>> AndroidRuntime START com.android.internal.os.RuntimeInit <<<<<<
+D/AndroidRuntime( 3017): CheckJNI is ON
+D/dalvikvm(  175): GC_CONCURRENT freed 83K, 17% free 14205K/17095K, paused 3ms+73ms
+D/AndroidRuntime( 3017): Calling main entry com.android.commands.pm.Pm
+W/PackageManager(   77): Package named 'com.octo.android.sample.test.HelloAndroidActivityTest' doesn't exist.
+D/dalvikvm(   77): GC_EXPLICIT freed 416K, 8% free 13218K/14279K, paused 4ms+8ms
+D/AndroidRuntime( 3017): Shutting down VM
+D/dalvikvm( 3017): GC_CONCURRENT freed 100K, 78% free 452K/2048K, paused 1ms+1ms
+D/jdwp    ( 3017): Got wake-up signal, bailing out of select
+D/dalvikvm( 3017): Debugger has detached; object registry had 1 entries
+I/AndroidRuntime( 3017): NOTE: attach of thread 'Binder Thread #3' failed
+D/dalvikvm(  161): GC_CONCURRENT freed 383K, 6% free 10333K/10951K, paused 3ms+3ms
+

@@ -20,12 +20,8 @@ To build the sample project and run the sample app on a plugged rooted device / 
 
 ```bash
 # in parent folder
-mvn clean install -Pemma -Psonar
-```
-
-```bash
-# in android-sample
-mvn sonar:sonar -Pemma -Psonar
+mvn clean install -Pemma
+mvn sonar:sonar 
 ```
 
 you will get tests results in : target/surefire-reports/.

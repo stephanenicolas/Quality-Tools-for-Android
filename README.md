@@ -19,8 +19,14 @@ Usage
 To build the sample project and run the sample app on a plugged rooted device / running emulator : 
 
 ```bash
-mvn clean install 
+mvn clean install -Pemma -Psonar
 ```
 
 you will get tests results in : target/surefire-reports/.
 you will get tests coverage in : target/emma/.
+
+
+You may need to restart adb as root to be able to pull the emma coverage file. Type in a terminal :
+```bash
+adb root
+```

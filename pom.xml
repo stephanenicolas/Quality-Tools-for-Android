@@ -16,6 +16,11 @@
 		<!-- Plugins -->
 	    <maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 		<android-maven-plugin.version>3.5.0</android-maven-plugin.version>
+		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
+		<sonar.emma.reportPath>target/emma</sonar.emma.reportPath>
 	</properties>
 	
 	<modules>

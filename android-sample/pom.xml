@@ -16,7 +16,6 @@
 	<properties>
 		<platform.version>4.1.1.4</platform.version>
 
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
@@ -42,28 +41,6 @@
 
 	<profiles>
 		<profile>
-			<!-- Sonar -->
-			<id>sonar</id>
-			<properties>
-				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-				<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
-				<sonar.emma.reportPath>target/emma</sonar.emma.reportPath>
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-						<artifactId>android-maven-plugin</artifactId>
-						<configuration>
-							<test>
-								<createReport>true</createReport>
-							</test>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
 			<id>emma</id>
 			<build>
 				<plugins>
@@ -80,6 +57,9 @@
 								<!-- Required for EMMA -->
 								<noLocals>true</noLocals>
 							</dex>
+							<test>
+								<createReport>true</createReport>
+							</test>
 						</configuration>
 					</plugin>
 				</plugins>

@@ -90,7 +90,7 @@
                 </goals>
                 <configuration>
                   <pullSource>/data/data/com.octo.android.sample/files/coverage.ec</pullSource>
-                  <pullDestination>${project.basedir}/../app/target/emma/coverage.ec</pullDestination>
+                  <pullDestination>${project.basedir}/../android-sample/target/emma/coverage.ec</pullDestination>
                 </configuration>
               </execution>
             </executions>

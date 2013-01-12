@@ -14,18 +14,14 @@
 		<java.version>1.5</java.version>
 		<android.sdk.version>7</android.sdk.version>
 		<!-- Plugins -->
-	    <maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
+		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 		<android-maven-plugin.version>3.5.0</android-maven-plugin.version>
-		
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
-		<sonar.emma.reportPath>target/emma</sonar.emma.reportPath>
+
 	</properties>
-	
+
 	<modules>
-	    <module>android-sample</module>
-	    <module>android-sample-test</module>
+		<module>android-sample</module>
+		<module>android-sample-test</module>
 	</modules>
 
 	<dependencyManagement>
@@ -72,4 +68,16 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>emma</id>
+			<properties>
+				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+				<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
+				<sonar.emma.reportPath>target/emma</sonar.emma.reportPath>
+			</properties>
+		</profile>
+	</profiles>
 </project>

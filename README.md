@@ -1,5 +1,5 @@
-Sample-Android-Project
-======================
+# Sample-Android-Project
+
 
 This is a sample Android project that will be used to work on various project to increase the quality of Android Projects.
 
@@ -13,15 +13,18 @@ Thanks to
  * Thanks to [Sonar Source](http://www.sonarsource.org/) for supporting this effort, especially for this [project's configuration](https://github.com/SonarSource/sonar-examples/tree/master/projects/android).
 
 
-Usage
-=====
+# Usage
+
+This section describes how to build & test the project using those different testing technologies.
+
+## Standard Android testing APIs and code coverage using emma
 
 To build the sample project and run the sample app on a plugged rooted device / running emulator : 
 
 ```bash
 # in parent folder
 mvn clean install -Pemma
-mvn sonar:sonar 
+mvn sonar:sonar -Pemma
 ```
 
 you will get tests results in : target/surefire-reports/.

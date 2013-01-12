@@ -36,13 +36,6 @@
 			<type>apk</type>
 			<scope>provided</scope>
 		</dependency>
-<!--
-		<dependency>
-			<groupId>emma</groupId>
-			<artifactId>emma</artifactId>
-			<version>2.0.5312</version>
-		</dependency>
--->
 	</dependencies>
 
 	<build>
@@ -55,22 +48,6 @@
 						<platform>${android.version}</platform>
 					</sdk>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
-<!--
-					<emma>
-						<enable>true</enable>
-					</emma>
-					<dex>
-						<noLocals>true</noLocals>
-					</dex>
-					<test>
-						<coverage>true</coverage>
-						<createReport>true</createReport>
-					</test>
-					<pull>
-						<source>/data/data/com.octo.android.sonar.android.sample/files/coverage.ec</source>
-						<destination>${project.build.directory}/emma/coverage.ec</destination>
-					</pull>
--->
 				</configuration>
 				<extensions>true</extensions>
 			</plugin>
@@ -80,4 +57,47 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	
+  <profiles>
+    <profile>
+      <id>emma</id>
+      <dependencies>
+        <dependency>
+          <groupId>emma</groupId>
+          <artifactId>emma</artifactId>
+          <version>2.1.5320</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+            <artifactId>android-maven-plugin</artifactId>
+            <configuration>
+              <test>
+                <coverage>true</coverage>
+                <createReport>true</createReport>
+              </test>
+            </configuration>
+            <extensions>true</extensions>
+            <executions>
+              <execution>
+                <id>pull-coverage</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                  <goal>pull</goal>
+                </goals>
+                <configuration>
+                  <pullSource>/data/data/com.octo.android.sample/files/coverage.ec</pullSource>
+                  <pullDestination>${project.basedir}/../app/target/emma/coverage.ec</pullDestination>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+		
 </project>

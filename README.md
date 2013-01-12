@@ -40,7 +40,7 @@ adb root
 
 ```bash
 # in parent folder
-mvn clean install -robolectric
+mvn clean install -Probolectric
 mvn sonar:sonar -Pundercover
 ```
 

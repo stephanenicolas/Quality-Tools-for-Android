@@ -19,7 +19,7 @@ Usage
 To build the sample project and run the sample app on a plugged rooted device / running emulator : 
 
 ```bash
-mvn clean install -Pemma -Psonar
+mvn clean install sonar:sonar -Pemma -Psonar
 ```
 
 you will get tests results in : target/surefire-reports/.

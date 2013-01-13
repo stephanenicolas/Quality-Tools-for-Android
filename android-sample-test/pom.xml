@@ -98,6 +98,21 @@
         </plugins>
       </build>
     </profile>
+    
+    <profile>
+        <id>undercover</id>
+        <properties>
+            <!-- Skip standard tests with undercover profile -->
+            <skipTests>true</skipTests>
+        </properties>
+    </profile>
+    <profile>
+        <id>robolectric</id>
+        <properties>
+            <!-- Skip standard tests with undercover profile -->
+            <skipTests>true</skipTests>
+        </properties>
+    </profile>
   </profiles>
 		
 </project>

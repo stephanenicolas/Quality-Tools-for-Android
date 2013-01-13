@@ -24,6 +24,25 @@
 			<artifactId>android</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- robolectric testing -->
+		<dependency>
+			<groupId>com.pivotallabs</groupId>
+			<artifactId>robolectric</artifactId>
+			<version>1.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-core</artifactId>
+			<version>1.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -42,6 +61,10 @@
 	<profiles>
 		<profile>
 			<id>emma</id>
+			<properties>
+				<!-- skip robolectric tests -->
+				<skipTests>true</skipTests>
+			</properties>
 			<build>
 				<plugins>
 					<plugin>
@@ -61,6 +84,29 @@
 								<createReport>true</createReport>
 							</test>
 						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>robolectric</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>cobertura-maven-plugin</artifactId>
+						<version>${cobertura.version}</version>
+						<configuration>
+						    <format>xml</format>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>clean</goal>
+								</goals>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>

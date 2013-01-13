@@ -16,7 +16,11 @@
 		<!-- Plugins -->
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 		<android-maven-plugin.version>3.5.0</android-maven-plugin.version>
+		<cobertura.version>2.5.2</cobertura.version>
 
+		<!-- Sonar common configuration -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 	</properties>
 
 	<modules>
@@ -74,10 +78,31 @@
 			<id>emma</id>
 			<properties>
 				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 				<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
 				<sonar.emma.reportPath>target/emma</sonar.emma.reportPath>
 			</properties>
+		</profile>
+		<profile>
+			<id>robolectric</id>
+			<properties>
+				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+				<sonar.core.codeCoveragePlugin>cobertura</sonar.core.codeCoveragePlugin>
+				<sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>
+				<sonar.skippedModules>android-sample-test</sonar.skippedModules>
+			</properties>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>cobertura-maven-plugin</artifactId>
+						<version>${cobertura.version}</version>
+					</plugin>
+				</plugins>
+			</reporting>
 		</profile>
 	</profiles>
 </project>

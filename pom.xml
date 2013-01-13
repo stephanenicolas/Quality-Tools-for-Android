@@ -79,6 +79,7 @@
 			<properties>
 				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+				<sonar.branch>emma</sonar.branch>
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 				<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
 				<sonar.emma.reportPath>target/emma</sonar.emma.reportPath>
@@ -89,6 +90,7 @@
 			<properties>
 				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+				<sonar.branch>robolectric</sonar.branch>
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 				<sonar.core.codeCoveragePlugin>cobertura</sonar.core.codeCoveragePlugin>
 				<sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>

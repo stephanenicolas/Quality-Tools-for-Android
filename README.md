@@ -16,13 +16,12 @@ robust projects on Android, by using any of the most interesting and popular tec
 
 # What is missing (TODO/INTEGRATE) : 
 
-* UIAutomator through Maven, get the results in Sonar (maybe using [this testrunner](https://github.com/dpreussler/automator-log-converter)), and test coverage in Sonar
-* get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
-* get Lint integration via Maven, get the results in Sonar
-* get pmd, findbugs, checkstyle integration via Maven and share config with Sonar
-* get alls test running in jenkins, reported in a sonar
-* get android maven lint integration (the android pom parser)
-* get aggregated tests and code coverage
+1. get Lint integration via Maven, get the results in Sonar
+2. UIAutomator through Maven, get the results in Sonar (maybe using [this testrunner](https://github.com/dpreussler/automator-log-converter)), and test coverage in Sonar
+3. get pmd, findbugs, checkstyle integration via Maven and share config with Sonar
+4. get aggregated tests and code coverage 
+5. get android maven lint integration (the android pom parser)
+6. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
 
 # Usage
 

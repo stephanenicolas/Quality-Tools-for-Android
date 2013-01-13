@@ -36,12 +36,12 @@ You may need to restart adb as root to be able to pull the emma coverage file. T
 adb root
 ```
 
-## Robolectric (code coverage in sonar still to be done)
+## Robolectric and code covergae using coberura
 
 ```bash
 # in parent folder
-mvn clean install -Pundercover
-mvn sonar:sonar -Pundercover
+mvn clean cobertura:cobertura -Probolectric
+mvn sonar:sonar -Probolectric
 ```
 
 

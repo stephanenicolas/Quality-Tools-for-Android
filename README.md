@@ -36,7 +36,7 @@ You may need to restart adb as root to be able to pull the emma coverage file. T
 adb root
 ```
 
-## Robolectric and code covergae using coberura
+## Robolectric and code coverage using cobertura
 
 ```bash
 # in parent folder

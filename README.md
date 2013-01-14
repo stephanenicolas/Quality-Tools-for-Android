@@ -16,6 +16,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 
 # What is missing (TODO/INTEGRATE) : 
 
+0. Using [Jacoco instead of emma](https://github.com/jacoco/jacoco/pull/64#issuecomment-12150910) would help getting more standard Sonar config 
 1. get Lint integration via Maven, get the results in Sonar
 2. UIAutomator through Maven, get the results in Sonar (maybe using [this testrunner](https://github.com/dpreussler/automator-log-converter)), and test coverage in Sonar
 3. get pmd, findbugs, checkstyle integration via Maven and share config with Sonar

@@ -13,6 +13,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 
 * Standard Android testing framework and code coverage using emma, reported in Sonar. That also covers robotium, easy mock and mockito technologies.
 * Robolectric testing framework and code coverage using Cobertura, reported in Sonar.
+* Configuration works out of the box in eclipse
 
 # What is missing (TODO/INTEGRATE) : 
 

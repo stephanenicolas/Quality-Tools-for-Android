@@ -25,6 +25,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 5. get android maven lint integration (the android pom parser)
 6. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
 7. When finished, use the [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
+
 # Usage
 
 This section describes how to build & test the project using those different testing technologies.

@@ -9,14 +9,32 @@
 	<name>android-sample-parent</name>
 
 	<properties>
-		<!-- Dependencies -->
+		<!-- Android Dependencies -->
 		<platform.version>4.1.1.4</platform.version>
-		<java.version>1.5</java.version>
+		<java.version>1.6</java.version>
 		<android.sdk.version>7</android.sdk.version>
+
+		<!-- Testing Dependencies -->
+		<robolectric.version>1.1</robolectric.version>
+		<hamcrest-core.version>1.2</hamcrest-core.version>
+		<junit.version>4.8.2</junit.version>
+
+		<easymock.version>2.5.2</easymock.version>
+		<mockito-all.version>1.9.5</mockito-all.version>
+		<dexmaker.version>1.0</dexmaker.version>
+		<dexmaker-mockito.version>1.0</dexmaker-mockito.version>
+		<mockwebserver.version>20121111</mockwebserver.version>
+		<robotium.version>3.6</robotium.version>
+
 		<!-- Plugins -->
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
-		<android-maven-plugin.version>3.5.0</android-maven-plugin.version>
+		<android-maven-plugin.version>3.5.1-SNAPSHOT</android-maven-plugin.version>
 		<cobertura.version>2.5.2</cobertura.version>
+		<maven-pmd-plugin.version>2.7.1</maven-pmd-plugin.version>
+		<findbugs-maven-plugin.version>2.5.2</findbugs-maven-plugin.version>
+		<maven-checkstyle-plugin.version>2.9.1</maven-checkstyle-plugin.version>
+		<lint-maven-plugin.version>0.0.6</lint-maven-plugin.version>
+		<eclipse-lifecycle-plugin.version>1.0.0</eclipse-lifecycle-plugin.version>
 
 		<!-- Sonar common configuration -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,7 +43,6 @@
 
 	<modules>
 		<module>android-sample</module>
-		<module>android-sample-test</module>
 	</modules>
 
 	<dependencyManagement>
@@ -42,25 +59,97 @@
 				<version>${platform.version}</version>
 				<scope>provided</scope>
 			</dependency>
+			<!-- Testing -->
+			<dependency>
+				<groupId>com.pivotallabs</groupId>
+				<artifactId>robolectric</artifactId>
+				<version>${robolectric.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-core</artifactId>
+				<version>${hamcrest-core.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.easymock</groupId>
+				<artifactId>easymock</artifactId>
+				<version>${easymock.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>${mockito-all.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.dexmaker</groupId>
+				<artifactId>dexmaker</artifactId>
+				<version>${dexmaker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.dexmaker</groupId>
+				<artifactId>dexmaker-mockito</artifactId>
+				<version>${dexmaker-mockito.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.mockwebserver</groupId>
+				<artifactId>mockwebserver</artifactId>
+				<version>${mockwebserver.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jayway.android.robotium</groupId>
+				<artifactId>robotium-solo</artifactId>
+				<version>${robotium.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>oss.sonatype.org-jayway-snapshots</id>
+			<name>Jayway OpenSource SNAPSHOTs on Sonatype.org</name>
+			<url>http://oss.sonatype.org/content/repositories/jayway-snapshots/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<extensions>true</extensions>
 					<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 					<artifactId>android-maven-plugin</artifactId>
 					<version>${android-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>lint</id>
+							<goals>
+								<goal>lint</goal>
+							</goals>
+							<phase>install</phase>
+						</execution>
+					</executions>
 					<configuration>
 						<sdk>
 							<platform>${android.sdk.version}</platform>
 						</sdk>
+						<lint>
+							<skip>false</skip>
+							<failOnError>true</failOnError>
+						</lint>
 						<undeployBeforeDeploy>true</undeployBeforeDeploy>
 					</configuration>
-					<extensions>true</extensions>
 				</plugin>
-
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven-compiler-plugin.version}</version>
@@ -69,32 +158,145 @@
 						<target>${java.version}</target>
 					</configuration>
 				</plugin>
+
+				<!-- Quality Analysis Tools -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>${maven-checkstyle-plugin.version}</version>
+					<configuration>
+						<configLocation>checkstyle.xml</configLocation>
+						<enableRulesSummary>false</enableRulesSummary>
+					</configuration>
+					<executions>
+						<execution>
+							<id>checkstyle-check</id>
+							<phase>process-sources</phase>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>${findbugs-maven-plugin.version}</version>
+					<configuration>
+						<excludeFilterFile>findbugs-filter.xml</excludeFilterFile>
+					</configuration>
+					<executions>
+						<execution>
+							<id>findbugs-check</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>${maven-pmd-plugin.version}</version>
+					<configuration>
+						<targetJdk>1.5</targetJdk>
+					</configuration>
+					<executions>
+						<execution>
+							<id>pmd-check</id>
+							<goals>
+								<goal>check</goal>
+								<goal>cpd-check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>com.lewisd</groupId>
+					<artifactId>lint-maven-plugin</artifactId>
+					<version>${lint-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<phase>validate</phase>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- Eclipse config -->
+				<!-- http://stackoverflow.com/questions/13040788/how-to-elimate-the-maven-enforcer-plugin-goal-enforce-is-ignored-by-m2e-wa -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>${eclipse-lifecycle-plugin.version}</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-enforcer-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>enforce</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.lewisd</groupId>
+										<artifactId>lint-maven-plugin</artifactId>
+										<versionRange>[${lint-maven-plugin.version},)</versionRange>
+										<goals>
+											<goal>check</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>com.lewisd</groupId>
+				<artifactId>lint-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 
 	<profiles>
 		<profile>
 			<id>emma</id>
+			<modules>
+				<module>android-sample-tests</module>
+			</modules>
 			<properties>
 				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 				<sonar.branch>emma</sonar.branch>
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 				<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
-				<sonar.emma.reportPath>target/emma</sonar.emma.reportPath>
+				<sonar.emma.reportPath>../android-sample/target/emma</sonar.emma.reportPath>
 			</properties>
 		</profile>
 		<profile>
-			<id>robolectric</id>
+			<id>cobertura</id>
 			<properties>
 				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
 				<sonar.branch>robolectric</sonar.branch>
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 				<sonar.core.codeCoveragePlugin>cobertura</sonar.core.codeCoveragePlugin>
 				<sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>
-				<sonar.skippedModules>android-sample-test</sonar.skippedModules>
 			</properties>
 			<reporting>
 				<plugins>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.octo.android</groupId>
+		<artifactId>android-sample-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>android-sample-tests</artifactId>
+	<packaging>apk</packaging>
+	<name>android-sample-tests</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.octo.android</groupId>
+			<artifactId>android-sample</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.octo.android</groupId>
+			<artifactId>android-sample</artifactId>
+			<version>${project.version}</version>
+			<type>apk</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Testing swisstools -->
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.dexmaker</groupId>
+			<artifactId>dexmaker</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.dexmaker</groupId>
+			<artifactId>dexmaker-mockito</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.mockwebserver</groupId>
+			<artifactId>mockwebserver</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.android.robotium</groupId>
+			<artifactId>robotium-solo</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<extensions>true</extensions>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<profiles>
+		<profile>
+			<id>emma</id>
+			<dependencies>
+				<dependency>
+					<groupId>emma</groupId>
+					<artifactId>emma</artifactId>
+					<version>2.1.5320</version>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+						<artifactId>android-maven-plugin</artifactId>
+						<configuration>
+							<test>
+								<coverage>true</coverage>
+								<createReport>true</createReport>
+							</test>
+						</configuration>
+						<extensions>true</extensions>
+						<executions>
+							<execution>
+								<id>pull-coverage</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>pull</goal>
+								</goals>
+								<configuration>
+									<pullSource>/data/data/com.octo.android.sample/files/coverage.ec</pullSource>
+									<pullDestination>${project.basedir}/../android-sample/target/emma/coverage.ec</pullDestination>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

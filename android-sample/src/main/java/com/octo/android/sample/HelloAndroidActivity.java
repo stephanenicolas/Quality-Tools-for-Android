@@ -6,7 +6,7 @@ import android.util.Log;
 
 public class HelloAndroidActivity extends Activity {
 
-    private static String TAG = "sonar-android-sample";
+    private static final String TAG = "android-sample";
 
     /**
      * Called when the activity is first created.

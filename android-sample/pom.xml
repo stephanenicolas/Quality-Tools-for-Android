@@ -24,28 +24,10 @@
 			<artifactId>android</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- robolectric testing -->
-		<dependency>
-			<groupId>com.pivotallabs</groupId>
-			<artifactId>robolectric</artifactId>
-			<version>1.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-core</artifactId>
-			<version>1.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
+		<testSourceDirectory>${test.directory}</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
@@ -55,10 +37,34 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
+
+			<!-- Quality analysis tools -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 
 	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- This folder is just wrong, given to m2e to patch issue https://github.com/rgladwell/m2e-android/commit/2b490f900153cd34fff1cec47fe5aeffabe44d87 -->
+				<test.directory>res</test.directory>
+			</properties>
+		</profile>
 		<profile>
 			<id>emma</id>
 			<properties>
@@ -88,9 +94,29 @@
 				</plugins>
 			</build>
 		</profile>
-
 		<profile>
-			<id>robolectric</id>
+			<id>cobertura</id>
+			<properties>
+				<test.directory>src/test/java</test.directory>
+			</properties>
+			<dependencies>
+				<!-- robolectric testing -->
+				<dependency>
+					<groupId>com.pivotallabs</groupId>
+					<artifactId>robolectric</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.hamcrest</groupId>
+					<artifactId>hamcrest-core</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
 			<build>
 				<plugins>
 					<plugin>
@@ -98,7 +124,7 @@
 						<artifactId>cobertura-maven-plugin</artifactId>
 						<version>${cobertura.version}</version>
 						<configuration>
-						    <format>xml</format>
+							<format>xml</format>
 						</configuration>
 						<executions>
 							<execution>

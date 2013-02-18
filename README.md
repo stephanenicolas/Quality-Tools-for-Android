@@ -1,4 +1,4 @@
-# Sample-Android-Project
+# Quality-Tools-for-Android
 
 
 This is an Android sample app + tests that will be used to work on various project to increase the quality of the Android platform.

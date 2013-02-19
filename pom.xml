@@ -17,7 +17,6 @@
 		<!-- Testing Dependencies -->
 		<robolectric.version>1.1</robolectric.version>
 		<hamcrest-core.version>1.2</hamcrest-core.version>
-		<junit.version>4.8.2</junit.version>
 
 		<easymock.version>2.5.2</easymock.version>
 		<mockito-all.version>1.9.5</mockito-all.version>
@@ -70,12 +69,6 @@
 				<groupId>org.hamcrest</groupId>
 				<artifactId>hamcrest-core</artifactId>
 				<version>${hamcrest-core.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>

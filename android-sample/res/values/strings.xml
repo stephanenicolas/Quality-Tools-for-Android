@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="click">Click !</string>
     <string name="hello">Hello sonar-android-sample!</string>
     <string name="app_name">sonar-android-sample</string>
 </resources>

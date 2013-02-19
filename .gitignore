@@ -36,3 +36,5 @@ target/
 *.releaseBackup
 *.versionsBackup
 
+#robolectric cache
+tmp/

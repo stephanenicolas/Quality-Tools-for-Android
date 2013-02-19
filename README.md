@@ -25,7 +25,8 @@ robust projects on Android, by using any of the most interesting and popular tec
         * robotium
     * robolectric tests
         * hamcrest 
-
+        * easymock
+        * mockito
  
 # What is missing (TODO/INTEGRATE) : 
 

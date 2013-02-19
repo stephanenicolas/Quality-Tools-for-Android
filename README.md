@@ -72,6 +72,9 @@ mvn sonar:sonar -Pcobertura
 Here is the result in sonar : 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-sonar-robolectric-config.png" width=450px/>
 
+## Robolectric development in eclipse
+
+To enable Robolectric development in this configuration. In eclipse, switch to maven profile "cobertura" in maven settings on the main app.
 
 # Thanks to
  * [OCTO Technology](http://www.octo.com/en) to provide us with free time to work on that project.

@@ -54,7 +54,7 @@ you will get tests results in : target/surefire-reports/.
 you will get tests coverage in : target/emma/.
 
 Here is the result in sonar : 
-<img src="https://raw.github.com/stephanenicolas/Sample-Android-Project/master/gfx/screenshot-sonar-emma-config.png" width=450px/>
+<img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-sonar-emma-config.png" width=450px/>
 
 You may need to restart adb as root to be able to pull the emma coverage file. Type in a terminal :
 ```bash
@@ -70,7 +70,7 @@ mvn sonar:sonar -Pcobertura
 ```
 
 Here is the result in sonar : 
-<img src="https://raw.github.com/stephanenicolas/Sample-Android-Project/master/gfx/screenshot-sonar-robolectric-config.png" width=450px/>
+<img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-sonar-robolectric-config.png" width=450px/>
 
 
 # Thanks to

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.octo.android.sample.R;
 import com.octo.android.sample.model.Computer;
+import com.octo.android.sample.model.DummyComputer;
 import com.octo.android.sample.ui.HelloAndroidActivity;
 
 public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<HelloAndroidActivity> {
@@ -27,7 +28,7 @@ public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<H
         final int EXPECTED_RESULT = 1;
         // given
         HelloAndroidActivity activityUnderTest = getActivity();
-        Computer mockComputer = EasyMock.createMock(Computer.class);
+        Computer mockComputer = EasyMock.createMock(DummyComputer.class);
         EasyMock.expect(mockComputer.getResult()).andReturn(EXPECTED_RESULT);
         activityUnderTest.setComputer(mockComputer);
         EasyMock.replay(mockComputer);

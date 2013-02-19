@@ -18,8 +18,8 @@
 		<robolectric.version>1.1</robolectric.version>
 		<hamcrest-core.version>1.2</hamcrest-core.version>
 
-		<easymock.version>2.5.2</easymock.version>
-		<mockito-all.version>1.9.5</mockito-all.version>
+		<easymock.version>3.2-SNAPSHOT</easymock.version>
+		<mockito-core.version>1.9.5</mockito-core.version>
 		<dexmaker.version>1.0</dexmaker.version>
 		<dexmaker-mockito.version>1.0</dexmaker-mockito.version>
 		<mockwebserver.version>20121111</mockwebserver.version>
@@ -75,11 +75,18 @@
 				<groupId>org.easymock</groupId>
 				<artifactId>easymock</artifactId>
 				<version>${easymock.version}</version>
+				<!-- because mockito already provides them -->
+				<exclusions>
+					<exclusion>
+						<groupId>cglib</groupId>
+						<artifactId>cglib-nodep</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.mockito</groupId>
-				<artifactId>mockito-all</artifactId>
-				<version>${mockito-all.version}</version>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito-core.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.dexmaker</groupId>
@@ -103,6 +110,20 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>sonatype-oss-public</id>
+			<url>https://oss.sonatype.org/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 
 	<pluginRepositories>
 		<pluginRepository>

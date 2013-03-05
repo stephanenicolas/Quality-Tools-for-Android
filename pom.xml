@@ -27,7 +27,7 @@
 
 		<!-- Plugins -->
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
-		<android-maven-plugin.version>3.5.1-SNAPSHOT</android-maven-plugin.version>
+		<android-maven-plugin.version>3.5.1</android-maven-plugin.version>
 		<cobertura.version>2.5.2</cobertura.version>
 		<maven-pmd-plugin.version>2.7.1</maven-pmd-plugin.version>
 		<findbugs-maven-plugin.version>2.5.2</findbugs-maven-plugin.version>
@@ -42,6 +42,7 @@
 
 	<modules>
 		<module>android-sample</module>
+		<module>android-sample-ui-tests</module>
 	</modules>
 
 	<dependencyManagement>
@@ -55,6 +56,12 @@
 			<dependency>
 				<groupId>com.google.android</groupId>
 				<artifactId>android-test</artifactId>
+				<version>${platform.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.android</groupId>
+				<artifactId>uiautomator</artifactId>
 				<version>${platform.version}</version>
 				<scope>provided</scope>
 			</dependency>

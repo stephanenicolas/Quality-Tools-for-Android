@@ -68,6 +68,12 @@
 					<attachJar>false</attachJar>
 					<dex>
 					</dex>
+                                        <test>
+                                          <createReport>true</createReport>
+                                        </test>
+                                        <proguard>
+                                          <skip>true</skip>
+                                        </proguard>
 				</configuration>
 				<executions>
 					<execution>
@@ -82,6 +88,13 @@
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>dex</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>ui-test</id>
+						<phase>install</phase>
+						<goals>
+							<goal>ui-automator-test</goal>
 						</goals>
 					</execution>
 				</executions>

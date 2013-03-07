@@ -68,12 +68,19 @@
 					<attachJar>false</attachJar>
 					<dex>
 					</dex>
-                                        <test>
-                                          <createReport>true</createReport>
-                                        </test>
-                                        <proguard>
-                                          <skip>true</skip>
-                                        </proguard>
+					<test>
+						<createReport>true</createReport>
+					</test>
+					<proguard>
+						<skip>true</skip>
+					</proguard>
+					<automator>
+						<skip>false</skip>
+						<testClassOrMethods>
+							<testClassOrMethod>com.octo.android.sample.uitest.LaunchSettings</testClassOrMethod>
+						</testClassOrMethods>
+						<createReport>true</createReport>
+					</automator>
 				</configuration>
 				<executions>
 					<execution>
@@ -94,7 +101,7 @@
 						<id>ui-test</id>
 						<phase>install</phase>
 						<goals>
-							<goal>ui-automator-test</goal>
+							<goal>automator</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -115,11 +122,8 @@
 			</plugin>
 
 			<!-- Quality analysis tools -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-			</plugin>
-			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>findbugs-maven-plugin</artifactId> 
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-checkstyle-plugin</artifactId> 
+				</plugin> <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>findbugs-maven-plugin</artifactId> 
 				</plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-pmd-plugin</artifactId> 
 				</plugin> -->
 		</plugins>

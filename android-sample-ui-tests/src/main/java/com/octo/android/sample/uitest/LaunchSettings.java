@@ -1,5 +1,7 @@
 package com.octo.android.sample.uitest;
 
+import android.view.KeyEvent;
+
 import com.android.uiautomator.core.UiObject;
 import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.android.uiautomator.core.UiScrollable;
@@ -12,8 +14,15 @@ public class LaunchSettings extends UiAutomatorTestCase {
 
     public void testDemo() throws UiObjectNotFoundException {
 
+        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_SOFT_LEFT);
+        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_SOFT_RIGHT);
+        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_MENU);
+        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_MENU);
+
         // Simulate a short press on the HOME button.
         getUiDevice().pressHome();
+
+        new UiObject(new UiSelector().description("Apps"));
 
         // We?re now in the home screen. Next, we want to simulate
         // a user bringing up the All Apps screen.
@@ -21,7 +30,7 @@ public class LaunchSettings extends UiAutomatorTestCase {
         // of the Home screen, notice that the All Apps button?s
         // content-description property has the value ?Apps?. We can
         // use this property to create a UiSelector to find the button.
-        UiObject allAppsButton = new UiObject(new UiSelector().text("Apps"));
+        UiObject allAppsButton = new UiObject(new UiSelector().description("Apps"));
 
         // Simulate a click to bring up the All Apps screen.
         allAppsButton.clickAndWaitForNewWindow();
@@ -30,7 +39,7 @@ public class LaunchSettings extends UiAutomatorTestCase {
         // the Apps tab. To simulate the user bringing up the Apps tab,
         // we create a UiSelector to find a tab with the text
         // label ?Apps?.
-        UiObject appsTab = new UiObject(new UiSelector().text("Applications"));
+        UiObject appsTab = new UiObject(new UiSelector().text("Apps"));
 
         // Simulate a click to enter the Apps tab.
         appsTab.click();
@@ -42,10 +51,11 @@ public class LaunchSettings extends UiAutomatorTestCase {
 
         // Set the swiping mode to horizontal (the default is vertical)
         appViews.setAsHorizontalList();
+        appViews.setMaxSearchSwipes(15);
 
         // Create a UiSelector to find the Settings app and simulate
         // a user click to launch the app.
-        UiObject settingsApp = appViews.getChildByText(new UiSelector().className(android.widget.TextView.class.getName()), "Paramètres");
+        UiObject settingsApp = appViews.getChildByText(new UiSelector().className(android.widget.TextView.class.getName()), "Settings");
         settingsApp.clickAndWaitForNewWindow();
 
         // Validate that the package name is the expected one

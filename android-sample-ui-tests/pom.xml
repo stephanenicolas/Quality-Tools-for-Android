@@ -74,13 +74,14 @@
 					<proguard>
 						<skip>true</skip>
 					</proguard>
-					<automator>
+					<uiautomator>
 						<skip>false</skip>
 						<testClassOrMethods>
-							<testClassOrMethod>com.octo.android.sample.uitest.LaunchSettings</testClassOrMethod>
+							<testClassOrMethod>com.octo.android.sample.uitest.LaunchSettings#testSettingsApp</testClassOrMethod>
+							<testClassOrMethod>com.octo.android.sample.uitest.LaunchSettings#testCalculatorApp</testClassOrMethod>
 						</testClassOrMethods>
 						<createReport>true</createReport>
-					</automator>
+					</uiautomator>
 				</configuration>
 				<executions>
 					<execution>
@@ -101,7 +102,7 @@
 						<id>ui-test</id>
 						<phase>install</phase>
 						<goals>
-							<goal>automator</goal>
+							<goal>uiautomator</goal>
 						</goals>
 					</execution>
 				</executions>

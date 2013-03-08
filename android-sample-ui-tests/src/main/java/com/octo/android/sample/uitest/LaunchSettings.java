@@ -12,13 +12,48 @@ import com.android.uiautomator.testrunner.UiAutomatorTestCase;
 
 public class LaunchSettings extends UiAutomatorTestCase {
 
-    public void testDemo() throws UiObjectNotFoundException {
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+        unlockEmulator();
+    }
 
-        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_SOFT_LEFT);
-        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_SOFT_RIGHT);
-        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_MENU);
-        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_MENU);
+    @Override
+    protected void tearDown() throws Exception {
+        // Simulate a short press on the HOME button.
+        getUiDevice().pressHome();
+        super.tearDown();
+    }
 
+    public void testSettingsApp() throws UiObjectNotFoundException {
+
+        startAppOnEmulator("Settings");
+
+        // Validate that the package name is the expected one
+        UiObject settingsValidation = new UiObject(new UiSelector().packageName("com.android.settings"));
+        assertTrue("Unable to detect Settings", settingsValidation.exists());
+    }
+
+    public void testCalculatorApp() throws UiObjectNotFoundException {
+
+        startAppOnEmulator("Calculator");
+
+        UiObject deleteButton;
+
+        deleteButton = new UiObject(new UiSelector().text("DELETE"));
+        if (!deleteButton.exists()) {
+            deleteButton = new UiObject(new UiSelector().text("CLR"));
+        }
+        deleteButton.click();
+
+        new UiObject(new UiSelector().text("7")).click();
+        new UiObject(new UiSelector().text("+")).click();
+        new UiObject(new UiSelector().text("5")).click();
+        new UiObject(new UiSelector().text("=")).click();
+        new UiObject(new UiSelector().text("12")).waitForExists(500);
+    }
+
+    private void startAppOnEmulator(String appName) throws UiObjectNotFoundException {
         // Simulate a short press on the HOME button.
         getUiDevice().pressHome();
 
@@ -55,11 +90,14 @@ public class LaunchSettings extends UiAutomatorTestCase {
 
         // Create a UiSelector to find the Settings app and simulate
         // a user click to launch the app.
-        UiObject settingsApp = appViews.getChildByText(new UiSelector().className(android.widget.TextView.class.getName()), "Settings");
+        UiObject settingsApp = appViews.getChildByText(new UiSelector().className(android.widget.TextView.class.getName()), appName);
         settingsApp.clickAndWaitForNewWindow();
+    }
 
-        // Validate that the package name is the expected one
-        UiObject settingsValidation = new UiObject(new UiSelector().packageName("com.android.settings"));
-        assertTrue("Unable to detect Settings", settingsValidation.exists());
+    private void unlockEmulator() {
+        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_SOFT_LEFT);
+        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_SOFT_RIGHT);
+        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_MENU);
+        getUiDevice().pressKeyCode(KeyEvent.KEYCODE_MENU);
     }
 }

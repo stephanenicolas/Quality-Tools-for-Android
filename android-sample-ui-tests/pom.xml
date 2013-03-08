@@ -17,6 +17,7 @@
 		<platform.version>4.1.1.4</platform.version>
 	</properties>
 
+    <!-- UI Automator must be accessible from a nexus repo -->
 	<repositories>
 		<repository>
 			<id>octo.thirdparty</id>
@@ -48,7 +49,7 @@
 			<artifactId>junit</artifactId>
 			<version>3.8.2</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>		
 	</dependencies>
 
 	<build>
@@ -123,105 +124,18 @@
 			</plugin>
 
 			<!-- Quality analysis tools -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-checkstyle-plugin</artifactId> 
-				</plugin> <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>findbugs-maven-plugin</artifactId> 
-				</plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-pmd-plugin</artifactId> 
-				</plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>default</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<!-- This folder is just wrong, given to m2e to patch issue https://github.com/rgladwell/m2e-android/commit/2b490f900153cd34fff1cec47fe5aeffabe44d87 -->
-				<test.directory>res</test.directory>
-			</properties>
-		</profile>
-		<profile>
-			<id>emma</id>
-			<properties>
-				<!-- skip robolectric tests -->
-				<skipTests>true</skipTests>
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-						<artifactId>android-maven-plugin</artifactId>
-						<configuration>
-							<emma>
-								<enable>true</enable>
-								<classFolders>${project.basedir}/target/classes/</classFolders>
-								<outputMetaFile>${project.basedir}/target/emma/coverage.em</outputMetaFile>
-							</emma>
-							<dex>
-								<!-- Required for EMMA -->
-								<noLocals>true</noLocals>
-							</dex>
-							<test>
-								<createReport>true</createReport>
-							</test>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>cobertura</id>
-			<properties>
-				<test.directory>src/test/java</test.directory>
-				<junit.version>4.8.2</junit.version>
-			</properties>
-			<dependencies>
-				<!-- robolectric testing -->
-				<dependency>
-					<groupId>org.mockito</groupId>
-					<artifactId>mockito-core</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.easymock</groupId>
-					<artifactId>easymock</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>com.pivotallabs</groupId>
-					<artifactId>robolectric</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.hamcrest</groupId>
-					<artifactId>hamcrest-core</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-					<version>${junit.version}</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>cobertura-maven-plugin</artifactId>
-						<version>${cobertura.version}</version>
-						<configuration>
-							<format>xml</format>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>clean</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>

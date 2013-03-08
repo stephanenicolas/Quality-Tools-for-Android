@@ -8,9 +8,14 @@ import com.android.uiautomator.core.UiScrollable;
 import com.android.uiautomator.core.UiSelector;
 import com.android.uiautomator.testrunner.UiAutomatorTestCase;
 
-// Import the uiautomator libraries
-
+/**
+ * A working example of a ui automator test.
+ * @author SNI
+ */
 public class LaunchSettings extends UiAutomatorTestCase {
+
+    private static final int MAX_SEARCH_SWIPES_IN_APP_MENU = 15;
+    private static final long CALCULATOR_UPDATE_TIMEOUT = 500;
 
     @Override
     protected void setUp() throws Exception {
@@ -50,7 +55,7 @@ public class LaunchSettings extends UiAutomatorTestCase {
         new UiObject(new UiSelector().text("+")).click();
         new UiObject(new UiSelector().text("5")).click();
         new UiObject(new UiSelector().text("=")).click();
-        new UiObject(new UiSelector().text("12")).waitForExists(500);
+        new UiObject(new UiSelector().text("12")).waitForExists(CALCULATOR_UPDATE_TIMEOUT);
     }
 
     private void startAppOnEmulator(String appName) throws UiObjectNotFoundException {
@@ -86,7 +91,7 @@ public class LaunchSettings extends UiAutomatorTestCase {
 
         // Set the swiping mode to horizontal (the default is vertical)
         appViews.setAsHorizontalList();
-        appViews.setMaxSearchSwipes(15);
+        appViews.setMaxSearchSwipes(MAX_SEARCH_SWIPES_IN_APP_MENU);
 
         // Create a UiSelector to find the Settings app and simulate
         // a user click to launch the app.

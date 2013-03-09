@@ -36,6 +36,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 2. get aggregated tests and code coverage 
 3. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
 4. When finished, use the [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
+5. [Spoon from square](https://github.com/square/spoon)
 
 # Usage
 

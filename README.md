@@ -13,6 +13,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 
 * Standard Android testing framework and code coverage using emma, reported in Sonar. That also covers robotium, easy mock and mockito technologies.
 * Robolectric testing framework and code coverage using Cobertura, reported in Sonar.
+* UI Automator testing through a new android maven plugin goal.
 * Configuration works out of the box in eclipse
 * Lint integration via Maven.
 * PMD, findbugs, checkstyle integration via Maven, reported in Sonar.
@@ -31,7 +32,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 # What is missing (TODO/INTEGRATE) : 
 
 0. Using [Jacoco instead of emma](https://github.com/jacoco/jacoco/pull/64#issuecomment-12150910) would help getting more standard Sonar config 
-1. UIAutomator through Maven, get the results in Sonar (maybe using [this testrunner](https://github.com/dpreussler/automator-log-converter)), and test coverage in Sonar
+1. Get the UIAutomator results in Sonar (maybe using [this testrunner](https://github.com/dpreussler/automator-log-converter)), and test coverage in Sonar
 2. get aggregated tests and code coverage 
 3. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
 4. When finished, use the [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 

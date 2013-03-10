@@ -296,6 +296,15 @@
 	</build>
 
 	<profiles>
+	    <profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>android-sample-tests</module>
+			</modules>			
+		</profile>
 		<profile>
 			<id>emma</id>
 			<modules>

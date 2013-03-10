@@ -61,9 +61,38 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<!-- This folder is just wrong, given to m2e to patch issue https://github.com/rgladwell/m2e-android/commit/2b490f900153cd34fff1cec47fe5aeffabe44d87 -->
-				<test.directory>res</test.directory>
+				<test.directory>src/test/java</test.directory>
+				<junit.version>4.8.2</junit.version>
 			</properties>
+			<dependencies>
+				<!-- robolectric testing -->
+				<dependency>
+					<groupId>org.mockito</groupId>
+					<artifactId>mockito-core</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.easymock</groupId>
+					<artifactId>easymock</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.pivotallabs</groupId>
+					<artifactId>robolectric</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.hamcrest</groupId>
+					<artifactId>hamcrest-core</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<version>${junit.version}</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
 		</profile>
 		<profile>
 			<id>emma</id>
@@ -105,10 +134,12 @@
 				<dependency>
 					<groupId>org.mockito</groupId>
 					<artifactId>mockito-core</artifactId>
+					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.easymock</groupId>
 					<artifactId>easymock</artifactId>
+					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>com.pivotallabs</groupId>

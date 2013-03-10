@@ -101,7 +101,7 @@ To enable Robolectric development in this configuration. In eclipse, switch to m
 
 # Thanks to
  * [OCTO Technology](http://www.octo.com/en) to provide us with free time to work on that project.
- * Henri Trebmaly from [OCTO Technology](http://www.octo.com/en) for having ported [EasyMock](http://www.easymock.org/) to Android.
+ * Henri Treblay from [OCTO Technology](http://www.octo.com/en) for having ported [EasyMock](http://www.easymock.org/) to Android.
  * Thanks to [Jayway](http://www.jayway.com/blog) for their [Android Maven Plugin](http://code.google.com/p/maven-android-plugin/).
  * Thanks to [Sonar Source](http://www.sonarsource.org/) for supporting this effort, especially for this [project's configuration](https://github.com/SonarSource/sonar-examples/tree/master/projects/android).
 

@@ -173,5 +173,12 @@
 				</plugins>
 			</build>
 		</profile>
+		<profile>
+			<id>uiautomator</id>
+			<properties>
+				<!-- skip robolectric tests -->
+				<skipTests>true</skipTests>
+			</properties>
+		</profile>
 	</profiles>
 </project>

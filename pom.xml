@@ -353,5 +353,19 @@
 				</plugins>
 			</reporting>
 		</profile>
+		<profile>
+			<id>uiautomator</id>
+			<modules>
+				<module>android-sample-ui-tests</module>
+			</modules>
+			<properties>
+				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+				<sonar.branch>uiautomator</sonar.branch>
+				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+				<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
+				<sonar.emma.reportPath>../android-sample/target/emma</sonar.emma.reportPath>
+			</properties>
+		</profile>
 	</profiles>
 </project>

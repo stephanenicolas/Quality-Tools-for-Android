@@ -18,6 +18,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 * Lint integration via Maven.
 * PMD, findbugs, checkstyle integration via Maven, reported in Sonar.
 * [lint android maven lint](https://github.com/lewisd32/lint-maven-plugin) integration (pom checker)
+* [Spoon from square](https://github.com/square/spoon)
 * Testing  technologies integrated : 
     * Standard Android tests   
         * easymock
@@ -28,7 +29,7 @@ robust projects on Android, by using any of the most interesting and popular tec
         * hamcrest 
         * easymock
         * mockito
- 
+
 # What is missing (TODO/INTEGRATE) : 
 
 0. Using [Jacoco instead of emma](https://github.com/jacoco/jacoco/pull/64#issuecomment-12150910) would help getting more standard Sonar config 
@@ -36,7 +37,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 2. get aggregated tests and code coverage 
 3. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
 4. When finished, use the [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
-5. [Spoon from square](https://github.com/square/spoon)
+
 
 # Usage
 
@@ -70,9 +71,27 @@ adb root
 mvn clean cobertura:cobertura -Pcobertura
 mvn sonar:sonar -Pcobertura
 ```
-
 Here is the result in sonar : 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-sonar-robolectric-config.png" width=450px/>
+
+## UI Automator 
+
+```bash
+# in parent folder
+mvn clean install
+```
+
+## Spoon from Squareup
+
+```bash
+# in parent folder
+mvn clean install
+
+#then browse to android-sample-tests/target/spoon-output/index.html
+```
+
+Here is the result in a browser : 
+<img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-spoon.png" width=450px/>
 
 ## Robolectric development in eclipse
 

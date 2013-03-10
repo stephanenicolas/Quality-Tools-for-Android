@@ -49,8 +49,8 @@ To build the sample project and run the sample app on a plugged rooted device / 
 
 ```bash
 # in parent folder
-mvn clean install -Pemma
-mvn sonar:sonar -Pemma
+mvn clean install -P emma
+mvn sonar:sonar -P emma
 ```
 
 you will get tests results in : target/surefire-reports/.
@@ -68,8 +68,8 @@ adb root
 
 ```bash
 # in parent folder
-mvn clean cobertura:cobertura -Pcobertura
-mvn sonar:sonar -Pcobertura
+mvn clean cobertura:cobertura -P cobertura
+mvn sonar:sonar -P cobertura
 ```
 Here is the result in sonar : 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-sonar-robolectric-config.png" width=450px/>
@@ -78,8 +78,12 @@ Here is the result in sonar :
 
 ```bash
 # in parent folder
-mvn clean install
+mvn clean install -P uiautomator
+mvn sonar:sonar -P uiautomator
 ```
+
+Here is the result in sonar : 
+<img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-uiautomator.png" width=450px/>
 
 ## Spoon from Squareup
 

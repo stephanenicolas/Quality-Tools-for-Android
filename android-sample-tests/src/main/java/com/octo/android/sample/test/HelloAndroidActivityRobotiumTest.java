@@ -18,7 +18,7 @@ public class HelloAndroidActivityRobotiumTest extends ActivityInstrumentationTes
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
-    public void testPreferenceIsSaved() throws Exception {
+    public void testCompute() throws Exception {
         solo.clickOnButton("Click !");
         Assert.assertTrue(solo.searchText("42"));
     }

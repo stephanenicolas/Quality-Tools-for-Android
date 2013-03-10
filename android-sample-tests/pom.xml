@@ -62,6 +62,14 @@
 			<groupId>com.jayway.android.robotium</groupId>
 			<artifactId>robotium-solo</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.squareup.spoon</groupId>
+			<artifactId>spoon-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup</groupId>
+			<artifactId>fest-android</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -112,6 +120,39 @@
 									<pullSource>/data/data/com.octo.android.sample/files/coverage.ec</pullSource>
 									<pullDestination>${project.basedir}/../android-sample/target/emma/coverage.ec</pullDestination>
 								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>spoon</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+						<artifactId>android-maven-plugin</artifactId>
+						<extensions>true</extensions>
+						<configuration>
+							<testSkip>true</testSkip>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>com.squareup.spoon</groupId>
+						<artifactId>spoon-maven-plugin</artifactId>
+						<version>${spoon.version}</version>
+						<configuration>
+							<title>Spoon Sample App</title>
+							<debug>true</debug>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
 							</execution>
 						</executions>
 					</plugin>

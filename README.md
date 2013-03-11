@@ -106,5 +106,7 @@ To enable Robolectric development in this configuration. In eclipse, switch to m
  * Thanks to [Jayway](http://www.jayway.com/blog) for their [Android Maven Plugin](http://code.google.com/p/maven-android-plugin/).
  * Thanks to [Sonar Source](http://www.sonarsource.org/) for supporting this effort, especially for this [project's configuration](https://github.com/SonarSource/sonar-examples/tree/master/projects/android).
 
-* [Quality Tools for Android in the news : Android Weekly issue #55 !] (http://androidweekly.net/#latest-issue)
+## Quality Tools for Android in the news !!
+* [Android Weekly issue #55 !] (http://androidweekly.net/#latest-issue)
+* [Andriod dev weekly, issue #49] (http://androiddevweekly.com/2013/03/11/Issue-49.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+AndroidDevWeekly+%28%23AndroidDev+Weekly%29)
 * Check us out at [Devoxx France 2013](http://www.devoxx.com/display/FR13/Tools+In+Action+Day+1) : Room Miles Davies A, Wednesday, march 27th, 5 to 5:30 pm.

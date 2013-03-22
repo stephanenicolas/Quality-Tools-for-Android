@@ -154,7 +154,7 @@
 				</dependency>
 			</dependencies>
 			<build>
-		 		<plugins>
+				<plugins>
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>cobertura-maven-plugin</artifactId>
@@ -175,6 +175,13 @@
 		</profile>
 		<profile>
 			<id>uiautomator</id>
+			<properties>
+				<!-- skip robolectric tests -->
+				<skipTests>true</skipTests>
+			</properties>
+		</profile>
+		<profile>
+			<id>spoon</id>
 			<properties>
 				<!-- skip robolectric tests -->
 				<skipTests>true</skipTests>

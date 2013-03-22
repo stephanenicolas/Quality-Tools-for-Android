@@ -41,11 +41,11 @@
 		<!-- Sonar common configuration -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.profile>Android Lint</sonar.profile>
 	</properties>
 
 	<modules>
 		<module>android-sample</module>
-		<module>android-sample-ui-tests</module>
 	</modules>
 
 	<dependencyManagement>
@@ -316,6 +316,7 @@
 			</activation>
 			<modules>
 				<module>android-sample-tests</module>
+				<module>android-sample-ui-tests</module>
 			</modules>
 		</profile>
 		<profile>
@@ -366,6 +367,12 @@
 				<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
 				<sonar.emma.reportPath>../android-sample/target/emma</sonar.emma.reportPath>
 			</properties>
+		</profile>
+		<profile>
+			<id>spoon</id>
+			<modules>
+				<module>android-sample-tests</module>
+			</modules>
 		</profile>
 	</profiles>
 </project>

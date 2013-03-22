@@ -21,6 +21,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 * PMD, findbugs, checkstyle integration via Maven, reported in Sonar.
 * [lint android maven lint](https://github.com/lewisd32/lint-maven-plugin) integration (pom checker)
 * [Spoon from square](https://github.com/square/spoon)
+* When finished, use the [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
 * Testing  technologies integrated : 
     * Standard Android tests   
         * easymock
@@ -37,8 +38,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 0. Using [Jacoco instead of emma](https://github.com/jacoco/jacoco/pull/64#issuecomment-12150910) would help getting more standard Sonar config 
 1. get aggregated tests and code coverage 
 2. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
-3. When finished, use the [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
-4. [FEST Android](https://github.com/square/fest-android) should be included as well (thx to Jake Wharton for pointing this out).
+3. [FEST Android](https://github.com/square/fest-android) should be included as well (thx to Jake Wharton for pointing this out).
 
 
 # Usage

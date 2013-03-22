@@ -1,4 +1,3 @@
-
 # Quality Tools for Android
 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/bugdroid-duke-armor.jpg" 
@@ -91,7 +90,7 @@ Here is the result in sonar :
 
 ```bash
 # in parent folder
-mvn clean install
+mvn clean install -P spoon
 
 #then browse to android-sample-tests/target/spoon-output/index.html
 ```

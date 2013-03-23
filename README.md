@@ -52,6 +52,10 @@ This can be done graphically, or [via command line (for CI servers)](http://stac
 
 ## Install the Android SDK through maven-android-sdk-deployer
 
+As it takes time to get android jars in maven central, including android UI automator jars in maven central,
+we recommend to use [maven-android-sdk-deployer](https://github.com/mosabua/maven-android-sdk-deployer) to obtain android artefacts.
+This step can also be executed on a CI server.
+
 ```bash
 #install Android SDK 17 local files to local maven repo  
 git clone git@github.com:mosabua/maven-android-sdk-deployer.git
@@ -75,7 +79,7 @@ you will get tests coverage in : target/emma/.
 Here is the result in sonar : 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-sonar-emma-config.png" width=450px/>
 
-You may need to restart adb as root to be able to pull the emma coverage file. Type in a terminal :
+You may need to restart adb as root to be able to pull the emma coverage file. In a terminal, type :
 ```bash
 adb root
 ```

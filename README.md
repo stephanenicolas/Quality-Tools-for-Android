@@ -30,6 +30,7 @@ robust projects on Android, by using any of the most interesting and popular tec
         * mockito
         * mockwebserver
         * robotium
+        * fest-android
     * robolectric tests
         * hamcrest 
         * easymock

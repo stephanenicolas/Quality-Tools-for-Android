@@ -40,7 +40,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 0. Using [Jacoco instead of emma](https://github.com/jacoco/jacoco/pull/64#issuecomment-12150910) would help getting more standard Sonar config 
 1. get aggregated tests and code coverage 
 2. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
-3. Add support for Travis CI. Alternatives welcome.
+3. Add support for [Travis CI](https://travis-ci.org/stephanenicolas/Quality-Tools-for-Android). Alternatives welcome.
 
 # Usage
 

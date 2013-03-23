@@ -40,7 +40,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 1. get aggregated tests and code coverage 
 2. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
 3. [FEST Android](https://github.com/square/fest-android) should be included as well (thx to Jake Wharton for pointing this out).
-
+4. Add support for Travis CI. Alternatives welcome.
 
 # Usage
 

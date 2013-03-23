@@ -13,22 +13,6 @@
 	<packaging>jar</packaging>
 	<name>android-sample-ui-tests</name>
 
-	<!-- UI Automator must be accessible from a nexus repo -->
-	<repositories>
-		<repository>
-			<id>octo.thirdparty</id>
-			<name>OCTO Nexus 3rd party</name>
-			<url>https://projets.octo.com/nexus/content/repositories/thirdparty/</url>
-			<layout>default</layout>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-
 	<dependencies>
 		<dependency>
 			<groupId>android</groupId>
@@ -43,7 +27,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.2</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
@@ -74,8 +57,8 @@
 					<uiautomator>
 						<skip>false</skip>
 						<testClassOrMethods>
-							<testClassOrMethod>com.octo.android.sample.uitest.LaunchSettings#testSettingsApp</testClassOrMethod>
-							<testClassOrMethod>com.octo.android.sample.uitest.LaunchSettings#testCalculatorApp</testClassOrMethod>
+							<testClassOrMethod>com.octo.android.sample.uitest.UIAutomatorSampleTest#testSettingsApp</testClassOrMethod>
+							<testClassOrMethod>com.octo.android.sample.uitest.UIAutomatorSampleTest#testCalculatorApp</testClassOrMethod>
 						</testClassOrMethods>
 						<createReport>true</createReport>
 					</uiautomator>

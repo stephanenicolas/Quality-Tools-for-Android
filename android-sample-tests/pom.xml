@@ -66,6 +66,11 @@
 			<groupId>com.squareup</groupId>
 			<artifactId>fest-android</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>android.support</groupId>
+			<artifactId>compatibility-v4</artifactId>
+			<version>12</version>
+		</dependency>
 	</dependencies>
 
 	<build>

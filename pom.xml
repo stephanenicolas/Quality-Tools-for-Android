@@ -10,8 +10,7 @@
 
 	<properties>
 		<!-- Android Dependencies -->
-		<platform.version>4.1.1.4</platform.version>
-		<uiautomator.version>4.2.2</uiautomator.version>
+		<platform.version>4.2.2_r2</platform.version>
 		<java.version>1.6</java.version>
 		<android.sdk.version>8</android.sdk.version>
 
@@ -51,21 +50,15 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.google.android</groupId>
+				<groupId>android</groupId>
 				<artifactId>android</artifactId>
 				<version>${platform.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-				<groupId>com.google.android</groupId>
-				<artifactId>android-test</artifactId>
-				<version>${platform.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.google.android</groupId>
+				<groupId>android.test.uiautomator</groupId>
 				<artifactId>uiautomator</artifactId>
-				<version>${uiautomator.version}</version>
+				<version>${platform.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<!-- Testing -->

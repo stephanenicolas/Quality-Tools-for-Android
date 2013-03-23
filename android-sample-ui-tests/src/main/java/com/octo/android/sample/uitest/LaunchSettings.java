@@ -1,5 +1,7 @@
 package com.octo.android.sample.uitest;
 
+import android.test.FlakyTest;
+import android.test.suitebuilder.annotation.LargeTest;
 import android.view.KeyEvent;
 
 import com.android.uiautomator.core.UiObject;
@@ -14,6 +16,7 @@ import com.android.uiautomator.testrunner.UiAutomatorTestCase;
  */
 public class LaunchSettings extends UiAutomatorTestCase {
 
+    private static final int TEST_TOLERANCE = 3;
     private static final int MAX_SEARCH_SWIPES_IN_APP_MENU = 15;
     private static final long CALCULATOR_UPDATE_TIMEOUT = 500;
 
@@ -30,6 +33,8 @@ public class LaunchSettings extends UiAutomatorTestCase {
         super.tearDown();
     }
 
+    @LargeTest
+    @FlakyTest(tolerance = TEST_TOLERANCE)
     public void testSettingsApp() throws UiObjectNotFoundException {
 
         startAppOnEmulator("Settings");
@@ -39,6 +44,8 @@ public class LaunchSettings extends UiAutomatorTestCase {
         assertTrue("Unable to detect Settings", settingsValidation.exists());
     }
 
+    @LargeTest
+    @FlakyTest(tolerance = TEST_TOLERANCE)
     public void testCalculatorApp() throws UiObjectNotFoundException {
 
         startAppOnEmulator("Calculator");

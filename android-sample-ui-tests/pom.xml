@@ -13,10 +13,6 @@
 	<packaging>jar</packaging>
 	<name>android-sample-ui-tests</name>
 
-	<properties>
-		<platform.version>4.1.1.4</platform.version>
-	</properties>
-
 	<!-- UI Automator must be accessible from a nexus repo -->
 	<repositories>
 		<repository>
@@ -35,12 +31,12 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.google.android</groupId>
+			<groupId>android</groupId>
 			<artifactId>android</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.google.android</groupId>
+			<groupId>android.test.uiautomator</groupId>
 			<artifactId>uiautomator</artifactId>
 			<scope>provided</scope>
 		</dependency>

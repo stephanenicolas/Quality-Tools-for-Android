@@ -23,6 +23,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 * [Spoon from square](https://github.com/square/spoon)
 * [maven-android-sdk-deployer](https://github.com/mosabua/maven-android-sdk-deployer) to deliver android jars (including uiautomator)
 * [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
+* [FEST Android](https://github.com/square/fest-android).
 * Testing  technologies integrated : 
     * Standard Android tests   
         * easymock
@@ -39,8 +40,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 0. Using [Jacoco instead of emma](https://github.com/jacoco/jacoco/pull/64#issuecomment-12150910) would help getting more standard Sonar config 
 1. get aggregated tests and code coverage 
 2. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
-3. [FEST Android](https://github.com/square/fest-android) should be included as well (thx to Jake Wharton for pointing this out).
-4. Add support for Travis CI. Alternatives welcome.
+3. Add support for Travis CI. Alternatives welcome.
 
 # Usage
 
@@ -61,6 +61,9 @@ This step can also be executed on a CI server.
 git clone git@github.com:mosabua/maven-android-sdk-deployer.git
 cd maven-android-sdk-deployer/
 mvn install -P 4.2
+#Add V4 support library (to use FEST Android)
+cd extras/compatibility-v4/
+mvn install
 ```
 
 ## Standard Android testing APIs and code coverage using emma
@@ -125,6 +128,7 @@ To enable Robolectric development in this configuration. In eclipse, switch to m
  * Henri Treblay from [OCTO Technology](http://www.octo.com/en) for having ported [EasyMock](http://www.easymock.org/) to Android.
  * Thanks to [Jayway](http://www.jayway.com/blog) for their [Android Maven Plugin](http://code.google.com/p/maven-android-plugin/).
  * Thanks to [Sonar Source](http://www.sonarsource.org/) for supporting this effort, especially for this [project's configuration](https://github.com/SonarSource/sonar-examples/tree/master/projects/android).
+ * Thanks to  Jake Wharton and Pierre-Yves Ricaud for mentionning FEST-Android.
 
 ## Quality Tools for Android in the news !!
 * [Android Weekly issue #55 !] (http://androidweekly.net/#latest-issue)

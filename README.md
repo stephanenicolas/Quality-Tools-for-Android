@@ -21,7 +21,8 @@ robust projects on Android, by using any of the most interesting and popular tec
 * PMD, findbugs, checkstyle integration via Maven, reported in Sonar.
 * [lint android maven lint](https://github.com/lewisd32/lint-maven-plugin) integration (pom checker)
 * [Spoon from square](https://github.com/square/spoon)
-* When finished, use the [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
+* [maven-android-sdk-deployer](https://github.com/mosabua/maven-android-sdk-deployer) to deliver android jars (including uiautomator)
+* [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
 * Testing  technologies integrated : 
     * Standard Android tests   
         * easymock
@@ -44,6 +45,19 @@ robust projects on Android, by using any of the most interesting and popular tec
 # Usage
 
 This section describes how to build & test the project using those different testing technologies.
+
+## Install Android Latest SDK through Android SDK Manager
+
+This can be done graphically, or [via command line (for CI servers)](http://stackoverflow.com/q/4681697/693752).
+
+## Install the Android SDK through maven-android-sdk-deployer
+
+```bash
+#install Android SDK 17 local files to local maven repo  
+git clone git@github.com:mosabua/maven-android-sdk-deployer.git
+cd maven-android-sdk-deployer/
+mvn install -P 4.2
+```
 
 ## Standard Android testing APIs and code coverage using emma
 

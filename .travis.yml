@@ -39,4 +39,7 @@ before_install:
 before_script:
   - ./wait_for_emulator
 
-script: mvn clean install -Dandroid.device=test
+script:
+  #todo check android maven sdk deployer integration in travis
+  #run all tests 
+  - mvn clean install -Dandroid.device=test

@@ -101,6 +101,7 @@ Here is the result in sonar :
 
 ## UI Automator 
 
+UI Automator tests execution requires Android Maven Plugin version 3.5.2+. It is currently available as a SNAPSHOT on [sonatype snapshot repo](https://oss.sonatype.org/content/repositories/jayway-snapshots/).
 ```bash
 # in parent folder
 mvn clean install -P uiautomator

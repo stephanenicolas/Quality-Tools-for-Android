@@ -37,7 +37,8 @@ robust projects on Android, by using any of the most interesting and popular tec
 
 # What is missing (TODO/INTEGRATE) : 
 
-0. Using [Jacoco instead of emma](https://github.com/jacoco/jacoco/pull/64#issuecomment-12150910) would help getting more standard Sonar config (has been tested by @godin [here](https://github.com/Godin/jacoco-experiments/blob/android/android/app/pom.xml)).
+0. Using [Jacoco instead of emma](https://github.com/jacoco/jacoco/pull/64#issuecomment-12150910) would help getting more standard Sonar config (has been tested by @godin [here](https://github.com/Godin/jacoco-experiments/blob/android/android/app/pom.xml)), 
+then advertize [here](https://github.com/jacoco/eclemma/issues/44).
 1. get aggregated tests and code coverage 
 2. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
 3. Add support for [Travis CI](https://travis-ci.org/stephanenicolas/Quality-Tools-for-Android). Alternatives welcome.

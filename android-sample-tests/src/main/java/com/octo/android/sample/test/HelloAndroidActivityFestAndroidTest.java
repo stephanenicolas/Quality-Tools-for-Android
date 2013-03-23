@@ -12,7 +12,7 @@ public class HelloAndroidActivityFestAndroidTest extends ActivityInstrumentation
     private TextView textView;
 
     public HelloAndroidActivityFestAndroidTest() {
-        super("com.octo.android.sample", HelloAndroidActivity.class);
+        super(HelloAndroidActivity.class);
     }
 
     @Override

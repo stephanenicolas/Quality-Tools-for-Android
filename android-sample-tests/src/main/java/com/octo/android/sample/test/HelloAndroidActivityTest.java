@@ -16,7 +16,7 @@ import com.octo.android.sample.ui.HelloAndroidActivity;
 public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<HelloAndroidActivity> {
 
     public HelloAndroidActivityTest() {
-        super("com.octo.android.sample", HelloAndroidActivity.class);
+        super(HelloAndroidActivity.class);
     }
 
     public void testActivity_not_null() {

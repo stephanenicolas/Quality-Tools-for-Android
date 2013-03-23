@@ -10,7 +10,7 @@ public class HelloAndroidActivityRobotiumTest extends ActivityInstrumentationTes
     private Solo solo;
 
     public HelloAndroidActivityRobotiumTest() {
-        super("com.octo.android.sample", HelloAndroidActivity.class);
+        super(HelloAndroidActivity.class);
     }
 
     @Override

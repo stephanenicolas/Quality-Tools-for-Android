@@ -24,6 +24,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 * [maven-android-sdk-deployer](https://github.com/mosabua/maven-android-sdk-deployer) to deliver android jars (including uiautomator)
 * [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
 * [FEST Android](https://github.com/square/fest-android).
+* Jacoco [offline instrumentation](https://github.com/jacoco/jacoco/pull/64#issuecomment-12150910) for both robolectric and standard junit tests.
 * Testing  technologies integrated : 
     * Standard Android tests   
         * easymock
@@ -98,6 +99,21 @@ mvn sonar:sonar -P cobertura
 ```
 Here is the result in sonar : 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-sonar-robolectric-config.png" width=450px/>
+
+
+## Unified code coverage for both Robolectric and standard Android Junit tests via Jacoco
+
+Using offline instrumentation of Jacoco, it is possilbe to completly replace emma by jacoco for instrumentation.
+This allows to get both robolectric and standard tests code coverage inside the same project dashboard with sonar.
+
+```bash
+# in parent folder
+mvn clean install -P jacoco
+mvn sonar:sonar -P jacoco
+```
+Here is the result in sonar : 
+<img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-sonar-jacoco.png" width=450px/>
+
 
 ## UI Automator 
 

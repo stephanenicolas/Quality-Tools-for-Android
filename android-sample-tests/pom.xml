@@ -185,7 +185,7 @@
 								</goals>
 								<configuration>
 									<pullSource>/data/data/com.octo.android.sample/files/coverage.ec</pullSource>
-									<pullDestination>${project.basedir}/../android-sample/target/jacoco.exec</pullDestination>
+									<pullDestination>${project.basedir}/../android-sample/target/jacoco-it.exec</pullDestination>
 								</configuration>
 							</execution>
 						</executions>

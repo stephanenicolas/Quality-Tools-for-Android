@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.octo.android.sample.R;
 import com.octo.android.sample.model.Computer;
-import com.octo.android.sample.ui.HelloAndroidActivity;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 
 @RunWith(RobolectricTestRunner.class)
@@ -30,6 +29,23 @@ public class MyActivityTest {
         // then
         String appName = activityUnderTest.getResources().getString(R.string.app_name);
         assertThat(appName, equalTo("sonar-android-sample"));
+    }
+
+    @Test
+    public void shouldNotUseNullComputer() throws Exception {
+        // given
+        HelloAndroidActivity activityUnderTest = new HelloAndroidActivity();
+        activityUnderTest.onCreate(null);
+        activityUnderTest.setComputer(null);
+
+        // when
+        Button button = (Button) activityUnderTest.findViewById(R.id.button_main);
+        button.performClick();
+
+        // then
+        TextView textViewHello = (TextView) activityUnderTest.findViewById(R.id.textview_hello);
+        String textViewHelloString = textViewHello.getText().toString();
+        assertThat(textViewHelloString, equalTo("-"));
     }
 
     @Test

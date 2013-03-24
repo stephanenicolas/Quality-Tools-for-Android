@@ -157,7 +157,6 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>cobertura-maven-plugin</artifactId>
-						<version>${cobertura.version}</version>
 						<configuration>
 							<format>xml</format>
 						</configuration>
@@ -188,16 +187,54 @@
 		</profile>
 		<profile>
 			<id>jacoco</id>
+			<properties>
+				<test.directory>src/test/java</test.directory>
+				<junit.version>4.8.2</junit.version>
+			</properties>
 			<dependencies>
+				<!-- robolectric testing -->
+				<dependency>
+					<groupId>org.mockito</groupId>
+					<artifactId>mockito-core</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.easymock</groupId>
+					<artifactId>easymock</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.pivotallabs</groupId>
+					<artifactId>robolectric</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.hamcrest</groupId>
+					<artifactId>hamcrest-core</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<version>${junit.version}</version>
+					<scope>test</scope>
+				</dependency>
 				<dependency>
 					<groupId>org.jacoco</groupId>
 					<artifactId>org.jacoco.agent</artifactId>
 					<classifier>runtime</classifier>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jacoco</groupId>
+					<artifactId>org.jacoco.agent</artifactId>
+					<classifier>runtime</classifier>
+					<scope>compile</scope>
 				</dependency>
 			</dependencies>
 			<build>
 				<plugins>
-				    <plugin>
+					<plugin>
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
 						<executions>
@@ -206,6 +243,12 @@
 								<goals>
 									<goal>instrument</goal>
 								</goals>
+								<configuration>
+									<excludes>
+									    <exclude>*test*</exclude>
+									    <exclude>*/test/*</exclude>
+									</excludes>
+								</configuration>
 							</execution>
 							<execution>
 								<id>restore-instrumented-classes</id>

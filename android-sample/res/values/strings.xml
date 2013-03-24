@@ -3,4 +3,5 @@
     <string name="click">Click !</string>
     <string name="hello">Hello sonar-android-sample!</string>
     <string name="app_name">sonar-android-sample</string>
+    <string name="text_no_computer">-</string>
 </resources>

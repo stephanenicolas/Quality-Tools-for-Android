@@ -61,6 +61,9 @@ public class HelloAndroidActivity extends Activity {
         public void onClick(View v) {
             if (computer != null) {
                 textView.setText(String.valueOf(computer.getResult()));
+            } else {
+                // only tested by unit tests, not it tests
+                textView.setText(R.string.text_no_computer);
             }
         }
     }

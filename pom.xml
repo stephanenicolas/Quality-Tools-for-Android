@@ -37,6 +37,9 @@
 		<maven-checkstyle-plugin.version>2.9.1</maven-checkstyle-plugin.version>
 		<lint-maven-plugin.version>0.0.6</lint-maven-plugin.version>
 		<eclipse-lifecycle-plugin.version>1.0.0</eclipse-lifecycle-plugin.version>
+		<jar-plugin.version>2.4</jar-plugin.version>
+		<emma.version>2.1.5320</emma.version>
+		<jacoco-plugin.version>0.6.2.201302030002</jacoco-plugin.version>
 
 		<!-- Sonar common configuration -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -61,6 +64,18 @@
 				<artifactId>uiautomator</artifactId>
 				<version>${platform.version}</version>
 				<scope>provided</scope>
+			</dependency>
+			<!-- code coverage -->
+			<dependency>
+				<groupId>org.jacoco</groupId>
+				<artifactId>org.jacoco.agent</artifactId>
+				<version>${jacoco-plugin.version}</version>
+				<classifier>runtime</classifier>
+			</dependency>
+			<dependency>
+				<groupId>emma</groupId>
+				<artifactId>emma</artifactId>
+				<version>${emma.version}</version>
 			</dependency>
 			<!-- Testing -->
 			<dependency>
@@ -193,6 +208,13 @@
 					</configuration>
 				</plugin>
 
+				<!-- Code coverage -->
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${jacoco-plugin.version}</version>
+				</plugin>
+
 				<!-- Quality Analysis Tools -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -298,6 +320,11 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+				<!-- Others -->
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${jar-plugin.version}</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -331,8 +358,6 @@
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 				<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
 				<sonar.emma.reportPath>../android-sample/target/emma</sonar.emma.reportPath>
-				<sonar.links.ci>http://slashdot.org</sonar.links.ci>
-				<sonar.links.spoon>http://slashdot.org</sonar.links.spoon>
 			</properties>
 		</profile>
 		<profile>
@@ -364,8 +389,6 @@
 
 				<sonar.branch>uiautomator</sonar.branch>
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-				<sonar.core.codeCoveragePlugin>emma</sonar.core.codeCoveragePlugin>
-				<sonar.emma.reportPath>../android-sample/target/emma</sonar.emma.reportPath>
 			</properties>
 		</profile>
 		<profile>
@@ -373,6 +396,19 @@
 			<modules>
 				<module>android-sample-tests</module>
 			</modules>
+		</profile>
+		<profile>
+			<id>jacoco</id>
+			<modules>
+				<module>android-sample-tests</module>
+			</modules>
+			<properties>
+				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+				<sonar.branch>jacoco</sonar.branch>
+				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+				<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+			</properties>
 		</profile>
 	</profiles>
 </project>

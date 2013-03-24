@@ -95,7 +95,6 @@
 				<dependency>
 					<groupId>emma</groupId>
 					<artifactId>emma</artifactId>
-					<version>2.1.5320</version>
 				</dependency>
 			</dependencies>
 			<build>
@@ -154,6 +153,40 @@
 								<goals>
 									<goal>run</goal>
 								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>jacoco</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+						<artifactId>android-maven-plugin</artifactId>
+						<configuration>
+							<dex>
+								<!-- Required for EMMA -->
+								<noLocals>true</noLocals>
+							</dex>
+							<test>
+								<coverage>true</coverage>
+								<createReport>true</createReport>
+							</test>
+						</configuration>
+						<executions>
+							<execution>
+								<id>pull-coverage</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>pull</goal>
+								</goals>
+								<configuration>
+									<pullSource>/data/data/com.octo.android.sample/files/coverage.ec</pullSource>
+									<pullDestination>${project.basedir}/../android-sample/target/jacoco.exec</pullDestination>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>

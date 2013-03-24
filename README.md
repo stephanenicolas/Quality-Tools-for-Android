@@ -39,9 +39,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 
 # What is missing (TODO/INTEGRATE) : 
 
-0. Using [Jacoco instead of emma](https://github.com/jacoco/jacoco/pull/64#issuecomment-12150910) would help getting more standard Sonar config (has been tested by @godin [here](https://github.com/Godin/jacoco-experiments/blob/android/android/app/pom.xml)), 
-then advertize [here](https://github.com/jacoco/eclemma/issues/44).
-1. get aggregated tests and code coverage 
+1. get aggregated tests and code coverage for monkey and ui automator.
 2. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
 3. Add support for [Travis CI](https://travis-ci.org/stephanenicolas/Quality-Tools-for-Android). Alternatives welcome.
 
@@ -105,6 +103,11 @@ Here is the result in sonar :
 
 Using offline instrumentation of Jacoco, it is possilbe to completly replace emma by jacoco for instrumentation.
 This allows to get both robolectric and standard tests code coverage inside the same project dashboard with sonar.
+
+* Robolectric are considered standard unit tests.
+* standard Android Junit tests are considered as standard integration tests.
+This makes sense as Robolectric tests mock an android platform and can be considered more "unit" tests thant standard android tests because the latter needs a real android platform and relies on networking, disk, locale, etc. 
+It would be better to be able to give names to the test suites inside the widget, and even to add more test suites, for instance to add UI testing (black box testing) or monkey testing. 
 
 ```bash
 # in parent folder

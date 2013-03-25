@@ -37,8 +37,10 @@ before_install:
   
   #install Android SDK 17 local files to local maven repo  
   - git clone https://github.com/mosabua/maven-android-sdk-deployer.git
-  - cd maven-android-sdk-deployer/
-  - mvn install -P 4.2
+  - cd maven-android-sdk-deployer/platforms/android-17/
+  - mvn install 
+  - cd ../../tools
+  - mvn clean install
   - #Add V4 support library (to use FEST Android)
   - cd extras/compatibility-v4/
   - mvn install

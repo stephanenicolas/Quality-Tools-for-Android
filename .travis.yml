@@ -30,8 +30,15 @@ before_install:
   # Note that sysimg-16 downloads the ARM, x86 and MIPS images (we should optimize this).
   # Other relevant API's:
   #  addon-google_apis-google-16
-  - android update sdk --filter platform-tools,android-16,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
+  - android update sdk --filter platform-tools,android-17,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
 
+  #install Android SDK 17 local files to local maven repo  
+  - git clone git@github.com:mosabua/maven-android-sdk-deployer.git
+  - cd maven-android-sdk-deployer/
+  - mvn install -P 4.2
+  - #Add V4 support library (to use FEST Android)
+  - cd extras/compatibility-v4/
+  - mvn install
   # Create and start emulator
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
@@ -40,13 +47,7 @@ before_script:
   - ./wait_for_emulator
 
 script:
-  #install Android SDK 17 local files to local maven repo  
-  - git clone git@github.com:mosabua/maven-android-sdk-deployer.git
-  - cd maven-android-sdk-deployer/
-  - mvn install -P 4.2
-  - #Add V4 support library (to use FEST Android)
-  - cd extras/compatibility-v4/
-  - mvn install
+  
   #todo check android maven sdk deployer integration in travis
   #run all tests 
   - mvn clean install -Dandroid.device=test

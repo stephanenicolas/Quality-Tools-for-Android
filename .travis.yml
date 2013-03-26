@@ -56,3 +56,6 @@ script:
   
   #run all tests 
   - mvn clean install
+
+after_script:
+  - adb logcat 

@@ -66,6 +66,9 @@ script:
   #run all tests 
   - mvn clean install -DskipTests=false
 
+after_install:
+  - adb logcat 
+
 after_failure:
   - adb logcat 
   

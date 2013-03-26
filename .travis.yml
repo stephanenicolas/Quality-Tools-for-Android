@@ -47,17 +47,11 @@ before_install:
   - cd ../../../
   # Create and start emulator
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - adb logcat -c &
+  - emulator -avd test -no-skin -no-audio -no-window -prop persist.sys.language=en -prop persist.sys.country=US &
 
 before_script:
-  - ./wait_for_emulator
-  - adb logcat -c &
+  - ./wait_for_emulator && adb logcat -c &
 
 script:  
   #run all tests 
-  - mvn clean install -DskipTests=false
-
-
-
-
+  - mvn clean install -DignoreTestFailure=true

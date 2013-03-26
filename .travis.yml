@@ -44,6 +44,7 @@ before_install:
   - #Add V4 support library (to use FEST Android)
   - cd ../extras/compatibility-v4/
   - mvn install
+  - cd ../../../
   # Create and start emulator
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &

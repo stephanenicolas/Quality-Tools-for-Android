@@ -33,7 +33,7 @@ before_install:
   - android update sdk --filter platform-tools,android-17,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
 
   #http://debuggable.com/posts/disable-strict-host-checking-for-git-clone:49896ff3-0ac0-4263-9703-1eae4834cda3
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  # not used anymore - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   
   #install Android SDK 17 local files to local maven repo  
   - git clone https://github.com/mosabua/maven-android-sdk-deployer.git
@@ -42,7 +42,7 @@ before_install:
   - cd ../../tools
   - mvn clean install
   - #Add V4 support library (to use FEST Android)
-  - cd extras/compatibility-v4/
+  - cd ../extras/compatibility-v4/
   - mvn install
   # Create and start emulator
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
@@ -55,4 +55,4 @@ script:
   
   #todo check android maven sdk deployer integration in travis
   #run all tests 
-  - mvn clean install -Dandroid.device=test
+  - mvn clean install

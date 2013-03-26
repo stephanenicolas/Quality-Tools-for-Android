@@ -53,6 +53,5 @@ before_script:
 
 script:
   
-  #todo check android maven sdk deployer integration in travis
   #run all tests 
   - mvn clean install

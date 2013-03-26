@@ -48,16 +48,7 @@ before_install:
   # Create and start emulator
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
-  
-  #####################  
-  #tried after stack over flow post : 
-  #####################  
-  #build 25
-  #- pwd
-  #run all tests 
-  #- mvn clean install -DskipTests=false
-  #build 26
-  #- adb logcat -c &
+  - adb logcat -c &
 
 before_script:
   - ./wait_for_emulator
@@ -66,8 +57,6 @@ script:
   #run all tests 
   - mvn clean install -DskipTests=false
 
-after_install:
-  #build 28
-  - adb logcat 
+
 
 

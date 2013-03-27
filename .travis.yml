@@ -57,4 +57,4 @@ script:
   - mvn clean install -DignoreTestFailure=true
   
 after_script:
-  - adb logcat
+  - adb logcat -t 500

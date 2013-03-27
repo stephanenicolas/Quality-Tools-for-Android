@@ -50,8 +50,11 @@ before_install:
   - emulator -avd test -no-skin -no-audio -no-window -prop persist.sys.language=en -prop persist.sys.country=US &
 
 before_script:
-  - ./wait_for_emulator || adb logcat -c &
+  - ./wait_for_emulator 
 
 script:  
   #run all tests 
   - mvn clean install -DignoreTestFailure=true
+  
+after_script:
+  - adb logcat

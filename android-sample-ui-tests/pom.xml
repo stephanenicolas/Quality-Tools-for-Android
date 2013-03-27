@@ -13,6 +13,9 @@
 	<packaging>jar</packaging>
 	<name>android-sample-ui-tests</name>
 
+	<!-- <properties> <maven.test.failure.ignore>true</maven.test.failure.ignore> 
+		</properties> -->
+
 	<dependencies>
 		<dependency>
 			<groupId>android</groupId>
@@ -28,6 +31,10 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.rtyley</groupId>
+			<artifactId>android-screenshot-celebrity</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -61,6 +68,7 @@
 							<testClassOrMethod>com.octo.android.sample.uitest.UIAutomatorSampleTest#testCalculatorApp</testClassOrMethod>
 						</testClassOrMethods>
 						<createReport>true</createReport>
+						<takeScreenshotOnFailure>true</takeScreenshotOnFailure>
 					</uiautomator>
 				</configuration>
 				<executions>

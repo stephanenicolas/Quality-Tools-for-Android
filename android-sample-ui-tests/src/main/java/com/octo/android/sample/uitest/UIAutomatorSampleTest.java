@@ -9,6 +9,7 @@ import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.android.uiautomator.core.UiScrollable;
 import com.android.uiautomator.core.UiSelector;
 import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+import com.github.rtyley.android.screenshot.celebrity.Screenshots;
 
 /**
  * A working example of a ui automator test.
@@ -21,6 +22,22 @@ public class UIAutomatorSampleTest extends UiAutomatorTestCase {
     private static final int MAX_SEARCH_SWIPES_IN_APP_MENU = 15;
     private static final long CALCULATOR_UPDATE_TIMEOUT = 500;
 
+    private String currentTestName;
+    private int currentScreenshotIndex;
+
+    private void takeScreenshot() {
+        Screenshots.poseForScreenshotNamed(currentTestName + "_" + currentScreenshotIndex);
+    }
+
+    private void takeScreenshot(String name) {
+        Screenshots.poseForScreenshotNamed(currentTestName + "_" + name);
+    }
+
+    private void setCurrentTestName(String testName) {
+        this.currentScreenshotIndex = 0;
+        this.currentTestName = testName;
+    }
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -29,6 +46,7 @@ public class UIAutomatorSampleTest extends UiAutomatorTestCase {
 
     @Override
     protected void tearDown() throws Exception {
+        takeScreenshot("end");
         // Simulate a short press on the HOME button.
         getUiDevice().pressHome();
         super.tearDown();
@@ -37,8 +55,10 @@ public class UIAutomatorSampleTest extends UiAutomatorTestCase {
     @LargeTest
     @FlakyTest(tolerance = TEST_TOLERANCE)
     public void testSettingsApp() throws UiObjectNotFoundException {
-
+        setCurrentTestName("testSettingsApp");
         startAppOnEmulator("Settings");
+
+        takeScreenshot("open");
 
         // Validate that the package name is the expected one
         UiObject settingsValidation = new UiObject(new UiSelector().packageName("com.android.settings"));
@@ -48,22 +68,29 @@ public class UIAutomatorSampleTest extends UiAutomatorTestCase {
     @LargeTest
     @FlakyTest(tolerance = TEST_TOLERANCE)
     public void testCalculatorApp() throws UiObjectNotFoundException {
+        setCurrentTestName("testCalculatorApp");
 
         startAppOnEmulator("Calculator");
+
+        takeScreenshot("open");
 
         UiObject deleteButton;
 
         deleteButton = new UiObject(new UiSelector().text("DELETE"));
+        deleteButton.waitForExists(CALCULATOR_UPDATE_TIMEOUT);
         if (!deleteButton.exists()) {
             deleteButton = new UiObject(new UiSelector().text("CLR"));
         }
+        deleteButton.waitForExists(CALCULATOR_UPDATE_TIMEOUT);
         deleteButton.click();
+
+        takeScreenshot("after_clear");
 
         new UiObject(new UiSelector().text("7")).click();
         new UiObject(new UiSelector().text("+")).click();
         new UiObject(new UiSelector().text("5")).click();
         new UiObject(new UiSelector().text("=")).click();
-        new UiObject(new UiSelector().text("12")).waitForExists(CALCULATOR_UPDATE_TIMEOUT);
+        assertTrue(new UiObject(new UiSelector().text("12")).waitForExists(CALCULATOR_UPDATE_TIMEOUT));
     }
 
     private void startAppOnEmulator(String appName) throws UiObjectNotFoundException {

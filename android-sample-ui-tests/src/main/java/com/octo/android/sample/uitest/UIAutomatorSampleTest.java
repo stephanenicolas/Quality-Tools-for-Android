@@ -25,17 +25,15 @@ public class UIAutomatorSampleTest extends UiAutomatorTestCase {
     private String currentTestName;
     private int currentScreenshotIndex;
 
-    private void takeScreenshot() {
-        Screenshots.poseForScreenshotNamed(currentTestName + "_" + currentScreenshotIndex);
-    }
-
     private void takeScreenshot(String name) {
-        Screenshots.poseForScreenshotNamed(currentTestName + "_" + name);
+        getUiDevice().waitForIdle();
+        Screenshots.poseForScreenshotNamed(currentTestName + "_" + currentScreenshotIndex++ + "_" + name);
     }
 
     private void setCurrentTestName(String testName) {
         this.currentScreenshotIndex = 0;
         this.currentTestName = testName;
+        takeScreenshot("start");
     }
 
     @Override

@@ -68,7 +68,6 @@
 							<testClassOrMethod>com.octo.android.sample.uitest.UIAutomatorSampleTest#testCalculatorApp</testClassOrMethod>
 						</testClassOrMethods>
 						<createReport>true</createReport>
-						<takeScreenshotOnFailure>true</takeScreenshotOnFailure>
 					</uiautomator>
 				</configuration>
 				<executions>

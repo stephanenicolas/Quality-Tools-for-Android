@@ -36,6 +36,7 @@ robust projects on Android, by using any of the most interesting and popular tec
         * hamcrest 
         * easymock
         * mockito
+* [Screenshot lib](https://github.com/rtyley/android-screenshot-lib) works during UIAutomator tests.
 
 # What is missing (TODO/INTEGRATE) : 
 

@@ -13,8 +13,9 @@
 	<packaging>jar</packaging>
 	<name>android-sample-ui-tests</name>
 
-	<!-- <properties> <maven.test.failure.ignore>true</maven.test.failure.ignore> 
-		</properties> -->
+	<properties>
+		<maven.test.failure.ignore>true</maven.test.failure.ignore>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -52,6 +53,10 @@
 						<source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
 						<destination>/data/local/tmp/</destination>
 					</push>
+					<pull>
+						<source>/sdcard/uiautomator-screenshots/</source>
+						<destination>${project.build.directory}/screenshots</destination>
+					</pull>
 					<attachJar>false</attachJar>
 					<dex>
 					</dex>
@@ -68,6 +73,7 @@
 							<testClassOrMethod>com.octo.android.sample.uitest.UIAutomatorSampleTest#testCalculatorApp</testClassOrMethod>
 						</testClassOrMethods>
 						<createReport>true</createReport>
+						<takeScreenshotOnFailure>true</takeScreenshotOnFailure>
 					</uiautomator>
 				</configuration>
 				<executions>
@@ -90,6 +96,13 @@
 						<phase>install</phase>
 						<goals>
 							<goal>uiautomator</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>get-screenshots-from-device</id>
+						<phase>install</phase>
+						<goals>
+							<goal>pull</goal>
 						</goals>
 					</execution>
 				</executions>

@@ -27,7 +27,8 @@ public class UIAutomatorSampleTest extends UiAutomatorTestCase {
 
     private void takeScreenshot(String name) {
         getUiDevice().waitForIdle();
-        Screenshots.poseForScreenshotNamed(currentTestName + "_" + currentScreenshotIndex++ + "_" + name);
+        Screenshots.poseForScreenshotNamed(currentTestName + "_" + currentScreenshotIndex++ + "_"
+            + name);
     }
 
     private void setCurrentTestName(String testName) {
@@ -59,7 +60,8 @@ public class UIAutomatorSampleTest extends UiAutomatorTestCase {
         takeScreenshot("open");
 
         // Validate that the package name is the expected one
-        UiObject settingsValidation = new UiObject(new UiSelector().packageName("com.android.settings"));
+        UiObject settingsValidation = new UiObject(
+            new UiSelector().packageName("com.android.settings"));
         assertTrue("Unable to detect Settings", settingsValidation.exists());
     }
 
@@ -85,10 +87,15 @@ public class UIAutomatorSampleTest extends UiAutomatorTestCase {
         takeScreenshot("after_clear");
 
         new UiObject(new UiSelector().text("7")).click();
+        takeScreenshot("after_7");
         new UiObject(new UiSelector().text("+")).click();
+        takeScreenshot("after_plus");
         new UiObject(new UiSelector().text("5")).click();
+        takeScreenshot("after_5");
         new UiObject(new UiSelector().text("=")).click();
-        assertTrue(new UiObject(new UiSelector().text("12")).waitForExists(CALCULATOR_UPDATE_TIMEOUT));
+        takeScreenshot("after_equal");
+        assertTrue(new UiObject(new UiSelector().text("12"))
+            .waitForExists(CALCULATOR_UPDATE_TIMEOUT));
     }
 
     private void startAppOnEmulator(String appName) throws UiObjectNotFoundException {
@@ -128,7 +135,8 @@ public class UIAutomatorSampleTest extends UiAutomatorTestCase {
 
         // Create a UiSelector to find the Settings app and simulate
         // a user click to launch the app.
-        UiObject settingsApp = appViews.getChildByText(new UiSelector().className(android.widget.TextView.class.getName()), appName);
+        UiObject settingsApp = appViews.getChildByText(
+            new UiSelector().className(android.widget.TextView.class.getName()), appName);
         settingsApp.waitForExists(TIMEOUT_DURING_APP_SEARCH);
         settingsApp.clickAndWaitForNewWindow();
     }

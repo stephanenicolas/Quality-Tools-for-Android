@@ -11,6 +11,8 @@ The Android community needs more robustness in Android apps and it looks like a 
 We want to provide a full featured industrial development environment that can be used to create more
 robust projects on Android, by using any of the most interesting and popular technologies.
 
+Here are some slides we made to present [Quality Tools for Android](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-beef-you-android-apps-using-java-tools).
+
 # Already integrated :
 
 * Standard Android testing framework and code coverage using emma, reported in Sonar. That also covers robotium, easy mock and mockito technologies.
@@ -161,4 +163,4 @@ To enable Robolectric development in this configuration. In eclipse, switch to m
 ## Quality Tools for Android in the news !!
 * [Android Weekly issue #55 !] (http://androidweekly.net/#latest-issue)
 * [Android Dev Weekly, issue #49 !] (http://androiddevweekly.com/2013/03/11/Issue-49.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+AndroidDevWeekly+%28%23AndroidDev+Weekly%29)
-* Check us out at [Devoxx France 2013](http://www.devoxx.com/display/FR13/Tools+In+Action+Day+1) : Room Miles Davies A, Wednesday, march 27th, 5 to 5:30 pm.
+* Our presentation at [Devoxx France 2013](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-beef-you-android-apps-using-java-tools).

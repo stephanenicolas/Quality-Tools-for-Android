@@ -20,7 +20,7 @@ robust projects on Android, by using any of the most interesting and popular tec
 * Lint integration via Maven.
 * PMD, findbugs, checkstyle integration via Maven, reported in Sonar.
 * [lint android maven lint](https://github.com/lewisd32/lint-maven-plugin) integration (pom checker)
-* [Spoon from square](https://github.com/square/spoon)
+* [Spoon from square](https://github.com/square/spoon), including screenshots during tests.
 * [maven-android-sdk-deployer](https://github.com/mosabua/maven-android-sdk-deployer) to deliver android jars (including uiautomator)
 * [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
 * [FEST Android](https://github.com/square/fest-android).
@@ -37,6 +37,7 @@ robust projects on Android, by using any of the most interesting and popular tec
         * easymock
         * mockito
 * [Screenshot lib](https://github.com/rtyley/android-screenshot-lib) works during UIAutomator tests.
+
 
 # What is missing (TODO/INTEGRATE) : 
 

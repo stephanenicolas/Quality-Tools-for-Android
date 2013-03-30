@@ -11,7 +11,7 @@ The Android community needs more robustness in Android apps and it looks like a 
 We want to provide a full featured industrial development environment that can be used to create more
 robust projects on Android, by using any of the most interesting and popular technologies.
 
-Here are some slides we made to present [Quality Tools for Android](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-beef-you-android-apps-using-java-tools).
+Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-beef-you-android-apps-using-java-tools) we made to present Quality Tools for Android.
 
 # Already integrated :
 

@@ -150,7 +150,7 @@ mvn clean install -P spoon
 Here is the result in a browser : 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-spoon.png" width=450px/>
 
-## Package cycle check via classycle
+## Package cycles check via classycle
 
 ```bash
 # in parent folder

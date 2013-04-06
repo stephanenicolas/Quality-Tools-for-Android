@@ -38,3 +38,6 @@ target/
 
 #robolectric cache
 tmp/
+
+#monkey
+monkey.log

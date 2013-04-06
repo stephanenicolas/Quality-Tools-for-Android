@@ -22,6 +22,7 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
 * Lint integration via Maven.
 * PMD, findbugs, checkstyle integration via Maven, reported in Sonar.
 * [lint android maven lint](https://github.com/lewisd32/lint-maven-plugin) integration (pom checker)
+* Add [classycle](http://classycle.sourceforge.net/) support, to enforce architectural constraints, through [classycle maven plugin](https://github.com/hcoles/classycle-maven-plugin)
 * [Spoon from square](https://github.com/square/spoon), including screenshots during tests.
 * [maven-android-sdk-deployer](https://github.com/mosabua/maven-android-sdk-deployer) to deliver android jars (including uiautomator)
 * [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
@@ -149,6 +150,29 @@ mvn clean install -P spoon
 Here is the result in a browser : 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-spoon.png" width=450px/>
 
+## Package cycle check via classycle
+
+```bash
+# in parent folder
+mvn clean compile -P cycle
+```
+
+Will check package cycles (also called package tangling in Sonar) and check the build if given cycles are detected.
+[Classycle](http://classycle.sourceforge.net/) lets you define architectural constraints that can be checked automatically. 
+
+Depedency definition files are very simple to edit. Here is an example : 
+````
+show allResults
+
+###define packages / groups of packages of interest
+
+## layers
+[ui] = com.octo.android.sample.ui.*
+[other] = com.octo.android.sample.* excluding [ui]
+
+###check layers integrity
+check [other] independentOf [ui]
+````
 ## Robolectric development in eclipse
 
 To enable Robolectric development in this configuration. In eclipse, switch to maven profile "cobertura" in maven settings on the main app.

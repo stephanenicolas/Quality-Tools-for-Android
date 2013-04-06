@@ -152,6 +152,8 @@ Here is the result in a browser :
 
 ## Package cycles check via classycle
 
+You will need a JDK 1.7 for this profile to work correctly.
+
 ```bash
 # in parent folder
 mvn clean compile -P cycle

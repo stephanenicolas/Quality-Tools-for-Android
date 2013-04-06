@@ -1,0 +1,10 @@
+show allResults
+
+###define packages / groups of packages of interest
+
+## layers
+[ui] = com.octo.android.sample.ui.*
+[other] = com.octo.android.sample.* excluding [ui]
+
+###check layers integrity
+check [other] independentOf [ui]

@@ -245,8 +245,8 @@
 								</goals>
 								<configuration>
 									<excludes>
-									    <exclude>*test*</exclude>
-									    <exclude>*/test/*</exclude>
+										<exclude>*test*</exclude>
+										<exclude>*/test/*</exclude>
 									</excludes>
 								</configuration>
 							</execution>
@@ -269,6 +269,82 @@
 							</test>
 						</configuration>
 						<extensions>true</extensions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>monkey</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+						<artifactId>android-maven-plugin</artifactId>
+						<configuration>
+							<sdk>
+								<platform>${android.sdk.version}</platform>
+							</sdk>
+							<monkey>
+								<skip>false</skip>
+								<packages>
+									<package>com.octo.android.sample</package>
+								</packages>
+								<eventCount>1000</eventCount>
+								<createReport>true</createReport>
+								<ignoreCrashes>true</ignoreCrashes>
+							</monkey>
+							<undeployBeforeDeploy>true</undeployBeforeDeploy>
+						</configuration>
+						<executions>
+							<execution>
+								<id>install-app</id>
+								<phase>install</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>run-monkey-exerciser</id>
+								<phase>install</phase>
+								<goals>
+									<goal>monkey</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>cycle</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.pitest</groupId>
+						<artifactId>classycle</artifactId>
+						<version>0.1</version>
+						<configuration>
+							<dependencyDefinitionFile>${project.basedir}/dependencyDefinitionFile</dependencyDefinitionFile>
+							<includingClasses>
+								<includingClass>com.octo.android.sample.*</includingClass>
+							</includingClasses>
+						</configuration>
+						<executions>
+							<execution>
+								<id>classycle-check</id>
+								<goals>
+									<goal>check</goal>
+								</goals>
+								<phase>compile</phase>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<configuration>
+							<source>1.7</source>
+							<target>1.7</target>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>

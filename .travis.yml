@@ -55,7 +55,7 @@ before_script:
 
 script:  
   #run all tests 
-  - mvn clean install -DignoreTestFailure=true
+  - mvn clean install -P default -DignoreTestFailure=true
   
 after_script:
   - adb logcat -t 500

@@ -357,12 +357,14 @@
 							<test>
 								<createReport>true</createReport>
 							</test>
-							<monkey-runner>
+							<monkeyrunner>
 								<skip>false</skip>
 								<programs>
-									<filename>src/test/monkeyrunner/example-test.py</filename>
+									<program>
+										<filename>src/test/monkeyrunner/example-test.py</filename>
+									</program>
 								</programs>
-							</monkey-runner>
+							</monkeyrunner>
 						</configuration>
 						<executions>
 							<execution>
@@ -376,7 +378,7 @@
 								<id>run-monkey-runner</id>
 								<phase>install</phase>
 								<goals>
-									<goal>monkey-runner</goal>
+									<goal>monkeyrunner</goal>
 								</goals>
 							</execution>
 						</executions>

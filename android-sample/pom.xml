@@ -342,5 +342,47 @@
 				</plugins>
 			</build>
 		</profile>
+		<profile>
+			<id>monkeyrunner</id>
+			<properties>
+				<!-- skip robolectric tests -->
+				<skipTests>true</skipTests>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+						<artifactId>android-maven-plugin</artifactId>
+						<configuration>
+							<test>
+								<createReport>true</createReport>
+							</test>
+							<monkey-runner>
+								<skip>false</skip>
+								<programs>
+									<filename>src/test/monkeyrunner/example-test.py</filename>
+								</programs>
+							</monkey-runner>
+						</configuration>
+						<executions>
+							<execution>
+								<id>install-app</id>
+								<phase>install</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>run-monkey-runner</id>
+								<phase>install</phase>
+								<goals>
+									<goal>monkey-runner</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 </project>

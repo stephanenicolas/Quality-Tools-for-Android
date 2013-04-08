@@ -31,7 +31,7 @@
 
 		<!-- Plugins -->
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
-		<android-maven-plugin.version>3.5.2</android-maven-plugin.version>
+		<android-maven-plugin.version>3.5.3-SNAPSHOT</android-maven-plugin.version>
 		<cobertura.version>2.5.2</cobertura.version>
 		<maven-pmd-plugin.version>2.7.1</maven-pmd-plugin.version>
 		<findbugs-maven-plugin.version>2.5.2</findbugs-maven-plugin.version>
@@ -345,7 +345,11 @@
 		<profile>
 			<id>default</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>skipTests</name>
+					<value>false</value>
+				</property>
 			</activation>
 			<modules>
 				<module>android-sample-tests</module>
@@ -430,6 +434,9 @@
 		</profile>
 		<profile>
 			<id>cycle</id>
+		</profile>
+		<profile>
+			<id>monkeyrunner</id>
 		</profile>
 	</profiles>
 </project>

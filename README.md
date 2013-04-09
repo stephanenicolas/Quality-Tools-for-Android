@@ -150,6 +150,22 @@ mvn clean install -P spoon
 Here is the result in a browser : 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-spoon.png" width=450px/>
 
+## Monkey testing
+
+Monkey is part of Android SDK and allows to harness Application UI and test their robustness.
+We contributed to a neww maven android plugin goal to use monkey automatically and get reports in junit format.
+
+The results can be displayed inside sonar and will appear as normal unit tests.
+
+```bash
+# in parent folder
+mvn clean compile -P monkey
+mvn sonar:sonar -P monkey
+```
+Here is the result in sonar : 
+<img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-sonar-monkey.png" width=450px/>
+
+
 ## Package cycles check via classycle
 
 You will need a JDK 1.7 for this profile to work correctly.

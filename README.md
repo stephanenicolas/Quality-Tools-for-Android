@@ -57,6 +57,10 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
 
 This section describes how to build & test the project using those different testing technologies.
 
+Please note that this project is under active development.
+Some goals may require a snapshot version of the maven android plugin available 
+on [sonatype snapshot repo](https://oss.sonatype.org/content/repositories/jayway-snapshots/).
+
 ## Install Android Latest SDK through Android SDK Manager
 
 This can be done graphically, or [via command line (for CI servers)](http://stackoverflow.com/q/4681697/693752).
@@ -130,7 +134,7 @@ Here is the result in sonar :
 
 ## UI Automator 
 
-UI Automator tests execution requires Android Maven Plugin version 3.5.2+. It is currently available as a SNAPSHOT on [sonatype snapshot repo](https://oss.sonatype.org/content/repositories/jayway-snapshots/).
+
 ```bash
 # in parent folder
 mvn clean install -P uiautomator

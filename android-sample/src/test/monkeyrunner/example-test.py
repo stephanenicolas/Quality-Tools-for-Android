@@ -27,4 +27,4 @@ device.press('KEYCODE_MENU', MonkeyDevice.DOWN_AND_UP)
 result = device.takeSnapshot()
 
 # Writes the screenshot to a file
-result.writeToFile('android-sample/target/monkeyrunner/shot1.png','png')
+result.writeToFile('android-sample/target/monkeyrunner-shot1.png','png'

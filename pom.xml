@@ -433,6 +433,13 @@
 			</reporting>
 		</profile>
 		<profile>
+			<id>monkey</id>
+			<properties>
+				<sonar.branch>monkey</sonar.branch>
+				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+			</properties>
+		</profile>
+		<profile>
 			<id>cycle</id>
 		</profile>
 		<profile>

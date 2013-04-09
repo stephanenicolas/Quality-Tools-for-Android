@@ -344,10 +344,6 @@
 		</profile>
 		<profile>
 			<id>monkeyrunner</id>
-			<properties>
-				<!-- skip robolectric tests -->
-				<skipTests>true</skipTests>
-			</properties>
 			<build>
 				<plugins>
 					<plugin>

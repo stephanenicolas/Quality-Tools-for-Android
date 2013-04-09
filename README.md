@@ -22,8 +22,10 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
 * Lint integration via Maven.
 * PMD, findbugs, checkstyle integration via Maven, reported in Sonar.
 * [lint android maven lint](https://github.com/lewisd32/lint-maven-plugin) integration (pom checker)
+* Monkey testing is now automated and reported in Sonar.
 * Add [classycle](http://classycle.sourceforge.net/) support, to enforce architectural constraints, through [classycle maven plugin](https://github.com/hcoles/classycle-maven-plugin)
 * [Spoon from square](https://github.com/square/spoon), including screenshots during tests.
+*
 * [maven-android-sdk-deployer](https://github.com/mosabua/maven-android-sdk-deployer) to deliver android jars (including uiautomator)
 * [sonar android lint plugin](https://github.com/jeromevdl/sonar-android-lint-plugin) 
 * [FEST Android](https://github.com/square/fest-android).
@@ -40,13 +42,16 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
         * easymock
         * mockito
 * [Screenshot lib](https://github.com/rtyley/android-screenshot-lib) works during UIAutomator tests.
+* support for [Travis CI](https://travis-ci.org/stephanenicolas/Quality-Tools-for-Android). 
+* Build Status on Travis: [![Build Status on Travis:](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android.png)](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android)
+
 
 
 # What is missing (TODO/INTEGRATE) : 
 
-1. get aggregated tests and code coverage for monkey and ui automator.
-2. get monkey through Maven, [using this technique](http://stackoverflow.com/questions/3968064/ideas-for-automating-android-monkey-runs) get the results in Sonar
-3. Add support for [Travis CI](https://travis-ci.org/stephanenicolas/Quality-Tools-for-Android). Alternatives welcome.
+1. get aggregated tests and code coverage for all testing technologies inside a nice Sonar dashboard for Android.
+2. add support for monkey runner through maven
+3. add calabash support.
 
 
 * Build Status on Travis: [![Build Status on Travis:](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android.png)](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android)

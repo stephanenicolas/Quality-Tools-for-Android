@@ -53,10 +53,6 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
 2. add support for monkey runner through maven
 3. add calabash support.
 
-
-* Build Status on Travis: [![Build Status on Travis:](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android.png)](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android)
-
-
 # Usage
 
 This section describes how to build & test the project using those different testing technologies.

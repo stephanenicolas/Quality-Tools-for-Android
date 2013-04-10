@@ -355,6 +355,7 @@
 							</test>
 							<monkeyrunner>
 								<skip>false</skip>
+								<injectDeviceSerialNumberIntoScript>true</injectDeviceSerialNumberIntoScript>
 								<programs>
 									<program>
 										<filename>src/test/monkeyrunner/example-test.py</filename>

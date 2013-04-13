@@ -356,9 +356,13 @@
 							<monkeyrunner>
 								<skip>false</skip>
 								<injectDeviceSerialNumberIntoScript>true</injectDeviceSerialNumberIntoScript>
+								<createReport>true</createReport>
 								<programs>
 									<program>
 										<filename>src/test/monkeyrunner/example-test.py</filename>
+									</program>
+									<program>
+										<filename>src/test/monkeyrunner/example-test2.py</filename>
 									</program>
 								</programs>
 							</monkeyrunner>

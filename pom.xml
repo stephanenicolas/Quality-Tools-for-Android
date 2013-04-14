@@ -31,7 +31,7 @@
 
 		<!-- Plugins -->
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
-		<android-maven-plugin.version>3.5.3-SNAPSHOT</android-maven-plugin.version>
+		<android-maven-plugin.version>3.5.4-SNAPSHOT</android-maven-plugin.version>
 		<cobertura.version>2.5.2</cobertura.version>
 		<maven-pmd-plugin.version>2.7.1</maven-pmd-plugin.version>
 		<findbugs-maven-plugin.version>2.5.2</findbugs-maven-plugin.version>
@@ -444,6 +444,10 @@
 		</profile>
 		<profile>
 			<id>monkeyrunner</id>
+			<properties>
+				<sonar.branch>monkeyrunner</sonar.branch>
+				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+			</properties>
 		</profile>
 	</profiles>
 </project>

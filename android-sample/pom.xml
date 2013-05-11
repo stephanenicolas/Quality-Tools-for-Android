@@ -57,36 +57,7 @@
 			</activation>
 			<properties>
 				<test.directory>src/test/java</test.directory>
-				<junit.version>4.8.2</junit.version>
 			</properties>
-			<dependencies>
-				<!-- robolectric testing -->
-				<dependency>
-					<groupId>org.mockito</groupId>
-					<artifactId>mockito-core</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.easymock</groupId>
-					<artifactId>easymock</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.pivotallabs</groupId>
-					<artifactId>robolectric</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.hamcrest</groupId>
-					<artifactId>hamcrest-core</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
 		</profile>
 		<profile>
 			<id>emma</id>
@@ -121,37 +92,7 @@
 			<id>cobertura</id>
 			<properties>
 				<test.directory>src/test/java</test.directory>
-				<junit.version>4.8.2</junit.version>
 			</properties>
-			<dependencies>
-				<!-- robolectric testing -->
-				<dependency>
-					<groupId>org.mockito</groupId>
-					<artifactId>mockito-core</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.easymock</groupId>
-					<artifactId>easymock</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.pivotallabs</groupId>
-					<artifactId>robolectric</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.hamcrest</groupId>
-					<artifactId>hamcrest-core</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-					<version>${junit.version}</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
 			<build>
 				<plugins>
 					<plugin>
@@ -189,42 +130,8 @@
 			<id>jacoco</id>
 			<properties>
 				<test.directory>src/test/java</test.directory>
-				<junit.version>4.8.2</junit.version>
 			</properties>
 			<dependencies>
-				<!-- robolectric testing -->
-				<dependency>
-					<groupId>org.mockito</groupId>
-					<artifactId>mockito-core</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.easymock</groupId>
-					<artifactId>easymock</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.pivotallabs</groupId>
-					<artifactId>robolectric</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.hamcrest</groupId>
-					<artifactId>hamcrest-core</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-					<version>${junit.version}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.jacoco</groupId>
-					<artifactId>org.jacoco.agent</artifactId>
-					<classifier>runtime</classifier>
-					<scope>test</scope>
-				</dependency>
 				<dependency>
 					<groupId>org.jacoco</groupId>
 					<artifactId>org.jacoco.agent</artifactId>

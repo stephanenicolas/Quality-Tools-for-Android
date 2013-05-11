@@ -9,6 +9,9 @@
 *.class
 jarlist.cache
 
+#jacoco files
+*.exec
+
 # generated files
 */bin/
 */gen/

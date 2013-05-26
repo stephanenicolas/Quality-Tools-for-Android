@@ -52,6 +52,7 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
 1. get aggregated tests and code coverage for all testing technologies inside a nice Sonar dashboard for Android.
 2. add support for monkey runner through maven
 3. add calabash support.
+4. Add support for JUnit 4 on Android : http://stackoverflow.com/questions/9809180/why-is-junit-4-on-android-not-working
 
 # Usage
 

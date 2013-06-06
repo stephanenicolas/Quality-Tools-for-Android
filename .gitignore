@@ -44,3 +44,9 @@ tmp/
 
 #monkey
 monkey.log
+
+#gradle
+.gradle
+build/
+*.*~
+

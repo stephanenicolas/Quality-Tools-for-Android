@@ -211,6 +211,19 @@ TODO : POST a SNAPSHOT of the JUnit run config in eclipse
 
 Now, simply execute your project as a JUnit project and all robolectric tests will get executed.
 
+## Using Gradle
+
+Our first attempt to use gradle lets you build the sample app :
+
+With Gradle 1.6+ : 
+
+```bash
+# in parent folder
+cd android-sample
+gradle aD
+```
+
+
 # Thanks to
  * [OCTO Technology](http://www.octo.com/en) to provide us with free time to work on that project.
  * Henri Treblay from [OCTO Technology](http://www.octo.com/en) for having ported [EasyMock](http://www.easymock.org/) to Android.

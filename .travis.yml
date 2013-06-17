@@ -9,9 +9,9 @@ jdk: oraclejdk7
 env:
   matrix:
     # android-16 is always included
-    # - ANDROID_SDKS=android-8            ANDROID_TARGET=android-8   ANDROID_ABI=armeabi
-    # - ANDROID_SDKS=android-10           ANDROID_TARGET=android-10  ANDROID_ABI=armeabi
-    # - ANDROID_SDKS=android-16,sysimg-16 ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-8            ANDROID_TARGET=android-8   ANDROID_ABI=armeabi
+    - ANDROID_SDKS=android-10           ANDROID_TARGET=android-10  ANDROID_ABI=armeabi
+    - ANDROID_SDKS=android-16,sysimg-16 ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
 before_install:
   # check the travis file
@@ -19,9 +19,9 @@ before_install:
   - travis-lint
   # Install base Android SDK
   - sudo apt-get update -qq
-  - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq -o Dpkg::Options::="--force-confold" --force-yes --yes libgd2-xpm ia32-libs ia32-libs-multiarch ; fi
-  - wget http://dl.google.com/android/android-sdk_r21.1-linux.tgz
-  - tar xzf android-sdk_r21.1-linux.tgz
+  - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq -o Dpkg::Options::="--force-confold" --force-yes --yes libgd2-xpm ia32-libs ia32-libs-multiarch > /dev/null ; fi
+  - wget http://dl.google.com/android/android-sdk_r22.0.1-linux.tgz
+  - tar xzf android-sdk_r22.0.1-linux.tgz
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
@@ -30,11 +30,8 @@ before_install:
   # Note that sysimg-16 downloads the ARM, x86 and MIPS images (we should optimize this).
   # Other relevant API's:
   #  addon-google_apis-google-16
-  - android update sdk --filter platform-tools,android-17,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
+  - echo "y" | android update sdk --filter platform-tools,build-tools-17.0.0,android-16,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
 
-  #http://debuggable.com/posts/disable-strict-host-checking-for-git-clone:49896ff3-0ac0-4263-9703-1eae4834cda3
-  # not used anymore - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-  
   #install Android SDK 17 local files to local maven repo  
   - git clone https://github.com/mosabua/maven-android-sdk-deployer.git
   - cd maven-android-sdk-deployer/platforms/android-17/
@@ -46,9 +43,11 @@ before_install:
   - mvn install
   - cd ../../../
   # Create and start emulator
+# Create and start emulator
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - mksdcard 50M /tmp/sdcard.img
   - emulator -avd test -no-skin -no-audio -no-window -prop persist.sys.language=en -prop persist.sys.country=US -sdcard /tmp/sdcard.img &
+  
 
 before_script:
   - ./wait_for_emulator 

@@ -442,7 +442,6 @@
 		<profile>
 			<id>jacoco</id>
 			<modules>
-				<module>android-sample-robolectric-tests</module>
 				<module>android-sample-tests</module>
 			</modules>
 			<properties>

@@ -9,20 +9,19 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<properties>
-		<junit.version>4.8.2</junit.version>
-	</properties>
-
-
 	<artifactId>android-sample</artifactId>
 	<packaging>apk</packaging>
 	<name>android-sample</name>
+
+	<properties>
+		<junit.version>4.8.2</junit.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>android</groupId>
 			<artifactId>android</artifactId>
-			<scope>test</scope>
+			<scope>provided</scope>
 		</dependency>
 		<!-- libs -->
 		<dependency>
@@ -161,6 +160,7 @@
 				<skipTests>true</skipTests>
 			</properties>
 		</profile>
+
 		<profile>
 			<id>spoon</id>
 			<properties>

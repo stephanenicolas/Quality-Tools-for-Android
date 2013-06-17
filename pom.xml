@@ -361,7 +361,6 @@
 				</property>
 			</activation>
 			<modules>
-				<module>android-sample-robolectric-tests</module>
 				<module>android-sample-tests</module>
 				<module>android-sample-ui-tests</module>
 			</modules>
@@ -382,9 +381,6 @@
 		</profile>
 		<profile>
 			<id>cobertura</id>
-			<modules>
-				<module>android-sample-robolectric-tests</module>
-			</modules>
 			<properties>
 				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 				<sonar.branch>robolectric</sonar.branch>

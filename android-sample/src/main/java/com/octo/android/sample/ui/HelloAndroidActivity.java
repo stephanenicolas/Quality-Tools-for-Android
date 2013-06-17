@@ -1,5 +1,9 @@
 package com.octo.android.sample.ui;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.octo.android.sample.R;
 import com.octo.android.sample.model.Computer;
@@ -65,6 +70,10 @@ public class HelloAndroidActivity extends Activity {
                 // only tested by unit tests, not it tests
                 textView.setText(R.string.text_no_computer);
             }
+            DateTime dt = new DateTime();
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("MMMM, yyyy");
+            String dateString = fmt.print(dt);
+            Toast.makeText(HelloAndroidActivity.this, dateString, Toast.LENGTH_LONG).show();
         }
     }
 }

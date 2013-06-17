@@ -1,14 +1,21 @@
 buildscript {
     repositories {
-        mavenCentral()
+         mavenCentral()
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:0.4'
     }
 }
-
 apply plugin: 'android'
+
+    repositories {
+         mavenCentral()
+    }
+
+    dependencies {
+         compile 'joda-time:joda-time:2.2'
+    }
 
 android {
     buildToolsVersion "17.0"                

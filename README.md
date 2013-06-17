@@ -199,7 +199,14 @@ check [other] independentOf [ui]
 ````
 ## Robolectric development in eclipse
 
-To enable Robolectric development in this configuration. In eclipse, switch to maven profile "cobertura" in maven settings on the main app.
+RoboElectric tests are now fully integrated to the sample project. They are placed under src/test/java as in any normal Java project.
+
+To make this configuration work in eclipse, do the following : 
+
+* after each "maven update" of your project, remember to configure the build path of your project, go to the last tab and *uncheck* maven dependencies so that they are not included into the final apk.
+* in your eclipse junit configuration for your project, add both "bin/classes" to the classpath, and set the environment variable ANDROID_HOME to the android home folder on your computer.
+
+Now, simply execute your project as a JUnit project and all robolectric tests will get executed.
 
 # Thanks to
  * [OCTO Technology](http://www.octo.com/en) to provide us with free time to work on that project.

@@ -354,7 +354,7 @@
 		<profile>
 			<id>default</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 				<property>
 					<name>skipTests</name>
 					<value>false</value>

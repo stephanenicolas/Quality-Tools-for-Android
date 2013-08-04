@@ -7,13 +7,14 @@ import org.easymock.EasyMock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
 
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.octo.android.sample.R;
 import com.octo.android.sample.model.Computer;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
 
 @RunWith(RobolectricTestRunner.class)
 public class MyActivityTest {
@@ -21,10 +22,9 @@ public class MyActivityTest {
     @Test
     public void shouldHaveApplicationName() throws Exception {
         // given
-        HelloAndroidActivity activityUnderTest = new HelloAndroidActivity();
+        HelloAndroidActivity activityUnderTest = Robolectric.buildActivity(HelloAndroidActivity.class).create().get();
 
         // when
-        activityUnderTest.onCreate(null);
 
         // then
         String appName = activityUnderTest.getResources().getString(R.string.app_name);
@@ -34,8 +34,8 @@ public class MyActivityTest {
     @Test
     public void shouldNotUseNullComputer() throws Exception {
         // given
-        HelloAndroidActivity activityUnderTest = new HelloAndroidActivity();
-        activityUnderTest.onCreate(null);
+        HelloAndroidActivity activityUnderTest = Robolectric.buildActivity(HelloAndroidActivity.class).create().get();
+
         activityUnderTest.setComputer(null);
 
         // when
@@ -52,8 +52,7 @@ public class MyActivityTest {
     public void shouldUseDummyComputer() throws Exception {
         final int EXPECTED_RESULT = 42;
         // given
-        HelloAndroidActivity activityUnderTest = new HelloAndroidActivity();
-        activityUnderTest.onCreate(null);
+        HelloAndroidActivity activityUnderTest = Robolectric.buildActivity(HelloAndroidActivity.class).create().get();
 
         // when
         Button button = (Button) activityUnderTest.findViewById(R.id.button_main);
@@ -69,10 +68,10 @@ public class MyActivityTest {
     public void shouldUseCustomComputerUsingEasyMock() throws Exception {
         final int EXPECTED_RESULT = 1;
         // given
-        HelloAndroidActivity activityUnderTest = new HelloAndroidActivity();
+        HelloAndroidActivity activityUnderTest = Robolectric.buildActivity(HelloAndroidActivity.class).create().get();
         Computer mockComputer = EasyMock.createMock(Computer.class);
         EasyMock.expect(mockComputer.getResult()).andReturn(EXPECTED_RESULT);
-        activityUnderTest.onCreate(null);
+
         activityUnderTest.setComputer(mockComputer);
         EasyMock.replay(mockComputer);
 
@@ -91,11 +90,11 @@ public class MyActivityTest {
     public void shouldUseCustomComputerUsingMockito() throws Exception {
         final int EXPECTED_RESULT = 1;
         // given
-        HelloAndroidActivity activityUnderTest = new HelloAndroidActivity();
+        HelloAndroidActivity activityUnderTest = Robolectric.buildActivity(HelloAndroidActivity.class).create().get();
 
         Computer mockComputer = Mockito.mock(Computer.class);
         Mockito.when(mockComputer.getResult()).thenReturn(EXPECTED_RESULT);
-        activityUnderTest.onCreate(null);
+
         activityUnderTest.setComputer(mockComputer);
 
         // when

@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="18" />
 
     <!-- Required for EMMA -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,6 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- For testing -->
+        <uses-library android:name="android.test.runner" />
     </application>
+
+    <!-- For testing -->
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="com.octo.android.sample" />
 
 </manifest>

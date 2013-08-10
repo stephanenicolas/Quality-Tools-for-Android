@@ -19,6 +19,11 @@
 			<artifactId>android</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>android.support</groupId>
+			<artifactId>compatibility-v4</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>com.octo.android</groupId>
 			<artifactId>android-sample</artifactId>
 			<version>${project.version}</version>

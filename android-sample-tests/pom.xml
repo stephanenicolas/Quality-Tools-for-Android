@@ -19,6 +19,10 @@
 			<artifactId>android</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>android.support</groupId>
+			<artifactId>compatibility-v4</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.octo.android</groupId>
 			<artifactId>android-sample</artifactId>
 			<version>${project.version}</version>
@@ -65,11 +69,6 @@
 		<dependency>
 			<groupId>com.squareup</groupId>
 			<artifactId>fest-android</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>android.support</groupId>
-			<artifactId>compatibility-v4</artifactId>
-			<version>12</version>
 		</dependency>
 	</dependencies>
 

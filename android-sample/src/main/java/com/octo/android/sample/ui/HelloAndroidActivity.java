@@ -4,8 +4,8 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +21,7 @@ import com.octo.android.sample.model.DummyComputer;
  * A simple testable activity.
  * @author SNI
  */
-public class HelloAndroidActivity extends Activity {
+public class HelloAndroidActivity extends FragmentActivity {
 
     // ----------------------------------
     // CONSTANTS

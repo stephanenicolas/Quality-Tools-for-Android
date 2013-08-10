@@ -93,6 +93,14 @@
 								<createReport>true</createReport>
 							</test>
 						</configuration>
+						<!-- needed to use emma 2.1.5320 with MAP 3.6.1+ -->
+						<dependencies>
+							<dependency>
+								<groupId>emma</groupId>
+								<artifactId>emma</artifactId>
+								<version>${emma.version}</version>
+							</dependency>
+						</dependencies>
 					</plugin>
 				</plugins>
 			</build>

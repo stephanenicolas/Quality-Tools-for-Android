@@ -22,7 +22,7 @@
 		<hamcrest-core.version>1.3</hamcrest-core.version>
 		<junit.version>4.8.2</junit.version>
 
-		<easymock.version>3.2-SNAPSHOT</easymock.version>
+		<easymock.version>3.2</easymock.version>
 		<mockito-core.version>1.9.5</mockito-core.version>
 		<dexmaker.version>1.0</dexmaker.version>
 		<dexmaker-mockito.version>1.0</dexmaker-mockito.version>
@@ -34,7 +34,7 @@
 
 		<!-- Plugins -->
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
-		<android-maven-plugin.version>3.6.0</android-maven-plugin.version>
+		<android-maven-plugin.version>3.6.1</android-maven-plugin.version>
 		<cobertura.version>2.5.2</cobertura.version>
 		<maven-pmd-plugin.version>2.7.1</maven-pmd-plugin.version>
 		<findbugs-maven-plugin.version>2.5.2</findbugs-maven-plugin.version>
@@ -158,6 +158,8 @@
 		</dependencies>
 	</dependencyManagement>
 
+    <!-- Used to get latest version of maven android plugin snapshots -->
+    <!-- 
 	<repositories>
 		<repository>
 			<id>sonatype-oss-public</id>
@@ -171,7 +173,6 @@
 		</repository>
 	</repositories>
 
-
 	<pluginRepositories>
 		<pluginRepository>
 			<id>oss.sonatype.org-jayway-snapshots</id>
@@ -182,7 +183,8 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
+ 	-->
+ 	
 	<build>
 		<pluginManagement>
 			<plugins>

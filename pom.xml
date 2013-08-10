@@ -44,6 +44,7 @@
 		<jar-plugin.version>2.4</jar-plugin.version>
 		<emma.version>2.1.5320</emma.version>
 		<jacoco-plugin.version>0.6.2.201302030002</jacoco-plugin.version>
+		<maven-copy-plugin>0.2.5</maven-copy-plugin>
 
 		<!-- Sonar common configuration -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -158,33 +159,14 @@
 		</dependencies>
 	</dependencyManagement>
 
-    <!-- Used to get latest version of maven android plugin snapshots -->
-    <!-- 
-	<repositories>
-		<repository>
-			<id>sonatype-oss-public</id>
-			<url>https://oss.sonatype.org/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+	<!-- Used to get latest version of maven android plugin snapshots -->
+	<!-- <repositories> <repository> <id>sonatype-oss-public</id> <url>https://oss.sonatype.org/content/groups/public/</url> 
+		<releases> <enabled>true</enabled> </releases> <snapshots> <enabled>true</enabled> 
+		</snapshots> </repository> </repositories> <pluginRepositories> <pluginRepository> 
+		<id>oss.sonatype.org-jayway-snapshots</id> <name>Jayway OpenSource SNAPSHOTs 
+		on Sonatype.org</name> <url>http://oss.sonatype.org/content/repositories/jayway-snapshots/</url> 
+		<snapshots> <enabled>true</enabled> </snapshots> </pluginRepository> </pluginRepositories> -->
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>oss.sonatype.org-jayway-snapshots</id>
-			<name>Jayway OpenSource SNAPSHOTs on Sonatype.org</name>
-			<url>http://oss.sonatype.org/content/repositories/jayway-snapshots/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
- 	-->
- 	
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -343,6 +325,19 @@
 										<ignore />
 									</action>
 								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.github.goldin</groupId>
+										<artifactId>copy-maven-plugin</artifactId>
+										<versionRange>[${maven-copy-plugin.version},)</versionRange>
+										<goals>
+											<goal>copy</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -393,6 +388,9 @@
 		</profile>
 		<profile>
 			<id>cobertura</id>
+			<modules>
+				<module>android-sample-robolectric-tests</module>
+			</modules>
 			<properties>
 				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 				<sonar.branch>robolectric</sonar.branch>

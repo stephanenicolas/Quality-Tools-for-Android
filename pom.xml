@@ -68,7 +68,7 @@
 			<dependency>
 				<groupId>android.support</groupId>
 				<artifactId>compatibility-v4</artifactId>
-				<version>18</version>
+				<version>${android.support.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>android.test.uiautomator</groupId>

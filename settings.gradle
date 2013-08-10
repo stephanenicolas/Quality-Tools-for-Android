@@ -1,0 +1,3 @@
+rootProject.name = 'Quality Analysis Tools for Androi'
+
+include 'android-sample'

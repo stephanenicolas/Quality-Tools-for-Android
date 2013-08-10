@@ -41,6 +41,7 @@ repositories {
 
 dependencies {
      compile 'joda-time:joda-time:2.2'
+     compile 'com.android.support:support-v4:18.0.0'
      
     testLocalCompile 'joda-time:joda-time:2.2'
     testLocalCompile 'junit:junit:4.8.2'

@@ -1,3 +1,4 @@
 rootProject.name = 'Quality Analysis Tools for Androi'
 
 include 'android-sample'
+include 'android-sample-tests'

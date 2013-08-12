@@ -1,10 +1,15 @@
+import com.android.build.gradle.api.TestVariant
+
 buildscript {
 	repositories { 
          mavenCentral()
+         maven {
+	        url "https://oss.sonatype.org/content/repositories/snapshots"
+	    }
 	}
 	dependencies { 
 		classpath 'com.android.tools.build:gradle:0.5.6'
-		
+		classpath 'com.novoda.gradle:robolectric-plugin:0.0.1-SNAPSHOT'
 	}
 }
 
@@ -35,6 +40,12 @@ project('android-sample') {
 
 	apply plugin: 'android'
 	apply plugin: 'eclipse'
+	apply plugin: 'checkstyle'
+
+
+    checkstyle {
+       configFile = new File(rootDir, "checkstyle.xml")
+    }
 	
 	dependencies {
      compile "joda-time:joda-time:$jodaLibraryVersion"
@@ -99,6 +110,102 @@ project('android-sample') {
 //-- Android Sample Robolectric Tests Project
 //-------------------------
 
+project('android-sample-robolectric-tests') {
+	description = "Android sample app under tests"
+
+	apply plugin: 'android'
+	apply plugin: 'robolectric'
+	
+	repositories {
+	    mavenCentral()
+	    mavenLocal()
+	    maven {
+	        url "https://oss.sonatype.org/content/repositories/snapshots"
+	    }
+	}
+	
+	dependencies {
+	    //compile files('libs/android-support-v4.jar')
+	
+	    // had to deploy to sonatype to get AAR to work
+	    compile 'com.novoda:actionbarsherlock:4.3.2-SNAPSHOT' exclude group: 'com.google.android'
+	    compile "joda-time:joda-time:$jodaLibraryVersion"
+    	compile "com.android.support:support-v4:$androidSupportVersion"
+	
+	    robolectricCompile 'org.robolectric:robolectric:2.0'
+	    robolectricCompile group: 'junit', name: 'junit', version: '4.+'
+	    robolectricCompile "joda-time:joda-time:$jodaLibraryVersion"
+	    robolectricCompile 'org.mockito:mockito-core:1.9.5'
+	    robolectricCompile 'org.easymock:easymock:3.2' exclude group: 'cglib'
+     	robolectricCompile 'cglib:cglib-nodep:2.2' 
+	}
+	
+	android {
+	    compileSdkVersion 17
+	    buildToolsVersion "17.0.0"
+	
+		sourceSets {
+	        main {
+	            manifest.srcFile '../android-sample/AndroidManifest.xml'
+	            java.srcDirs = ['../android-sample/src/main/java']
+	            resources.srcDirs = ['../android-sample/src']
+	            //aild.srcDirs = ['src']
+	            renderscript.srcDirs = ['src']
+	            res.srcDirs = ['../android-sample/res']
+	            assets.srcDirs = ['../android-sample/assets']
+	        }
+	        
+	        robolectric {
+	            manifest.srcFile 'android-sample/AndroidManifest.xml'
+		        java.srcDirs = ['src/test/java']
+		        resources.srcDirs = ['src/test/resources']
+	            res.srcDirs = ['../android-sample/res']
+	            assets.srcDirs = ['../android-sample/assets']
+		    }
+	    }
+	    
+	    defaultConfig {
+	        minSdkVersion 7
+	        targetSdkVersion 17
+	    }
+	}
+	
+	task listResources << {
+	    println android.sourceSets.robolectric.resources.srcDirs.each() {
+	        println it.getProperties()
+	    }
+	
+	}
+	
+	task listAndroidJars << {
+	    println android.applicationVariants.each {
+	        println it
+	    }
+	
+	    println android.plugin.getRuntimeJarList()
+	}
+	
+	task listJars << {
+	    configurations.robolectric.each { File file -> println file.name }
+	}
+	
+	task libs(type: Sync) {
+	    from configurations.robolectric
+	    into "/tmp/libs"
+	}
+
+    task(copy, type: Copy) {
+	    from(file('src/test/resources'))
+    	into(file('build/classes/robolectric/'))
+	}
+	
+	tasks['robolectric'].dependsOn('copy')
+	
+	tasks['robolectric'].doFirst {
+	  workingDir = '.'
+	  println("Current dir "+new File('.').getAbsolutePath())
+	}
+}
 
 //-------------------------
 //-- Root project

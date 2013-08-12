@@ -250,6 +250,10 @@ gradle check
  * Thanks to [Jayway](http://www.jayway.com/blog) for their [Android Maven Plugin](http://code.google.com/p/maven-android-plugin/).
  * Thanks to [Sonar Source](http://www.sonarsource.org/) for supporting this effort, especially for this [project's configuration](https://github.com/SonarSource/sonar-examples/tree/master/projects/android).
  * Thanks to  Jake Wharton and Pierre-Yves Ricaud for mentionning FEST-Android.
+ * Thanks to [Novoda](http://novoda.com) for their [Gradle Robolectric plugin](https://github.com/novoda/robolectric-plugin).
+ * Thanks to [Seth Rylan Gainey](https://github.com/sethrylan) for his [Gradle settings](https://github.com/sethrylan/rosette).
+
+ 
 
 ## Quality Tools for Android in the news !!
 * [Android Weekly issue #55 !] (http://androidweekly.net/#latest-issue)

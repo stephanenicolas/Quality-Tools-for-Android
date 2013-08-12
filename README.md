@@ -236,6 +236,14 @@ gradle clean assembleDebug connectedInstrumentTest
 gradle clean assembleDebug robolectric
 ```
 
+### Findbugs + Checkstyle (TODO PMD and JDepend) : 
+
+```bash
+# in parent folder
+gradle check
+```
+
+
 # Thanks to
  * [OCTO Technology](http://www.octo.com/en) to provide us with free time to work on that project.
  * Henri Treblay from [OCTO Technology](http://www.octo.com/en) for having ported [EasyMock](http://www.easymock.org/) to Android.

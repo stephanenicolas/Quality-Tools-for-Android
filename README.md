@@ -213,16 +213,28 @@ Now, simply execute your project as a JUnit project and all robolectric tests wi
 
 ## Using Gradle
 
-Our first attempt to use gradle lets you build the sample app :
+With Gradle 1.7+ : 
 
-With Gradle 1.6+ : 
+### build the app under tests
 
 ```bash
 # in parent folder
-cd android-sample
-gradle aD
+gradle clean assemble
 ```
 
+### play standard android tests : 
+
+```bash
+# in parent folder
+gradle clean assembleDebug connectedInstrumentTest
+```
+
+### play robolectric tests : 
+
+```bash
+# in parent folder
+gradle clean assembleDebug robolectric
+```
 
 # Thanks to
  * [OCTO Technology](http://www.octo.com/en) to provide us with free time to work on that project.

@@ -42,6 +42,7 @@ project('android-sample') {
 	apply plugin: 'eclipse'
 	apply from: '../checkstyle.gradle'
 	apply from: '../findbugs.gradle'
+	apply from: '../pmd.gradle'
 
     checkstyle {
        configFile file('../checkstyle.xml')
@@ -56,6 +57,11 @@ project('android-sample') {
        xslFile null
 	}
  
+     pmd {
+       rulesetFile file('../pmd-ruleset.xml')
+	   ignoreFailures true
+       xslFile null
+	}
 	
 	dependencies {
      compile "joda-time:joda-time:$jodaLibraryVersion"

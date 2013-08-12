@@ -59,9 +59,11 @@ class AndroidPmdTask extends DefaultTask {
                     }
                 }
             }
-            ant.xslt(in: outputFile,
-                     style: xslFile,
-                     out: outputFile.absolutePath.replaceFirst(~/\.[^\.]+$/, ".html"))
+            if( xslFile != null && xslFile.exists() && outputFile.exists() ) {
+	            ant.xslt(in: outputFile,
+	                     style: xslFile,
+	                     out: outputFile.absolutePath.replaceFirst(~/\.[^\.]+$/, ".html"))
+         	}
         }
     }
 }

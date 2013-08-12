@@ -3,8 +3,6 @@ package com.octo.android.sample.ui;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-import java.io.File;
-
 import org.easymock.EasyMock;
 import org.junit.Test;
 import org.junit.runner.RunWith;

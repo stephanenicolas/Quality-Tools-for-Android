@@ -40,12 +40,22 @@ project('android-sample') {
 
 	apply plugin: 'android'
 	apply plugin: 'eclipse'
-	apply plugin: 'checkstyle'
-
+	apply from: '../checkstyle.gradle'
+	apply from: '../findbugs.gradle'
 
     checkstyle {
-       configFile = new File(rootDir, "checkstyle.xml")
+       configFile file('../checkstyle.xml')
+       ignoreFailures true
+       showViolations false
+       xslFile null
     }
+    
+     findbugs {
+       excludeFile file('../findbugs-filter.xml')
+	   ignoreFailures true
+       xslFile null
+	}
+ 
 	
 	dependencies {
      compile "joda-time:joda-time:$jodaLibraryVersion"
@@ -203,7 +213,6 @@ project('android-sample-robolectric-tests') {
 	
 	tasks['robolectric'].doFirst {
 	  workingDir = '.'
-	  println("Current dir "+new File('.').getAbsolutePath())
 	}
 }
 

@@ -40,35 +40,13 @@ project('android-sample') {
 
 	apply plugin: 'android'
 	apply plugin: 'eclipse'
+	apply plugin: "sonar-runner"
 	apply from: '../gradle/checkstyle.gradle'
 	apply from: '../gradle/findbugs.gradle'
 	apply from: '../gradle/pmd.gradle'
 	apply from: '../gradle/classycle.gradle'
-
-    classycle {
-       definitionFile file('config/quality/classycle/dependencyDefinitionFile')
-       xslFile null
-    }
-    
-    checkstyle {
-       configFile file('../config/quality/checkstyle/checkstyle.xml')
-       ignoreFailures true
-       showViolations false
-       xslFile null
-    }
-    
-     findbugs {
-       excludeFile file('../config/quality/findbugs/findbugs-filter.xml')
-	   ignoreFailures true
-       xslFile null
-	}
- 
-     pmd {
-       rulesetFile file('../config/quality/pmd/pmd-ruleset.xml')
-	   ignoreFailures true
-       xslFile null
-	}
 	
+
 	dependencies {
      compile "joda-time:joda-time:$jodaLibraryVersion"
      compile "com.android.support:support-v4:$androidSupportVersion"
@@ -125,6 +103,46 @@ project('android-sample') {
 	            }
 	        }
 	    }
+	}
+	
+	classycle {
+       definitionFile file('config/quality/classycle/dependencyDefinitionFile')
+       xslFile null
+    }
+    
+    checkstyle {
+       configFile file('../config/quality/checkstyle/checkstyle.xml')
+       ignoreFailures true
+       showViolations false
+       xslFile null
+    }
+    
+     findbugs {
+       excludeFile file('../config/quality/findbugs/findbugs-filter.xml')
+	   ignoreFailures true
+       xslFile null
+	}
+ 
+     pmd {
+       rulesetFile file('../config/quality/pmd/pmd-ruleset.xml')
+	   ignoreFailures true
+       xslFile null
+	}
+	
+	sonarRunner {
+	    sonarProperties {
+	        property "sonar.host.url", "http://localhost:9000"
+	        property "sonar.jdbc.url", "jdbc:h2:tcp://localhost:9092/sonar"
+	        property "sonar.jdbc.driverClassName", "org.h2.Driver"
+	        property "sonar.jdbc.username", "sonar"
+	        property "sonar.jdbc.password", "sonar"
+		    property "sonar.branch", "emma"
+		    property "sonar.dynamicAnalysis", "reuseReports"
+		    properties["sonar.sources"] = android.sourceSets.main.java.srcDirs
+		    properties["sonar.tests"] = android.sourceSets.instrumentTest.java.srcDirs
+		    properties["sonar.binaries"] = file("build/classes/debug")
+		    property "sonar.surefire.reportsPath","build/instrumentTest-results/connected/" 
+		}
 	}
 }
 

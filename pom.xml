@@ -265,7 +265,7 @@
 							<id>pmd-check</id>
 							<goals>
 								<goal>check</goal>
-								<goal>config/quality/pmd/pmd-ruleset.xml</goal>
+								<goal>cpd-check</goal>
 							</goals>
 						</execution>
 					</executions>

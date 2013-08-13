@@ -1,0 +1,118 @@
+// FROM : http://searchcode.com/codesearch/view/10588770
+
+configurations {
+    codequality
+}
+
+repositories {
+    mavenCentral()
+    mavenRepo urls: "http://artifactory.msi.umn.edu/simple/gradle-libs/";
+}
+
+dependencies {
+    codequality 'classycle:classycle:1.4@jar'
+}
+
+task classycle(type: AndroidClassycleTask) {
+    ignoreFailures true
+    showViolations false
+}
+
+check.dependsOn(classycle)
+
+
+//allprojects {
+//    ext.useClassycle = {
+//        configurations {
+//            classycle
+//        }
+//
+//        dependencies {
+//            classycle 'classycle:classycle:1.4@jar'
+//        }
+//
+//        task classycle
+//
+//        sourceSets.all { sourceSet ->
+//            def taskName = sourceSet.getTaskName('classycle', null)
+//            task(taskName){
+//                def reportFile = reporting.file("classcycle/${sourceSet.name}.xml")
+//                inputs.files sourceSet.output
+//                outputs.file reportFile
+//                doLast {
+//                    if (!sourceSet.output.classesDir.directory) {
+//                        return;
+//                    }
+//                    ant.taskdef(name: "classycleDependencyCheck", classname: "classycle.ant.DependencyCheckingTask", classpath: configurations.classycle.asPath)
+//                    reportFile.parentFile.mkdirs()
+//                    try {
+//                        ant.classycleDependencyCheck(reportFile: reportFile, failOnUnwantedDependencies: true, mergeInnerClasses: true,
+//                                """
+//                        show allResults
+//                        check absenceOfPackageCycles > 1 in org.gradle.*
+//                    """
+//                        ) {
+//                            fileset(dir: sourceSet.output.classesDir)
+//                        }
+//                    } catch(Exception e) {
+//                        throw new RuntimeException("Classycle check failed: $e.message. See report at ${new org.gradle.logging.ConsoleRenderer().asClickableFileUrl(reportFile)}", e)
+//                    }
+//                }
+//            }
+//            classycle.dependsOn taskName
+//            check.dependsOn taskName
+//            codeQuality.dependsOn taskName
+//        }
+//    }
+//}
+
+
+///////////////////////////////////////////////
+////////////// Groovy Task Class //////////////
+///////////////////////////////////////////////
+import org.gradle.api.internal.project.IsolatedAntBuilder
+
+/**
+ * See parameters at http://checkstyle.sourceforge.net/anttask.html
+ */
+class AndroidClassycleTask extends DefaultTask {
+    @InputFile @Optional File definitionFile = new File("$project.rootDir/config/classycle/classycle.xml")
+    @InputFile @Optional File xslFile = new File("$project.rootDir/config/classycle/classycle-noframes-sorted.xsl")
+    @OutputFile @Optional File outputFile = new File("$project.buildDir/reports/classycle/classycle-${project.name}.xml")
+    FileCollection classycleClasspath = project.configurations.codequality
+    Boolean ignoreFailures = false
+    Boolean showViolations = true
+    Boolean failOnUnwantedDependencies = true
+    Boolean mergeInnerClasses = true
+    Project gradleProject = project
+
+    def AndroidclassycleTask() {
+        description = 'Runs classycle against Android sourcesets.'
+        group = 'Code Quality'
+    }
+
+    @TaskAction
+    def runClassycle() {
+        outputFile.parentFile.mkdirs()
+        def antBuilder = services.get(IsolatedAntBuilder)
+        antBuilder.withClasspath(classycleClasspath).execute {
+            ant.taskdef(name: 'classycle', classname: 'classycle.ant.DependencyCheckingTask')
+            // see also, maxWarnings and failureProperty arguments
+            ant.classycle(reportFile: outputFile, failOnUnwantedDependencies: failOnUnwantedDependencies, mergeInnerClasses: mergeInnerClasses,
+            			   definitionFile: definitionFile ) {
+		                        fileset(dir: "$gradleProject.buildDir/classes")
+                           }
+			            if (showViolations) {
+			                formatter(type: 'plain', useFile: false)
+				            formatter(type: 'xml', toFile: outputFile)
+			            }
+			}
+            if (xslFile != null && xslFile.exists()) {
+                ant.xslt(in:   outputFile,
+                        style: xslFile,
+                        out:   outputFile.absolutePath.replaceFirst(~/\.[^\.]+$/, ".html")
+                )
+            }
+    }
+}
+

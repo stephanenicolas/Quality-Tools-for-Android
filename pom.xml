@@ -223,7 +223,7 @@
 					<artifactId>maven-checkstyle-plugin</artifactId>
 					<version>${maven-checkstyle-plugin.version}</version>
 					<configuration>
-						<configLocation>checkstyle.xml</configLocation>
+						<configLocation>config/quality/checkstyle/checkstyle.xml</configLocation>
 						<enableRulesSummary>false</enableRulesSummary>
 					</configuration>
 					<executions>
@@ -241,7 +241,7 @@
 					<artifactId>findbugs-maven-plugin</artifactId>
 					<version>${findbugs-maven-plugin.version}</version>
 					<configuration>
-						<excludeFilterFile>findbugs-filter.xml</excludeFilterFile>
+						<excludeFilterFile>config/quality/findbugs/findbugs-filter.xml</excludeFilterFile>
 					</configuration>
 					<executions>
 						<execution>
@@ -265,7 +265,7 @@
 							<id>pmd-check</id>
 							<goals>
 								<goal>check</goal>
-								<goal>cpd-check</goal>
+								<goal>config/quality/pmd/pmd-ruleset.xml</goal>
 							</goals>
 						</execution>
 					</executions>

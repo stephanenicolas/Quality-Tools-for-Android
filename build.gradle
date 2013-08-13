@@ -40,25 +40,31 @@ project('android-sample') {
 
 	apply plugin: 'android'
 	apply plugin: 'eclipse'
-	apply from: '../checkstyle.gradle'
-	apply from: '../findbugs.gradle'
-	apply from: '../pmd.gradle'
+	apply from: '../gradle/checkstyle.gradle'
+	apply from: '../gradle/findbugs.gradle'
+	apply from: '../gradle/pmd.gradle'
+	apply from: '../gradle/classycle.gradle'
 
+    classycle {
+       definitionFile file('config/quality/classycle/dependencyDefinitionFile')
+       xslFile null
+    }
+    
     checkstyle {
-       configFile file('../checkstyle.xml')
+       configFile file('../config/quality/checkstyle/checkstyle.xml')
        ignoreFailures true
        showViolations false
        xslFile null
     }
     
      findbugs {
-       excludeFile file('../findbugs-filter.xml')
+       excludeFile file('../config/quality/findbugs/findbugs-filter.xml')
 	   ignoreFailures true
        xslFile null
 	}
  
      pmd {
-       rulesetFile file('../pmd-ruleset.xml')
+       rulesetFile file('../config/quality/pmd/pmd-ruleset.xml')
 	   ignoreFailures true
        xslFile null
 	}

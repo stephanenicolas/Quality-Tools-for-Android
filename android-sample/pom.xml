@@ -255,7 +255,7 @@
 						<artifactId>classycle</artifactId>
 						<version>0.1</version>
 						<configuration>
-							<dependencyDefinitionFile>${project.basedir}/dependencyDefinitionFile</dependencyDefinitionFile>
+							<dependencyDefinitionFile>${project.basedir}/config/quality/classycle/dependencyDefinitionFile</dependencyDefinitionFile>
 							<includingClasses>
 								<includingClass>com.octo.android.sample.*</includingClass>
 							</includingClasses>

@@ -199,10 +199,11 @@ check [other] independentOf [ui]
 ````
 ## Robolectric development in eclipse
 
-RoboElectric tests are now fully integrated to the sample project. They are placed under src/test/java as in any normal Java project.
+RoboElectric tests are separated from the sample project, as all testing technologies. 
 
 To make this configuration work in eclipse, do the following : 
 
+//TODO update this
 * after each "maven update" of your project, remember to configure the build path of your project, go to the last tab and *uncheck* maven dependencies so that they are not included into the final apk.
 * in your eclipse junit configuration for your project, add both "bin/classes" to the classpath, and set the environment variable ANDROID_HOME to the android home folder on your computer.
 * add the android jars from your maven repository to your junit run configuration in eclipse.

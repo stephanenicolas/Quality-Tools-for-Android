@@ -213,6 +213,8 @@ Now, simply execute your project as a JUnit project and all robolectric tests wi
 
 ## Using Gradle
 
+All gradle-related file are stored in folder `gradle`.
+
 With Gradle 1.7+ : 
 
 ### build the app under tests
@@ -243,6 +245,14 @@ gradle clean assembleDebug robolectric
 gradle check
 ```
 
+or independently : 
+```bash
+# in parent folder
+gradle checkstyle
+gradle findbugs
+gradle pmd
+gradle classycle
+```
 
 # Thanks to
  * [OCTO Technology](http://www.octo.com/en) to provide us with free time to work on that project.

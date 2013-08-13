@@ -264,6 +264,10 @@ gradle classycle
 
 ### TODO play uiautomator tests
 
+### TODO play monkey tests
+
+### TODO play monkey runner tests
+
 ### TODO shoot stuff to sonar
 
 

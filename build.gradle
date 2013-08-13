@@ -243,7 +243,6 @@ project('android-sample-robolectric-tests') {
 		}
 	}
 	
-	
 }
 
 //-------------------------

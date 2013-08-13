@@ -225,11 +225,13 @@ With Gradle 1.7+ :
 gradle clean assemble
 ```
 
-### play standard android tests : 
+### play standard android tests (without emma coverage): 
 
 ```bash
 # in parent folder
 gradle clean assembleDebug connectedInstrumentTest
+#export to sonar
+gradle sonarRunner
 ```
 
 ### play robolectric tests : 

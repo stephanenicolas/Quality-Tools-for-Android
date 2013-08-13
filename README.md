@@ -243,7 +243,7 @@ gradle clean assembleDebug robolectric
 gradle :android-sample-robolectric-tests:sonarRunner
 ```
 
-### Findbugs + Checkstyle (TODO PMD and JDepend) : 
+### Findbugs + Checkstyle + PMD + classycle : 
 
 ```bash
 # in parent folder

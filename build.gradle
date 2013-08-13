@@ -136,7 +136,7 @@ project('android-sample') {
 	        property "sonar.jdbc.driverClassName", "org.h2.Driver"
 	        property "sonar.jdbc.username", "sonar"
 	        property "sonar.jdbc.password", "sonar"
-		    property "sonar.branch", "emma"
+		    property "sonar.branch", "gradle"
 		    property "sonar.dynamicAnalysis", "reuseReports"
 		    properties["sonar.sources"] = android.sourceSets.main.java.srcDirs
 		    properties["sonar.tests"] = android.sourceSets.instrumentTest.java.srcDirs
@@ -155,6 +155,7 @@ project('android-sample-robolectric-tests') {
 
 	apply plugin: 'android'
 	apply plugin: 'robolectric'
+	apply plugin: "sonar-runner"
 	
 	repositories {
 	    mavenCentral()
@@ -210,25 +211,6 @@ project('android-sample-robolectric-tests') {
 	    }
 	}
 	
-	task listResources << {
-	    println android.sourceSets.robolectric.resources.srcDirs.each() {
-	        println it.getProperties()
-	    }
-	
-	}
-	
-	task listAndroidJars << {
-	    println android.applicationVariants.each {
-	        println it
-	    }
-	
-	    println android.plugin.getRuntimeJarList()
-	}
-	
-	task listJars << {
-	    configurations.robolectric.each { File file -> println file.name }
-	}
-	
 	task libs(type: Sync) {
 	    from configurations.robolectric
 	    into "/tmp/libs"
@@ -241,9 +223,27 @@ project('android-sample-robolectric-tests') {
 	
 	tasks['robolectric'].dependsOn('copy')
 	
-	tasks['robolectric'].doFirst {
+	robolectric{
 	  workingDir = '.'
 	}
+	
+	sonarRunner {
+	    sonarProperties {
+	        property "sonar.host.url", "http://localhost:9000"
+	        property "sonar.jdbc.url", "jdbc:h2:tcp://localhost:9092/sonar"
+	        property "sonar.jdbc.driverClassName", "org.h2.Driver"
+	        property "sonar.jdbc.username", "sonar"
+	        property "sonar.jdbc.password", "sonar"
+		    property "sonar.branch", "gradle-robolectric"
+		    property "sonar.dynamicAnalysis", "reuseReports"
+		    properties["sonar.sources"] = android.sourceSets.main.java.srcDirs
+		    properties["sonar.tests"] = android.sourceSets.instrumentTest.java.srcDirs
+		    properties["sonar.binaries"] = file("build/classes/debug")
+		    property "sonar.surefire.reportsPath","build/test-results/" 
+		}
+	}
+	
+	
 }
 
 //-------------------------

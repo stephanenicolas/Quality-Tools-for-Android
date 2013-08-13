@@ -231,7 +231,7 @@ gradle clean assemble
 # in parent folder
 gradle clean assembleDebug connectedInstrumentTest
 #export to sonar
-gradle sonarRunner
+gradle :android-sample:sonarRunner
 ```
 
 ### play robolectric tests : 
@@ -239,6 +239,8 @@ gradle sonarRunner
 ```bash
 # in parent folder
 gradle clean assembleDebug robolectric
+#export to sonar
+gradle :android-sample-robolectric-tests:sonarRunner
 ```
 
 ### Findbugs + Checkstyle (TODO PMD and JDepend) : 

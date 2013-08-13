@@ -254,6 +254,20 @@ gradle pmd
 gradle classycle
 ```
 
+### TODO run lint :
+
+### TODO run test coverage using emma (standard tests): 
+
+### TODO run test coverage using cobertura (robolectric tests):
+
+### TODO run test coverage using jacoco (both tests): 
+
+### TODO play uiautomator tests
+
+### TODO shoot stuff to sonar
+
+
+
 # Thanks to
  * [OCTO Technology](http://www.octo.com/en) to provide us with free time to work on that project.
  * Henri Treblay from [OCTO Technology](http://www.octo.com/en) for having ported [EasyMock](http://www.easymock.org/) to Android.

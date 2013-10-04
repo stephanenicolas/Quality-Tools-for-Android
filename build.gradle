@@ -1,31 +1,39 @@
 import com.android.build.gradle.api.TestVariant
 
 buildscript {
-	repositories { 
-         mavenCentral()
-         maven {
-	        url "https://oss.sonatype.org/content/repositories/snapshots"
-	    }
-	}
-	dependencies { 
-		classpath 'com.android.tools.build:gradle:0.6.+'
-		classpath 'com.novoda.gradle:robolectric-plugin:0.0.1-SNAPSHOT'
-	}
+    repositories {
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.6.+'
+        classpath 'com.novoda.gradle:robolectric-plugin:0.0.1-SNAPSHOT'
+    }
 }
 
 configure(allprojects) {
-	group = 'com.octo.android'
+    group = 'com.octo.android'
 
-	ext.androidVersion           = "4.1.1.4"
-	ext.androidSupportVersion    = "18.0.0"
-	ext.jodaLibraryVersion       = "2.2"
+    ext.androidVersion           = "4.1.1.4"
+    ext.androidSDKVersion        = "17"
+    ext.androidBuildToolsVersion = "17.0"
+    ext.androidSupportVersion    = "18.0.0"
+    ext.jodaLibraryVersion       = "2.2"
+    ext.robotiumVersion          = "4.0"
+    ext.hamcrestVersion          = "1.3"
+    ext.spoonVersion             = "1.0.1"
+    ext.festVersion              = "1.0.3"
+    ext.dexmakerVersion          = "1.0"
+    ext.dexmakerMockitoVersion   = "1.0"
+    ext.easyMockVersion          = "3.2"
+    ext.mockitoVersion           = "1.9.5"
 }
 
 configure(subprojects) { subproject ->
-	repositories {
-	     mavenCentral()
-	     mavenLocal()
-	}
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
 }
 
 //-------------------------
@@ -33,117 +41,131 @@ configure(subprojects) { subproject ->
 //-------------------------
 
 project('android-sample') {
-	description = "Android sample app under tests"
+    description = "Android sample app under tests"
 
-	apply plugin: 'android'
-	apply plugin: 'eclipse'
-	apply plugin: "sonar-runner"
+    apply plugin: 'android'
+    apply plugin: 'eclipse'
+    apply plugin: "sonar-runner"
     apply plugin: 'checkstyle'
     apply plugin: 'findbugs'
     apply plugin: 'pmd'
     apply from: '../gradle/classycle.gradle'
-    
-	dependencies {
-     compile "joda-time:joda-time:$jodaLibraryVersion"
-     compile "com.android.support:support-v4:$androidSupportVersion"
-     
-     instrumentTestCompile 'com.jayway.android.robotium:robotium-solo:4.0'
-     instrumentTestCompile 'org.hamcrest:hamcrest-core:1.3'
-     instrumentTestCompile 'com.squareup.spoon:spoon-client:1.0.1'
-     instrumentTestCompile 'com.squareup:fest-android:1.0.3'
-     instrumentTestCompile 'com.google.dexmaker:dexmaker:1.0'
-     instrumentTestCompile 'com.google.dexmaker:dexmaker-mockito:1.0'
-     instrumentTestCompile 'org.easymock:easymock:3.2' exclude group: 'cglib'
-     instrumentTestCompile 'org.mockito:mockito-core:1.9.5'  
-	}
-	    
-	  
-	android {
-	    buildToolsVersion "17.0"                
-	    compileSdkVersion 17
-	    
-	    sourceSets {
-	        main {
-	            manifest.srcFile 'AndroidManifest.xml'
-	            java.srcDirs = ['src/main/java']
-	            resources.srcDirs = ['src']
-	            aidl.srcDirs = ['src']
-	            renderscript.srcDirs = ['src']
-	            res.srcDirs = ['res']
-	            assets.srcDirs = ['assets']
-	        }
-	    
-	        instrumentTest.setRoot('../android-sample-tests')
-	        instrumentTest {
-		      java {
-		         srcDirs = ['../android-sample-tests/src/main/java']
-		      }
-		      res.srcDirs = ['res']
-		      assets.srcDirs = ['../android-sample-tests/assets']
-		      resources.srcDirs = ['../android-sample-tests/src']
-		    }
-	    }
-	    
-	    defaultConfig {
-	        testPackageName "com.octo.android.sample.test"
-	        testInstrumentationRunner "android.test.InstrumentationTestRunner"
-    	}
 
-	    android.applicationVariants.each { variant ->
-	        variant.install.doLast {
-	            def result = exec {
-	                executable = 'adb'
-	                args = ['shell', 'am', 'start', '-c', 'android.intent.category.LAUNCHER', '-n', 'com.octo.android.sample/.ui.HelloAndroidActivity']
-	            }
-	        }
-	    }
-	}
-	
-	classycle {
-       definitionFile file('config/quality/classycle/dependencyDefinitionFile')
-       xslFile null
+    dependencies {
+        compile "joda-time:joda-time:$jodaLibraryVersion"
+        compile "com.android.support:support-v4:$androidSupportVersion"
+
+        instrumentTestCompile "com.jayway.android.robotium:robotium-solo:$robotiumVersion"
+        instrumentTestCompile "org.hamcrest:hamcrest-core:$hamcrestVersion"
+        instrumentTestCompile "com.squareup.spoon:spoon-client:$spoonVersion"
+        instrumentTestCompile "com.squareup:fest-android:$festVersion"
+        instrumentTestCompile "com.google.dexmaker:dexmaker:$dexmakerVersion"
+        instrumentTestCompile "com.google.dexmaker:dexmaker-mockito:$dexmakerMockitoVersion"
+        instrumentTestCompile "org.easymock:easymock:$easyMockVersion" exclude group: "cglib"
+        instrumentTestCompile "org.mockito:mockito-core:$mockitoVersion"
     }
-    
+
+
+    android {
+        buildToolsVersion "$androidBuildToolsVersion"
+        compileSdkVersion 17
+
+        sourceSets {
+            main {
+                manifest.srcFile 'AndroidManifest.xml'
+                java.srcDirs = ['src/main/java']
+                resources.srcDirs = ['src']
+                aidl.srcDirs = ['src']
+                renderscript.srcDirs = ['src']
+                res.srcDirs = ['res']
+                assets.srcDirs = ['assets']
+            }
+
+            instrumentTest.setRoot('../android-sample-tests')
+            instrumentTest {
+                java { srcDirs = [
+                        '../android-sample-tests/src/main/java'
+                    ] }
+                res.srcDirs = ['res']
+                assets.srcDirs = [
+                    '../android-sample-tests/assets'
+                ]
+                resources.srcDirs = [
+                    '../android-sample-tests/src'
+                ]
+            }
+        }
+
+        defaultConfig {
+            testPackageName "com.octo.android.sample.test"
+            testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        }
+
+        android.applicationVariants.each { variant ->
+            variant.install.doLast {
+                def result = exec {
+                    executable = 'adb'
+                    args = [
+                        'shell',
+                        'am',
+                        'start',
+                        '-c',
+                        'android.intent.category.LAUNCHER',
+                        '-n',
+                        'com.octo.android.sample/.ui.HelloAndroidActivity'
+                    ]
+                }
+            }
+        }
+    }
+
+    classycle {
+        definitionFile file('config/quality/classycle/dependencyDefinitionFile')
+        xslFile null
+    }
+
     task checkstyle(type: Checkstyle) {
         configFile file('../config/quality/checkstyle/checkstyle.xml')
         source 'src/main/java'
         include '**/*.java'
         exclude '**/gen/**'
-    
+
         classpath = files( project.configurations.compile.asPath )
     }
-    
+
     task findbugs(type: FindBugs) {
         excludeFilter file('../config/quality/findbugs/findbugs-filter.xml')
         classes = fileTree('build/classes/debug/')
         source = fileTree('src/main/java/')
         //project.configurations.compile.getProperties().each { println it }
-        classpath = files( project.configurations.compile.asPath ) 
+        classpath = files( project.configurations.compile.asPath )
         effort = 'max'
     }
-    
+
     task pmd(type: Pmd) {
         ruleSetFiles = files('../config/quality/pmd/pmd-ruleset.xml')
-        ruleSets = ["basic", "braces","strings"]
-        source = fileTree('src/main/java/')
+        ruleSets = ["basic", "braces", "strings"]
+        println android.sourceSets.main.java.srcDirs
+        source = fileTree(android.sourceSets.main.java.srcDirs)
     }
-        
-	sonarRunner {
-	    sonarProperties {
-	        property "sonar.host.url", "http://localhost:9000"
-	        property "sonar.jdbc.url", "jdbc:h2:tcp://localhost:9092/sonar"
-	        property "sonar.jdbc.driverClassName", "org.h2.Driver"
-	        property "sonar.jdbc.username", "sonar"
-	        property "sonar.jdbc.password", "sonar"
-		    property "sonar.branch", "gradle"
-		    property "sonar.dynamicAnalysis", "reuseReports"
-		    properties["sonar.sources"] = android.sourceSets.main.java.srcDirs
-		    properties["sonar.tests"] = android.sourceSets.instrumentTest.java.srcDirs
-		    properties["sonar.binaries"] = file("build/classes/debug")
-		    property "sonar.surefire.reportsPath","build/instrumentTest-results/connected/" 
-		}
-	}
-    
+
+
+    sonarRunner {
+        sonarProperties {
+            property "sonar.host.url", "http://localhost:9000"
+            property "sonar.jdbc.url", "jdbc:h2:tcp://localhost:9092/sonar"
+            property "sonar.jdbc.driverClassName", "org.h2.Driver"
+            property "sonar.jdbc.username", "sonar"
+            property "sonar.jdbc.password", "sonar"
+            property "sonar.branch", "gradle"
+            property "sonar.dynamicAnalysis", "reuseReports"
+            properties["sonar.sources"] = android.sourceSets.main.java.srcDirs
+            properties["sonar.tests"] = android.sourceSets.instrumentTest.java.srcDirs
+            properties["sonar.binaries"] = file("build/classes/debug")
+            property "sonar.surefire.reportsPath","build/instrumentTest-results/connected/"
+        }
+    }
+
 }
 
 //-------------------------
@@ -151,104 +173,99 @@ project('android-sample') {
 //-------------------------
 
 project('android-sample-robolectric-tests') {
-	description = "Android sample app under tests"
+    description = "Android sample app under tests"
 
-	apply plugin: 'android'
-	apply plugin: 'robolectric'
-	apply plugin: "sonar-runner"
-	
-	repositories {
-	    mavenCentral()
-	    mavenLocal()
-	    maven {
-	        url "https://oss.sonatype.org/content/repositories/snapshots"
-	    }
-	}
-	
-	dependencies {
-	    //compile files('libs/android-support-v4.jar')
-	
-	    // had to deploy to sonatype to get AAR to work
-	    compile 'com.novoda:actionbarsherlock:4.3.2-SNAPSHOT' exclude group: 'com.google.android'
-	    compile "joda-time:joda-time:$jodaLibraryVersion"
-    	compile "com.android.support:support-v4:$androidSupportVersion"
-	
-	    robolectricCompile 'org.robolectric:robolectric:2.0'
-	    robolectricCompile group: 'junit', name: 'junit', version: '4.+'
-	    robolectricCompile "joda-time:joda-time:$jodaLibraryVersion"
-	    robolectricCompile 'org.mockito:mockito-all:1.9.5'
-	    robolectricCompile 'org.easymock:easymock:3.2' exclude group: 'cglib'
-	}
-	
-	android {
-	    compileSdkVersion 17
-	    buildToolsVersion "17.0.0"
-	
-		sourceSets {
-	        main {
-	            manifest.srcFile '../android-sample/AndroidManifest.xml'
-	            java.srcDirs = ['../android-sample/src/main/java']
-	            resources.srcDirs = ['../android-sample/src']
-	            //aild.srcDirs = ['src']
-	            renderscript.srcDirs = ['src']
-	            res.srcDirs = ['../android-sample/res']
-	            assets.srcDirs = ['../android-sample/assets']
-	        }
-	        
-	        robolectric {
-	            manifest.srcFile 'android-sample/AndroidManifest.xml'
-		        java.srcDirs = ['src/test/java']
-		        resources.srcDirs = ['src/test/resources']
-	            res.srcDirs = ['../android-sample/res']
-	            assets.srcDirs = ['../android-sample/assets']
-		    }
-	    }
-	    
-	    defaultConfig {
-	        minSdkVersion 7
-	        targetSdkVersion 17
-	    }
-	}
-	
-	task libs(type: Sync) {
-	    from configurations.robolectric
-	    into "/tmp/libs"
-	}
+    apply plugin: 'android'
+    apply plugin: 'robolectric'
+    apply plugin: "sonar-runner"
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    }
+
+    dependencies {
+        //compile files('libs/android-support-v4.jar')
+
+        // had to deploy to sonatype to get AAR to work
+        compile 'com.novoda:actionbarsherlock:4.3.2-SNAPSHOT' exclude group: 'com.google.android'
+        compile "joda-time:joda-time:$jodaLibraryVersion"
+        compile "com.android.support:support-v4:$androidSupportVersion"
+
+        robolectricCompile 'org.robolectric:robolectric:2.0'
+        robolectricCompile group: 'junit', name: 'junit', version: '4.+'
+        robolectricCompile "joda-time:joda-time:$jodaLibraryVersion"
+        robolectricCompile 'org.mockito:mockito-all:1.9.5'
+        robolectricCompile 'org.easymock:easymock:3.2' exclude group: 'cglib'
+    }
+
+    android {
+        compileSdkVersion 17
+        buildToolsVersion "17.0.0"
+
+        sourceSets {
+            main {
+                manifest.srcFile '../android-sample/AndroidManifest.xml'
+                java.srcDirs = [
+                    '../android-sample/src/main/java'
+                ]
+                resources.srcDirs = ['../android-sample/src']
+                //aild.srcDirs = ['src']
+                renderscript.srcDirs = ['src']
+                res.srcDirs = ['../android-sample/res']
+                assets.srcDirs = ['../android-sample/assets']
+            }
+
+            robolectric {
+                manifest.srcFile 'android-sample/AndroidManifest.xml'
+                java.srcDirs = ['src/test/java']
+                resources.srcDirs = ['src/test/resources']
+                res.srcDirs = ['../android-sample/res']
+                assets.srcDirs = ['../android-sample/assets']
+            }
+        }
+
+        defaultConfig {
+            minSdkVersion 7
+            targetSdkVersion 17
+        }
+    }
+
+    task libs(type: Sync) {
+        from configurations.robolectric
+        into "/tmp/libs"
+    }
 
     task(copy, type: Copy) {
-	    from(file('src/test/resources'))
-    	into(file('build/classes/robolectric/'))
-	}
-	
-	tasks['robolectric'].dependsOn('copy')
-	
-	robolectric{
-	  workingDir = '.'
-	}
-	
-	sonarRunner {
-	    sonarProperties {
-	        property "sonar.host.url", "http://localhost:9000"
-	        property "sonar.jdbc.url", "jdbc:h2:tcp://localhost:9092/sonar"
-	        property "sonar.jdbc.driverClassName", "org.h2.Driver"
-	        property "sonar.jdbc.username", "sonar"
-	        property "sonar.jdbc.password", "sonar"
-		    property "sonar.branch", "gradle-robolectric"
-		    property "sonar.dynamicAnalysis", "reuseReports"
-		    properties["sonar.sources"] = android.sourceSets.main.java.srcDirs
-		    properties["sonar.tests"] = android.sourceSets.instrumentTest.java.srcDirs
-		    properties["sonar.binaries"] = file("build/classes/debug")
-		    property "sonar.surefire.reportsPath","build/test-results/" 
-		}
-	}
-	
+        from(file('src/test/resources'))
+        into(file('build/classes/robolectric/'))
+    }
+
+    tasks['robolectric'].dependsOn('copy')
+
+    robolectric{ workingDir = '.' }
+
+    sonarRunner {
+        sonarProperties {
+            property "sonar.host.url", "http://localhost:9000"
+            property "sonar.jdbc.url", "jdbc:h2:tcp://localhost:9092/sonar"
+            property "sonar.jdbc.driverClassName", "org.h2.Driver"
+            property "sonar.jdbc.username", "sonar"
+            property "sonar.jdbc.password", "sonar"
+            property "sonar.branch", "gradle-robolectric"
+            property "sonar.dynamicAnalysis", "reuseReports"
+            properties["sonar.sources"] = android.sourceSets.main.java.srcDirs
+            properties["sonar.tests"] = android.sourceSets.instrumentTest.java.srcDirs
+            properties["sonar.binaries"] = file("build/classes/debug")
+            property "sonar.surefire.reportsPath","build/test-results/"
+        }
+    }
+
 }
 
 //-------------------------
 //-- Root project
 //-------------------------
 
-configure(rootProject) {
-	description = 'Quality Analysis Tools 4 Android'
-
-}
+configure(rootProject) { description = 'Quality Analysis Tools 4 Android' }

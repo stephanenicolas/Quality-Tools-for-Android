@@ -261,10 +261,16 @@ gradle pmd
 gradle classycle
 ```
 
-### running lint :
+### Running lint :
 ```bash
 # in parent folder
 gradle :android-sample:lint
+```
+
+### Aggregate reports :
+```bash
+# in parent folder
+gradle buildDashboard
 ```
 
 ### TODO run test coverage using emma (standard tests): 

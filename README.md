@@ -225,6 +225,13 @@ With Gradle 1.8+ and android gradle plugin 0.6.+ :
 gradle clean assemble
 ```
 
+### launch the app under tests
+
+```bash
+# in parent folder
+gradle :android-sample:installDebug
+```
+
 ### play standard android tests (without emma coverage): 
 
 ```bash

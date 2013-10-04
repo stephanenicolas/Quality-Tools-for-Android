@@ -1,5 +1,9 @@
 import com.android.build.gradle.api.TestVariant
 
+//useful debug stuff
+//project.configurations.compile.getProperties().each { println it }
+//println android.sourceSets.main.java.srcDirs
+
 buildscript {
     repositories {
         mavenCentral()
@@ -101,19 +105,23 @@ project('android-sample') {
             testInstrumentationRunner "android.test.InstrumentationTestRunner"
         }
 
-        android.applicationVariants.each { variant ->
-            variant.install.doLast {
-                def result = exec {
-                    executable = 'adb'
-                    args = [
-                        'shell',
-                        'am',
-                        'start',
-                        '-c',
-                        'android.intent.category.LAUNCHER',
-                        '-n',
-                        'com.octo.android.sample/.ui.HelloAndroidActivity'
-                    ]
+        afterEvaluate { project ->
+            project.android.applicationVariants.each { variant ->
+                if( variant.install != null ) {
+                    variant.install.doLast {
+                        def result = exec {
+                            executable = 'adb'
+                            args = [
+                                'shell',
+                                'am',
+                                'start',
+                                '-c',
+                                'android.intent.category.LAUNCHER',
+                                '-n',
+                                'com.octo.android.sample/.ui.HelloAndroidActivity'
+                            ]
+                        }
+                    }
                 }
             }
         }
@@ -137,7 +145,6 @@ project('android-sample') {
         excludeFilter file('../config/quality/findbugs/findbugs-filter.xml')
         classes = fileTree('build/classes/debug/')
         source = fileTree('src/main/java/')
-        //project.configurations.compile.getProperties().each { println it }
         classpath = files( project.configurations.compile.asPath )
         effort = 'max'
     }
@@ -145,7 +152,6 @@ project('android-sample') {
     task pmd(type: Pmd) {
         ruleSetFiles = files('../config/quality/pmd/pmd-ruleset.xml')
         ruleSets = ["basic", "braces", "strings"]
-        println android.sourceSets.main.java.srcDirs
         source = fileTree(android.sourceSets.main.java.srcDirs)
     }
 
@@ -269,3 +275,5 @@ project('android-sample-robolectric-tests') {
 //-------------------------
 
 configure(rootProject) { description = 'Quality Analysis Tools 4 Android' }
+
+apply plugin: 'build-dashboard'

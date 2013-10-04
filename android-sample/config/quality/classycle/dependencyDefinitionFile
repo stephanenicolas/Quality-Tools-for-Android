@@ -4,7 +4,8 @@ show allResults
 
 ## layers
 [ui] = com.octo.android.sample.ui.*
-[other] = com.octo.android.sample.* excluding [ui]
+[test] = com.octo.android.sample.test.*
+[other] = com.octo.android.sample.* excluding [ui] [test]
 
 ###check layers integrity
 check [other] independentOf [ui]

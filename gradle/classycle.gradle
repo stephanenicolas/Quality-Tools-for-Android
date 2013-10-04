@@ -6,7 +6,7 @@ configurations {
 
 repositories {
     mavenCentral()
-    mavenRepo urls: "http://artifactory.msi.umn.edu/simple/gradle-libs/";
+    maven { url { "http://artifactory.msi.umn.edu/simple/gradle-libs/" } }
 }
 
 dependencies {

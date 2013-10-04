@@ -77,6 +77,10 @@
 			<classifier>runtime</classifier>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.boundbox</groupId>
+			<artifactId>boundbox-library</artifactId>
+		</dependency>
 	</dependencies>
 	<reporting>
 		<plugins>
@@ -102,61 +106,95 @@
 						<platform>16</platform>
 					</sdk>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
+					<lint>
+					    <skip>true</skip>
+					</lint>
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.github.goldin</groupId>
-				<artifactId>copy-maven-plugin</artifactId>
-				<version>0.2.5</version>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>copy-cobertura-data-from-project-under-test</id>
-						<phase>compile</phase>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
 						<goals>
-							<goal>copy</goal>
+							<goal>add-source</goal>
 						</goals>
 						<configuration>
-							<resources>
-								<resource>
-									<directory>${project.basedir}/../android-sample/target/cobertura</directory>
-									<targetPath>${project.basedir}/target/cobertura</targetPath>
-									<includes>
-										<include>*.ser</include>
-									</includes>
-								</resource>
-								<resource>
-									<directory>${project.basedir}/../android-sample/target/generated-classes/cobertura/</directory>
-									<targetPath>${project.basedir}/target/generated-classes/cobertura</targetPath>
-									<preservePath>true</preservePath>
-								</resource>
-							</resources>
+							<sources>
+								<source>${project.build.directory}/generated-sources/annotations/</source>
+							</sources>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<format>xml</format>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<annotationProcessors>
+						<annotationProcessor>org.boundbox.processor.BoundBoxProcessor</annotationProcessor>
+					</annotationProcessors>
 				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>clean</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 
 
 	<profiles>
+		<profile>
+			<id>cobertura</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.goldin</groupId>
+						<artifactId>copy-maven-plugin</artifactId>
+						<version>0.2.5</version>
+						<executions>
+							<execution>
+								<id>copy-cobertura-data-from-project-under-test</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+								<configuration>
+									<resources>
+										<resource>
+											<directory>${project.basedir}/../android-sample/target/cobertura</directory>
+											<targetPath>${project.basedir}/target/cobertura</targetPath>
+											<includes>
+												<include>*.ser</include>
+											</includes>
+										</resource>
+										<resource>
+											<directory>${project.basedir}/../android-sample/target/generated-classes/cobertura/</directory>
+											<targetPath>${project.basedir}/target/generated-classes/cobertura</targetPath>
+											<preservePath>true</preservePath>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>cobertura-maven-plugin</artifactId>
+						<configuration>
+							<format>xml</format>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>clean</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 		<profile>
 			<id>jacoco</id>
 			<build>

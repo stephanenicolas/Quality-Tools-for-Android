@@ -27,6 +27,7 @@ release.properties
 .settings
 .settings/
 .DS_Store
+.factorypath
 
 #Intelli J project files
 .idea/

@@ -13,6 +13,10 @@
 	<packaging>apk</packaging>
 	<name>android-sample-tests</name>
 
+	<properties>
+		<build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>android</groupId>
@@ -21,6 +25,7 @@
 		<dependency>
 			<groupId>android.support</groupId>
 			<artifactId>compatibility-v4</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.octo.android</groupId>
@@ -70,6 +75,10 @@
 			<groupId>com.squareup</groupId>
 			<artifactId>fest-android</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.boundbox</groupId>
+			<artifactId>boundbox-library</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -82,6 +91,40 @@
 
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/annotations/</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<annotationProcessors>
+						<annotationProcessor>org.boundbox.processor.BoundBoxProcessor</annotationProcessor>
+					</annotationProcessors>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

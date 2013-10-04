@@ -3,6 +3,7 @@ package com.octo.android.sample.ui;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
+import org.boundbox.BoundBox;
 import org.easymock.EasyMock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,7 @@ import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
+import android.support.v4.app.FragmentActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -105,6 +107,28 @@ public class MyActivityTest {
         Mockito.verify(mockComputer, Mockito.times(1)).getResult();
         TextView textViewHello = (TextView) activityUnderTest.findViewById(R.id.textview_hello);
         String textViewHelloString = textViewHello.getText().toString();
+        assertThat(textViewHelloString, equalTo(String.valueOf(EXPECTED_RESULT)));
+    }
+    
+    @BoundBox(boundClass=HelloAndroidActivity.class, maxSuperClass=FragmentActivity.class)
+    @Test
+    public void shouldUseCustomComputerUsingMockitoAndBoundBox() throws Exception {
+        final int EXPECTED_RESULT = 1;
+        // given
+        HelloAndroidActivity activityUnderTest = Robolectric.buildActivity(HelloAndroidActivity.class).create().get();
+        BoundBoxOfHelloAndroidActivity boundBoxOfHelloAndroidActivity = new BoundBoxOfHelloAndroidActivity(activityUnderTest);
+        
+        Computer mockComputer = Mockito.mock(Computer.class);
+        Mockito.when(mockComputer.getResult()).thenReturn(EXPECTED_RESULT);
+        
+        boundBoxOfHelloAndroidActivity.setComputer(mockComputer);
+        
+        // when
+        boundBoxOfHelloAndroidActivity.boundBox_getButton().performClick();
+        
+        // then
+        Mockito.verify(mockComputer, Mockito.times(1)).getResult();
+        String textViewHelloString = boundBoxOfHelloAndroidActivity.boundBox_getTextView().getText().toString();
         assertThat(textViewHelloString, equalTo(String.valueOf(EXPECTED_RESULT)));
     }
 }

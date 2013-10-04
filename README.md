@@ -216,7 +216,7 @@ Now, simply execute your project as a JUnit project and all robolectric tests wi
 
 All gradle-related file are stored in folder `gradle`.
 
-With Gradle 1.7+ : 
+With Gradle 1.8+ and android gradle plugin 0.6.+ : 
 
 ### build the app under tests
 
@@ -253,13 +253,19 @@ gradle check
 or independently : 
 ```bash
 # in parent folder
+#you need to run assemble before most of those
+#gradle assembleDebug
 gradle checkstyle
 gradle findbugs
 gradle pmd
 gradle classycle
 ```
 
-### TODO run lint :
+### running lint :
+```bash
+# in parent folder
+gradle :android-sample:lint
+```
 
 ### TODO run test coverage using emma (standard tests): 
 
@@ -273,7 +279,7 @@ gradle classycle
 
 ### TODO play monkey runner tests
 
-### TODO shoot stuff to sonar
+### TODO shoot more stuff to sonar
 
 
 

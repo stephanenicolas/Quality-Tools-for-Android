@@ -311,3 +311,18 @@ gradle buildDashboard
 * [Android Weekly issue #55 !] (http://androidweekly.net/#latest-issue)
 * [Android Dev Weekly, issue #49 !] (http://androiddevweekly.com/2013/03/11/Issue-49.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+AndroidDevWeekly+%28%23AndroidDev+Weekly%29)
 * Our presentation at [Devoxx France 2013](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-beef-you-android-apps-using-java-tools).
+
+
+License
+-------
+
+ Copyright (C) 2013 Stéphane Nicolas & Jérôme Van Der Linden
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	     http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,

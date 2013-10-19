@@ -31,6 +31,7 @@ configure(allprojects) {
     ext.dexmakerMockitoVersion   = "1.0"
     ext.easyMockVersion          = "3.2"
     ext.mockitoVersion           = "1.9.5"
+    ext.boundBoxVersion          = "1.2.0"
 }
 
 configure(subprojects) { subproject ->
@@ -67,6 +68,7 @@ project('android-sample') {
         instrumentTestCompile "com.google.dexmaker:dexmaker-mockito:$dexmakerMockitoVersion"
         instrumentTestCompile "org.easymock:easymock:$easyMockVersion" exclude group: "cglib"
         instrumentTestCompile "org.mockito:mockito-core:$mockitoVersion"
+        instrumentTestCompile "org.boundbox:boundbox-library:$boundBoxVersion"
     }
 
 
@@ -204,6 +206,8 @@ project('android-sample-robolectric-tests') {
         robolectricCompile "joda-time:joda-time:$jodaLibraryVersion"
         robolectricCompile 'org.mockito:mockito-all:1.9.5'
         robolectricCompile 'org.easymock:easymock:3.2' exclude group: 'cglib'
+        robolectricCompile "org.boundbox:boundbox-library:$boundBoxVersion"
+        
     }
 
     android {

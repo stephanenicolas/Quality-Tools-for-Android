@@ -42,6 +42,7 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
         * easymock
         * mockito
 * [Screenshot lib](https://github.com/rtyley/android-screenshot-lib) works during UIAutomator tests.
+* [BoundBox](https://github.com/stephanenicolas/boundbox) is used in some StandardAndroid tests and Robolectric tests.
 * support for [Travis CI](https://travis-ci.org/stephanenicolas/Quality-Tools-for-Android). 
 * Build Status on Travis: [![Build Status on Travis:](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android.png)](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android)
 
@@ -53,6 +54,7 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
 2. add support for monkey runner through maven
 3. add calabash support.
 4. Add support for JUnit 4 on Android : http://stackoverflow.com/questions/9809180/why-is-junit-4-on-android-not-working
+5. Add espresso support.
 
 # Usage
 

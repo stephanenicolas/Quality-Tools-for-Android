@@ -18,6 +18,7 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
 * Standard Android testing framework and code coverage using emma, reported in Sonar. That also covers robotium, easy mock and mockito technologies.
 * Robolectric testing framework and code coverage using Cobertura, reported in Sonar. Now in same eclipse project / maven module as app under test [thanks to this thread](https://github.com/rgladwell/m2e-android/issues/52).
 * UI Automator testing through a new android maven plugin goal (to be released in android-maven-plugin-3.5.2) and result in sonar.
+* Espresso / Android test kit 
 * Configuration works out of the box in eclipse
 * Lint integration via Maven.
 * PMD, findbugs, checkstyle integration via Maven, reported in Sonar.
@@ -54,7 +55,6 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
 2. add support for monkey runner through maven
 3. add calabash support.
 4. Add support for JUnit 4 on Android : http://stackoverflow.com/questions/9809180/why-is-junit-4-on-android-not-working
-5. Add espresso support.
 
 # Usage
 
@@ -145,6 +145,15 @@ mvn sonar:sonar -P uiautomator
 ```
 Here is the result in sonar : 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-uiautomator.png" width=450px/>
+
+## Espresso
+
+To build the sample project and run the sample app on a plugged device / running emulator : 
+
+```bash
+# in parent folder
+mvn clean install -P espresso
+```
 
 ## Spoon from Squareup
 
@@ -241,6 +250,13 @@ gradle :android-sample:installDebug
 gradle clean assembleDebug connectedInstrumentTest
 #export to sonar
 gradle :android-sample:sonarRunner
+```
+
+### play espresso tests (without emma coverage): 
+
+```bash
+# in parent folder
+gradle clean assembleDebug :android-sample-espresso-tests:connectedInstrumentTest
 ```
 
 ### play robolectric tests : 

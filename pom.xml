@@ -382,6 +382,7 @@
 			<modules>
 				<module>android-sample-tests</module>
 				<module>android-sample-ui-tests</module>
+				<module>android-sample-espresso-tests</module>
 			</modules>
 		</profile>
 		<profile>
@@ -450,6 +451,12 @@
 				<sonar.branch>uiautomator</sonar.branch>
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 			</properties>
+		</profile>
+		<profile>
+			<id>espresso</id>
+			<modules>
+				<module>android-sample-espresso-tests</module>
+			</modules>
 		</profile>
 		<profile>
 			<id>spoon</id>

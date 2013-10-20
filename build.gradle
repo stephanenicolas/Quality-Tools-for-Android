@@ -207,7 +207,7 @@ project('android-sample-robolectric-tests') {
         robolectricCompile 'org.mockito:mockito-all:1.9.5'
         robolectricCompile 'org.easymock:easymock:3.2' exclude group: 'cglib'
         robolectricCompile "org.boundbox:boundbox-library:$boundBoxVersion"
-        
+
     }
 
     android {
@@ -260,7 +260,7 @@ project('android-sample-robolectric-tests') {
         scanForTestClasses = false
         include "**/*Test.class" // whatever Ant pattern matches your test class files
     }
-    
+
     sonarRunner {
         sonarProperties {
             property "sonar.host.url", "http://localhost:9000"
@@ -275,6 +275,79 @@ project('android-sample-robolectric-tests') {
             properties["sonar.binaries"] = file("build/classes/debug")
             property "sonar.surefire.reportsPath","build/test-results/"
         }
+    }
+
+}
+
+//-------------------------
+//-- Android Sample Espesso Tests Project
+//-------------------------
+
+project('android-sample-espresso-tests') {
+    description = "Android sample espresso tests"
+
+    apply plugin: 'android'
+    apply plugin: 'eclipse'
+    apply plugin: 'checkstyle'
+
+    println "ProjectDir is $projectDir/repo"
+    repositories {
+        mavenCentral()
+        maven { url "repo/" }
+    }
+
+    dependencies {
+        compile "joda-time:joda-time:$jodaLibraryVersion"
+        compile "com.android.support:support-v4:$androidSupportVersion"
+        
+        instrumentTestCompile "com.google.android:android-espresso:1.0-SNAPSHOT"
+    }
+
+
+    android {
+        buildToolsVersion "$androidBuildToolsVersion"
+        compileSdkVersion 17
+
+        sourceSets {
+            main {
+                manifest.srcFile '../android-sample/AndroidManifest.xml'
+                java.srcDirs = ['../android-sample/src/main/java']
+                resources.srcDirs = ['../android-sample/src']
+                aidl.srcDirs = ['../android-sample/src']
+                renderscript.srcDirs = ['../android-sample/src']
+                res.srcDirs = ['../android-sample/res']
+                assets.srcDirs = ['../android-sample/assets']
+            }
+
+            instrumentTest.setRoot('.')
+            instrumentTest {
+                java { srcDirs = [
+                        'src/main/java'
+                    ] }
+                res.srcDirs = ['res']
+                assets.srcDirs = [
+                    'assets'
+                ]
+                resources.srcDirs = [
+                    'src'
+                ]
+            }
+        }
+
+        defaultConfig {
+            testPackageName "com.octo.android.sample.espressotest"
+            testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
+        }
+
+    }
+
+    task checkstyle(type: Checkstyle) {
+        configFile file('../config/quality/checkstyle/checkstyle.xml')
+        source 'src/main/java'
+        include '**/*.java'
+        exclude '**/gen/**'
+
+        classpath = files( project.configurations.compile.asPath )
     }
 
 }

@@ -170,7 +170,7 @@ Here is the result in a browser :
 ## Monkey testing
 
 Monkey is part of Android SDK and allows to harness Application UI and test their robustness.
-We contributed to a neww maven android plugin goal to use monkey automatically and get reports in junit format.
+We contributed to a new maven android plugin goal to use monkey automatically and get reports in junit format.
 
 The results can be displayed inside sonar and will appear as normal unit tests.
 

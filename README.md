@@ -167,6 +167,15 @@ mvn clean install -P spoon
 Here is the result in a browser : 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/screenshot-spoon.png" width=450px/>
 
+## Espresso run with Spoon
+
+To build the sample project and run the sample app using Spoon : 
+
+```bash
+# in parent folder
+mvn clean install -P espresso-spoon
+```
+
 ## Monkey testing
 
 Monkey is part of Android SDK and allows to harness Application UI and test their robustness.

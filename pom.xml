@@ -383,6 +383,7 @@
 				<module>android-sample-tests</module>
 				<module>android-sample-ui-tests</module>
 				<module>android-sample-espresso-tests</module>
+				<module>android-sample-espresso-spoon-tests</module>
 			</modules>
 		</profile>
 		<profile>
@@ -462,6 +463,12 @@
 			<id>spoon</id>
 			<modules>
 				<module>android-sample-tests</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>espresso-spoon</id>
+			<modules>
+				<module>android-sample-espresso-spoon-tests</module>
 			</modules>
 		</profile>
 		<profile>

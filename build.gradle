@@ -170,7 +170,7 @@ project('android-sample') {
             properties["sonar.sources"] = android.sourceSets.main.java.srcDirs
             properties["sonar.tests"] = android.sourceSets.instrumentTest.java.srcDirs
             properties["sonar.binaries"] = file("build/classes/debug")
-            property "sonar.surefire.reportsPath","build/instrumentTest-results/connected/"
+            property "sonar.junit.reportsPath","build/instrumentTest-results/connected/"
         }
     }
 
@@ -273,7 +273,7 @@ project('android-sample-robolectric-tests') {
             properties["sonar.sources"] = android.sourceSets.main.java.srcDirs
             properties["sonar.tests"] = android.sourceSets.instrumentTest.java.srcDirs
             properties["sonar.binaries"] = file("build/classes/debug")
-            property "sonar.surefire.reportsPath","build/test-results/"
+            property "sonar.junit.reportsPath","build/test-results/"
         }
     }
 

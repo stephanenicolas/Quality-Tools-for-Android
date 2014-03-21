@@ -140,14 +140,14 @@ project('android-sample') {
         include '**/*.java'
         exclude '**/gen/**'
 
-        classpath = files( project.configurations.compile.asPath )
+        classpath = files( project.configurations.compile.files )
     }
 
     task findbugs(type: FindBugs) {
         excludeFilter file('../config/quality/findbugs/findbugs-filter.xml')
         classes = fileTree('build/classes/debug/')
         source = fileTree('src/main/java/')
-        classpath = files( project.configurations.compile.asPath )
+        classpath = files( project.configurations.compile.files )
         effort = 'max'
     }
 
@@ -347,7 +347,7 @@ project('android-sample-espresso-tests') {
         include '**/*.java'
         exclude '**/gen/**'
 
-        classpath = files( project.configurations.compile.asPath )
+        classpath = files( project.configurations.compile.files )
     }
 
 }

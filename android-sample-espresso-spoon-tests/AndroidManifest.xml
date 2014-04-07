@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.octo.android.sample.espressospoon.test"
+    android:versionCode="1"
+    android:versionName="0.0.1-SNAPSHOT" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application>
+        <uses-library android:name="android.test.runner" />
+    </application>
+
+     <instrumentation
+        android:name="com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
+        android:targetPackage="com.octo.android.sample" />
+
+</manifest>

@@ -13,7 +13,7 @@
 		<platform.version>4.2.2_r2</platform.version>
 		<java.version>1.6</java.version>
 		<android.sdk.version>17</android.sdk.version>
-		<android.support.version>18</android.support.version>
+		<android.support.version>19</android.support.version>
 
 		<!-- Compile Dependencies -->
 		<joda.version>2.2</joda.version>
@@ -36,7 +36,7 @@
 
 		<!-- Plugins -->
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
-		<android-maven-plugin.version>3.6.1</android-maven-plugin.version>
+		<android-maven-plugin.version>3.8.2</android-maven-plugin.version>
 		<cobertura.version>2.5.2</cobertura.version>
 		<maven-pmd-plugin.version>2.7.1</maven-pmd-plugin.version>
 		<findbugs-maven-plugin.version>2.5.2</findbugs-maven-plugin.version>

@@ -19,6 +19,13 @@ public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<H
         super(HelloAndroidActivity.class);
     }
 
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
+        // workaround for https://code.google.com/p/dexmaker/issues/detail?id=2
+        System.setProperty("dexmaker.dexcache", getInstrumentation().getTargetContext().getCacheDir().toString());
+    }
+
     public void testActivity_not_null() {
         assertNotNull(getActivity());
     }

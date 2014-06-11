@@ -28,7 +28,7 @@
 		<dexmaker.version>1.0</dexmaker.version>
 		<dexmaker-mockito.version>1.0</dexmaker-mockito.version>
 		<mockwebserver.version>20130303</mockwebserver.version>
-		<robotium.version>4.0</robotium.version>
+		<robotium.version>4.3.1</robotium.version>
 		<spoon.version>1.0.1</spoon.version>
 		<fest.version>1.0.3</fest.version>
 		<celebrity.version>1.8</celebrity.version>

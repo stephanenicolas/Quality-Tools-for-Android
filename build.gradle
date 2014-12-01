@@ -18,6 +18,7 @@ buildscript {
 configure(allprojects) {
     group = 'com.octo.android'
 
+    ext.androidMinSDKVersion     = "7"
     ext.androidVersion           = "4.1.1.4"
     ext.androidSDKVersion        = "17"
     ext.androidBuildToolsVersion = "17.0"
@@ -74,7 +75,7 @@ project('android-sample') {
 
     android {
         buildToolsVersion "$androidBuildToolsVersion"
-        compileSdkVersion 17
+        compileSdkVersion "$androidSDKVersion"
 
         sourceSets {
             main {
@@ -211,8 +212,8 @@ project('android-sample-robolectric-tests') {
     }
 
     android {
-        compileSdkVersion 17
-        buildToolsVersion "17.0.0"
+        compileSdkVersion "$androidSDKVersion"
+        buildToolsVersion "$androidBuildToolsVersion"
 
         sourceSets {
             main {
@@ -237,8 +238,8 @@ project('android-sample-robolectric-tests') {
         }
 
         defaultConfig {
-            minSdkVersion 7
-            targetSdkVersion 17
+            minSdkVersion "$androidMinSDKVersion"
+            targetSdkVersion "$androidSDKVersion"
         }
     }
 
@@ -306,7 +307,7 @@ project('android-sample-espresso-tests') {
 
     android {
         buildToolsVersion "$androidBuildToolsVersion"
-        compileSdkVersion 17
+        compileSdkVersion "$androidSDKVersion"
 
         sourceSets {
             main {

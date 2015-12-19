@@ -45,7 +45,7 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
 * [Screenshot lib](https://github.com/rtyley/android-screenshot-lib) works during UIAutomator tests.
 * [BoundBox](https://github.com/stephanenicolas/boundbox) is used in some StandardAndroid tests and Robolectric tests.
 * support for [Travis CI](https://travis-ci.org/stephanenicolas/Quality-Tools-for-Android). 
-* Build Status on Travis: [![Build Status on Travis:](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android.png)](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android)
+* Build Status on Travis: [![Build Status on Travis:](https://api.travis-ci.org/stephanenicolas/Quality-Tools-for-Android.png)](https://travis-ci.org/stephanenicolas/Quality-Tools-for-Android)
 
 
 

@@ -15,6 +15,7 @@ Here are [some slides](https://speakerdeck.com/stephanenicolas/devoxx-2013-fr-be
 
 # Already integrated :
 
+* this android framework are colaborate in that and it is very good 
 * Standard Android testing framework and code coverage using emma, reported in Sonar. That also covers robotium, easy mock and mockito technologies.
 * Robolectric testing framework and code coverage using Cobertura, reported in Sonar. Now in same eclipse project / maven module as app under test [thanks to this thread](https://github.com/rgladwell/m2e-android/issues/52).
 * UI Automator testing through a new android maven plugin goal (to be released in android-maven-plugin-3.5.2) and result in sonar.

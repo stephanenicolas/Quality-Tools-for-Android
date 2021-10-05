@@ -1,7 +1,8 @@
 # Quality Tools for Android
 
 <img src="https://raw.github.com/stephanenicolas/Quality-Tools-for-Android/master/gfx/bugdroid-duke-armor.jpg" 
-width="350px" />
+width="350px" />  
+One of the best tool for android developers.
 
 This is an Android sample app + tests that will be used to work on various project to increase the quality of the Android platform.
 
